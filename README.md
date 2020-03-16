@@ -17,4 +17,4 @@ Tarkoitus olisi saada aikaan jonkinlaista statistiikkaa sekä pysyvä
 tallennuspaikka tuloksille, aiemminkin niitä on kirjattu mutta vähän minne
 milloinkin, ja tietoja on mennyt paljon hukkaan, mikä on sääli.
 
-[tietokantakaavio](https://github.com/korolainenriikka/WorkoutLogger-tsoha/blob/master/kuvat/tshohadiagram.png)
+[tietokantakaavio](https://github.com/korolainenriikka/WorkoutLogger-tsoha/blob/master/application/tshohadiagram.png)
