@@ -5,4 +5,5 @@ Harjoitustyönä on treenipäiväkirja, jolla pidetään kirjaa tuloksista. Tiet
 Ensimmäisessä versiossa sovelluksessa on yksi tietokantataulu tulokset, johon voi lisätä tehdystä treenistä tekstimuotoista tietoa, joka on muokattavissa ja poistettavissa.
 
 [tietokantakaavio](https://github.com/korolainenriikka/WorkoutLogger-tsoha/blob/master/documentation/tshohadiagram.png)
-[käyttäjätapaukset](https://github.com/korolainenriikka/WorkoutLogger-tsoha/blob/master/documentation/userstpries.md)
+
+[käyttäjätapaukset](https://github.com/korolainenriikka/WorkoutLogger-tsoha/blob/master/documentation/user_stories.md)
