@@ -4,18 +4,11 @@
 
   <table>
     <tr>
-      <th>Task</th>
-      <th>Done</th>
+      <th>Result</th>
     </tr>
-    {% for task in results %}
+    {% for result in results %}
     <tr>
-      <td>{{ task.name }}</td>
-      <td>{{ task.done }}</td>
-      <td>
-        <form method="POST" action="{{ url_for('results_set_done', task_id=task.id) }}">
-          <input type="submit" value="Change status!"/>
-        </form>
-      </td>
+      <td>{{ result.description }}</td>
     </tr>
     {% endfor %}
   </table>
