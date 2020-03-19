@@ -7,3 +7,5 @@ Ensimmäisessä versiossa sovelluksessa on yksi tietokantataulu tulokset, johon 
 [tietokantakaavio](https://github.com/korolainenriikka/WorkoutLogger-tsoha/blob/master/documentation/tshohadiagram.png)
 
 [käyttäjätapaukset](https://github.com/korolainenriikka/WorkoutLogger-tsoha/blob/master/documentation/user_stories.md)
+
+[heroku](https://workoutlogger-tsoha.herokuapp.com/)
