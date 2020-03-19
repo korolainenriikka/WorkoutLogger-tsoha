@@ -2,8 +2,8 @@
 
 {% block body %}
 
-<form method="POST" action="{{ url_for('results_saveModified', result_id=result.id, randomattribute=234) }}">
-  <input type="text" name="name" value= "muokataan kohtaa {{ result.id }}" />
+<form method="GET" action="{{ url_for('results_saveModified', result_id=result.id) }}">
+  <input type="text" name="newtext" value= "{{ result.description }}" />
   <input type="submit" value="save changes"/>
 </form>
 {% endblock %}
