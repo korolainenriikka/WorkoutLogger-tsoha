@@ -18,3 +18,7 @@ def results_create():
     db.session().commit()
 
     return redirect(url_for("results_index"))
+
+@app.route("/results/modify")
+def results_modify():
+    return render_template("results/modify.html")
