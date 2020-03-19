@@ -21,4 +21,6 @@ def results_create():
 
 @app.route("/results/modify")
 def results_modify():
+
+
     return render_template("results/modify.html")

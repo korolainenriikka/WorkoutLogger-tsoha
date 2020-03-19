@@ -6,7 +6,7 @@ class Result(db.Model):
   date_modified = db.Column(db.DateTime, default=db.func.current_timestamp()),
   onupdate=db.func.current_timestamp()
 
-  description = db.Column(db.String(144), nullable=False)
+  description = db.Column(db.String(144))
 
   def __init__(self, description):
     self.description = description
