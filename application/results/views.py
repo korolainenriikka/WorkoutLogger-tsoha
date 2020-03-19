@@ -19,8 +19,14 @@ def results_create():
 
     return redirect(url_for("results_index"))
 
-@app.route("/results/modify")
+@app.route("/results/modify/")
 def results_modify():
-
-
     return render_template("results/modify.html")
+
+@app.route("/results/saveModified", methods=["POST"])
+def results_saveModified():
+    r = Result.query.get(3)
+    r.description = "jehuu nytte muuttuu"
+    db.session.commit()
+
+    return redirect(url_for("results_index"))
