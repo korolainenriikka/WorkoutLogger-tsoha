@@ -2,5 +2,4 @@ venv
 __pycache__
 .idea
 omaMatsku/
-workoutlogger.db
 wologger.db
