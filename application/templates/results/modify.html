@@ -1,9 +1,8 @@
 {% extends "layout.html"%}
 
 {% block body %}
-
-<form method="GET" action="{{ url_for('results_saveModified', result_id=result.id) }}">
-  <input type="text" name="newtext" value= "{{ result.description }}" />
+<form method="POST" action="{{ url_for('results_savemodified')  }}">
+  <input type="text" name="newtext" value= {{ result.description }} />
   <input type="submit" value="save changes"/>
 </form>
 {% endblock %}

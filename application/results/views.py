@@ -23,10 +23,10 @@ def results_create():
 def results_modify(result_id):
     return render_template("results/modify.html", result = Result.query.get(result_id))
 
-@app.route("/results/savemodified/<result_id>", methods=["GET", "POST"])
-def results_saveModified(result_id):
-    r = Result.query.get(result_id)
-    r.description = "uusi teksti"
-    db.session.commit()
+@app.route("/results/savemodified", methods=["POST"])
+def results_savemodified():
+    r = Result(request.form.get("newtext"))
+    db.session().add(r)
+    db.session().commit()
 
     return redirect(url_for("results_index"))
