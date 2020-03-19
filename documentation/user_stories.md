@@ -1,9 +1,9 @@
-# käyttötapaukset
+## käyttötapaukset
 
-Treenin jälkeen lisätään tehdyt setit
+# 1. versio
 
-Tarkastellaan tuloksia (listana ja graafina), hakutoiminnallisuudella voidaan rajata mitä tuloksia näkyy
+* Käyttäjä lisää tekstimuotoisena tehdyn setin järjestelmään.
 
-Tuloksia sekä käyttäjiä voidaan päivittää ja poistaa
+* Tehdyt treenit näkyy listaussivulla (päivämäärä ja kuvaus).
 
-Tarkastellaan tehtyjä seshejä
+* Tulosta voi muokata valitsemalla sen lisäyssivulta.
