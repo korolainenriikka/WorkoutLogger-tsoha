@@ -21,12 +21,12 @@ def results_create():
 
 @app.route("/results/modify/<result_id>")
 def results_modify(result_id):
-    return render_template("results/modify.html", result_id=result_id)
+    return render_template("results/modify.html", result = Result.query.get(result_id))
 
-@app.route("/results/saveModified/<result_id>", methods=["POST"])
-def results_saveModified(result_id):
+@app.route("/results/savemodified/<result_id>&<randomattribute>", methods=["POST"])
+def results_saveModified(result_id,randomattribute):
     r = Result.query.get(result_id)
-    r.description = "muokkkkkois"
+    r.description = randomattribute
     db.session.commit()
 
     return redirect(url_for("results_index"))
