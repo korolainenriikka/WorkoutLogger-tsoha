@@ -11,7 +11,7 @@
       <td> {{ result.date_created }}</td>
       <td>{{ result.description }}</td>
       <td>
-        <form action="{{ url_for('results_modify') }}">
+        <form action="{{ url_for('results_modify', result_id=result.id) }}">
           <input type="submit" value="modify"/>
         </form>
       </td>

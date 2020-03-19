@@ -1,8 +1,9 @@
 {% extends "layout.html"%}
 
 {% block body %}
-<form method="POST" action="{{ url_for('results_saveModified') }}">
-  <input type="text" name="name" value=result_id/>
+
+<form method="POST" action="{{ url_for('results_saveModified', result_id = result_id) }}">
+  <input type="text" name="name" value= "muokataan kohtaa {{ result_id }}" />
   <input type="submit" value="save changes"/>
 </form>
 {% endblock %}

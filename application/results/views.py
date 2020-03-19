@@ -19,14 +19,14 @@ def results_create():
 
     return redirect(url_for("results_index"))
 
-@app.route("/results/modify/")
-def results_modify():
-    return render_template("results/modify.html")
+@app.route("/results/modify/<result_id>")
+def results_modify(result_id):
+    return render_template("results/modify.html", result_id=result_id)
 
-@app.route("/results/saveModified", methods=["POST"])
-def results_saveModified():
-    r = Result.query.get(3)
-    r.description = "jehuu nytte muuttuu"
+@app.route("/results/saveModified/<result_id>", methods=["POST"])
+def results_saveModified(result_id):
+    r = Result.query.get(result_id)
+    r.description = "muokkkkkois"
     db.session.commit()
 
     return redirect(url_for("results_index"))
