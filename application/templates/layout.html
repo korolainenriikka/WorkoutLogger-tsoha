@@ -6,14 +6,16 @@
   </head>
 
   <body>
-    <ul>
-      <li><a href="{{ url_for('results_index') }}">List results</a></li>
-      <li><a href="{{ url_for('results_form') }}">Add a result</a></li>
-    </ul>
+    <div>
+      WorkoutLogger:
+      <a href="/">Home</a>
+      <a href="/results">List Results</a>
+      <a href="/auth/register">Register</a>
+      <a href="/auth/login">Login</a>
+      <a href="/results/new">Create a new result</a>
+    </div>
+    <hr>
     {% block body %}
-      <p>
-        Content.
-      </p>
     {% endblock %}        
   </body>
 </html>
