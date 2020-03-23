@@ -1,8 +1,23 @@
-{% extends "layout.html"%}
+  {% extends "layout.html" %}
 
-{% block body %}
-<form method="POST" action="{{ url_for('results_savemodified', result_id=result.id)  }}">
-  <input type="text" name="newtext" value= {{ result.description }} />
-  <input type="submit" value="save changes"/>
-</form>
-{% endblock %}
+  {% block body %}
+  <form method="POST" action="{{ url_for('results_savemodified', result_id=result_id) }}">
+    <table>
+      <tr>
+	    <td>
+	      {{ form.newtext.label }}
+	    </td>
+      </tr>
+      <tr>
+        <td>
+          {{ form.newtext }}
+        </td>
+      </tr>
+      <tr>
+	    <td colspan="2">
+	      <input type="submit" value="save changes"/>
+	    </td>
+      </tr>
+    </table>
+  </form>
+  {% endblock %}

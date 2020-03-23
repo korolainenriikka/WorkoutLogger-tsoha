@@ -2,7 +2,7 @@ from flask import redirect, render_template, request, url_for
 
 from application import app, db
 from application.results.models import Result
-from application.results.forms import ResultForm
+from application.results.forms import ResultForm, ModifyForm
 
 @app.route("/results", methods=["GET"])
 def results_index():
@@ -23,7 +23,8 @@ def results_create():
 
 @app.route("/results/modify/<result_id>")
 def results_modify(result_id):
-    return render_template("results/modify.html", result = Result.query.get(result_id))
+    return render_template("results/modify.html", result_id = result_id,
+                           form = ModifyForm(newtext = Result.query.get(result_id).description))
 
 @app.route("/results/<result_id>", methods=["GET"])
 def results_delete(result_id):
@@ -33,7 +34,6 @@ def results_delete(result_id):
     db.session().commit()
 
     return redirect(url_for("results_index"))
-
 
 @app.route("/results/savemodified/<result_id>", methods=["POST"])
 def results_savemodified(result_id):
