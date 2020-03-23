@@ -2,7 +2,21 @@
 
 {% block body %}
 <form method="POST" action="{{ url_for('results_create') }}">
-  <input type="text" name="name"/>
-  <input type="submit" value="Add new result"/>
+  <table>
+      <tr>
+          <td>
+              {{ form.description.label }}
+          </td>
+          <td>
+              {{ form.description }}
+          </td>
+      </tr>
+      <tr>
+          <td colspan="2">
+              <input type="submit" value="Add new result"/>
+          </td>
+      </tr>
+  </table>
+
 </form>
 {% endblock %}
