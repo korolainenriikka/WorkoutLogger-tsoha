@@ -20,8 +20,13 @@ def results_create():
 
     return redirect(url_for("results_index"))
 
-@app.route("/results/")
-def results_delete():
+@app.route("/results/<result_id>", methods=["GET"])
+def results_delete(result_id):
+    r = Result.query.get(result_id)
+
+    db.session().delete(r)
+    db.session().commit()
+
     return redirect(url_for("results_index"))
 
 @app.route("/results/modify/<result_id>")
