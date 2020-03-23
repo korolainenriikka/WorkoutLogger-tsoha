@@ -1,11 +1,14 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField
+from wtforms import StringField, validators
 
 class ResultForm(FlaskForm):
-    description = StringField("description")
+    description = StringField("description", [validators.DataRequired()])
+
+    class Meta:
+        csrf = False
 
 class ModifyForm(FlaskForm):
-    newtext = StringField("edit description")
+    newtext = StringField("edit description", [validators.DataRequired()])
 
     class Meta:
         csrf = False

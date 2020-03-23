@@ -14,6 +14,11 @@ def results_form():
 
 @app.route("/results/", methods=["POST"])
 def results_create():
+    form = ResultForm(request.form)
+
+    if not form.validate():
+        return render_template("results/new.html", form=form)
+
     r = Result(request.form.get("description"))
 
     db.session().add(r)
@@ -37,6 +42,10 @@ def results_delete(result_id):
 
 @app.route("/results/savemodified/<result_id>", methods=["POST"])
 def results_savemodified(result_id):
+    form = ModifyForm(request.form)
+    if not form.validate():
+        return render_template("results/modify.html", result_id=result_id, form=form)
+
     newText = request.form.get("newtext")
     r = Result.query.get(result_id)
     r.description = newText

@@ -12,6 +12,13 @@
         <td>
           {{ form.newtext }}
         </td>
+        <td>
+          <ul>
+              {% for error in form.newtext.errors %}
+            <li>{{ error }}</li>
+              {% endfor %}
+          </ul>
+        </td>
       </tr>
       <tr>
 	    <td colspan="2">
