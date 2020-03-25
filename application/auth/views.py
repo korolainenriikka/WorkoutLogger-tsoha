@@ -29,4 +29,8 @@ def auth_register():
     if not form.validate():
         return render_template("auth/registerform.html", form=form)
 
+    u = User(request.form.get("name"), request.form.get("username"), request.form.get("password"))
+    db.session().add(u)
+    db.session().commit()
+
     return redirect(url_for("index"))
