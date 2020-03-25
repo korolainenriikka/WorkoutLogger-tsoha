@@ -1,4 +1,5 @@
 alabaster==0.7.8
+alembic==1.4.2
 ansible==2.9.6
 apptools==4.3.0
 asn1crypto==0.24.0
@@ -43,6 +44,8 @@ envisage==4.4.0
 epydoc==3.0.1
 fasteners==0.12.0
 Flask==1.1.1
+Flask-Login==0.5.0
+Flask-Migrate==2.5.3
 Flask-SQLAlchemy==2.4.1
 Flask-WTF==0.14.3
 folder-color-caja==0.0.86
@@ -90,6 +93,7 @@ lockfile==0.12.2
 logilab-common==1.4.1
 lxml==4.2.1
 lz4==0.10.1
+Mako==1.1.2
 MarkupSafe==1.1.1
 mate-menu==18.4.3
 matplotlib==2.1.1
@@ -129,7 +133,7 @@ pluggy==0.6.0
 prompt-toolkit==1.0.15
 pssh==2.3.1
 psutil==5.4.2
-psycopg2==2.7.4
+psycopg2==2.8.4
 py==1.5.2
 py-ubjson==0.8.5
 pyasn1==0.4.2
@@ -159,7 +163,9 @@ pyserial==3.4
 pyshp==1.2.12
 pytest==3.3.2
 python-apt==1.6.5+ubuntu0.2
-python-dateutil==2.6.1
+python-dateutil==2.8.1
+python-dotenv==0.12.0
+python-editor==1.0.4
 python-openid==2.2.5
 python-snappy==0.5
 python-xlib==0.20
@@ -192,7 +198,7 @@ simplegeneric==0.8.1
 simplejson==3.13.2
 SimPy==2.3.1
 singledispatch==3.4.0.3
-six==1.11.0
+six==1.14.0
 SPARQLWrapper==1.7.6
 Sphinx==1.6.7
 spyder==3.2.6
@@ -209,7 +215,7 @@ traitsui==4.5.1
 trollius==2.0.1
 Twisted==17.9.0
 txaio==2.8.1
-typing==3.6.2
+typing==3.7.4.1
 u-msgpack-python==2.1
 uncertainties==2.4.4
 unity-lens-photos==1.0
