@@ -25,4 +25,8 @@ def auth_register():
     if request.method == "GET":
         return render_template("auth/registerform.html", form = RegisterForm())
 
+    form = RegisterForm(request.form)
+    if not form.validate():
+        return render_template("auth/registerform.html", form=form)
+
     return redirect(url_for("index"))

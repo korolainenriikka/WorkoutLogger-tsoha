@@ -2,45 +2,37 @@
 
 {% block body %}
 {{ error }}
-<form  method="POST" {{ url_for('auth_register') }}"/>
-  <table>
-    <tr>
-      <td>
-	{{ form.name.label }}
-      </td>
-      <td>
+<form method="POST" {{ url_for('auth_register') }}"/>
+<p>
+	{{ form.name.label }}<br>
 	{{ form.name }}
-      </td>
-    </tr>
-    <tr>
-      <td>
-	{{ form.username.label }}
-      </td>
-      <td>
+	{% for error in form.name.errors %}
+	<span style="color: red;">[{{ error }}]</span>
+	{% endfor %}
+</p>
+<p>
+	{{ form.username.label }}<br>
 	{{ form.username }}
-      </td>
-    </tr>
-    <tr>
-      <td>
-	{{ form.password.label }}
-      </td>
-      <td>
+	{% for error in form.username.errors %}
+	<span style="color: red;">[{{ error }}]</span>
+	{% endfor %}
+</p>
+<p>
+	{{ form.password.label }}<br>
 	{{ form.password }}
-      </td>
-    </tr>
-      <tr>
-      <td>
-    {{ form.repeatPassword.label }}
-      </td>
-      <td>
+	{% for error in form.password.errors %}
+	<span style="color: red;">[{{ error }}]</span>
+	{% endfor %}
+</p>
+<p>
+	{{ form.repeatPassword.label }}<br>
 	{{ form.repeatPassword }}
-      </td>
-    </tr>
-    <tr>
-      <td colspan="2">
+	{% for error in form.repeatPassword.errors %}
+	<span style="color: red;">[{{ error }}]</span>
+	{% endfor %}
+</p>
+<p>
 	<input type="submit" value="Create new user"/>
-      </td>
-    </tr>
-  </table>
+</p>
 </form>
 {% endblock %}

@@ -16,10 +16,5 @@ class RegisterForm(FlaskForm):
     password = PasswordField("Password", [validators.DataRequired()])
     repeatPassword = PasswordField("Repeat password", [validators.DataRequired(), validators.equal_to("password")])
 
-    def validate_username(self, username):
-        user = User.query.filter_by(username=username.data).first()
-        if user is not None:
-            raise ValidationError('Please use a different username.')
-
     class Meta:
         csrf = False
