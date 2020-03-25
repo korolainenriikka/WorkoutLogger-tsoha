@@ -9,10 +9,10 @@
     <div>
       WorkoutLogger:
       <a href="/">Home</a>
-      <a href="/results">List Results</a>
-      <a href="/auth/register">Register</a>
-      <a href="/auth/login">Login</a>
-      <a href="/results/new">Create a new result</a>
+      <a href="{{ url_for('results_list') }}"">List Results</a>
+      <a href="{{ url_for('results_create') }}"">Create a new result</a>
+      <a href="{{ url_for('auth_login') }}"">Login</a>
+      <a href="{{ url_for('auth_register') }}"">Register</a>
     </div>
     <hr>
     {% block body %}

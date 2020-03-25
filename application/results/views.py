@@ -5,15 +5,14 @@ from application.results.models import Result
 from application.results.forms import ResultForm, ModifyForm
 
 @app.route("/results", methods=["GET"])
-def results_index():
+def results_list():
     return render_template("results/list.html", results = Result.query.all())
 
-@app.route("/results/new")
-def results_form():
-    return render_template("results/new.html", form = ResultForm())
-
-@app.route("/results/create", methods=["POST"])
+@app.route("/results/new", methods=["GET", "POST"])
 def results_create():
+    if request.method == "GET":
+        return render_template("results/new.html", form = ResultForm())
+
     form = ResultForm(request.form)
 
     if not form.validate():
@@ -24,25 +23,14 @@ def results_create():
     db.session().add(r)
     db.session().commit()
 
-    return redirect(url_for("results_index"))
+    return redirect(url_for("results_list"))
 
-@app.route("/results/modify/<result_id>")
+@app.route("/results/modify/<result_id>", methods=["GET", "POST"])
 def results_modify(result_id):
     if request.method == "GET":
         return render_template("results/modify.html", result_id = result_id,
                            form = ModifyForm(newtext = Result.query.get(result_id).description))
 
-@app.route("/results/<result_id>", methods=["GET"])
-def results_delete(result_id):
-    r = Result.query.get(result_id)
-
-    db.session().delete(r)
-    db.session().commit()
-
-    return redirect(url_for("results_index"))
-
-@app.route("/results/savemodified/<result_id>", methods=["POST"])
-def results_savemodified(result_id):
     form = ModifyForm(request.form)
     if not form.validate():
         return render_template("results/modify.html", result_id=result_id, form=form)
@@ -52,4 +40,13 @@ def results_savemodified(result_id):
     r.description = newText
     db.session().commit()
 
-    return redirect(url_for("results_index"))
+    return redirect(url_for("results_list"))
+
+@app.route("/results/<result_id>", methods=["GET"])
+def results_delete(result_id):
+    r = Result.query.get(result_id)
+
+    db.session().delete(r)
+    db.session().commit()
+
+    return redirect(url_for("results_list"))
