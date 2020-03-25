@@ -12,7 +12,7 @@ def results_index():
 def results_form():
     return render_template("results/new.html", form = ResultForm())
 
-@app.route("/results/", methods=["POST"])
+@app.route("/results/create", methods=["POST"])
 def results_create():
     form = ResultForm(request.form)
 
