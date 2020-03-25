@@ -17,7 +17,6 @@ def auth_login():
                                error = "No such username or password")
 
 
-    print("Käyttäjä " + user.name + " tunnistettiin")
     return redirect(url_for("index"))
 
 @app.route("/auth/register", methods = ["GET", "POST"])
