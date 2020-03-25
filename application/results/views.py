@@ -28,7 +28,8 @@ def results_create():
 
 @app.route("/results/modify/<result_id>")
 def results_modify(result_id):
-    return render_template("results/modify.html", result_id = result_id,
+    if request.method == "GET":
+        return render_template("results/modify.html", result_id = result_id,
                            form = ModifyForm(newtext = Result.query.get(result_id).description))
 
 @app.route("/results/<result_id>", methods=["GET"])

@@ -1,7 +1,7 @@
 {% extends "layout.html" %}
 
 {% block body %}
-<p method="POST" action="{{ url_for('results_savemodified', result_id=result_id) }}">
+<form method="POST" action="{{ url_for('results_savemodified', result_id=result_id) }}">
 <p>
 	{{ form.newtext.label }}
 	{{ form.newtext }}
