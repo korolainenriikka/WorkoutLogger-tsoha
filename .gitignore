@@ -5,5 +5,14 @@ omaMatsku/
 wologger.db
 .flaskenv
 migrations
-auth/__pycache__
-results/__pycache__
+application/auth/__pycache__
+application/results/__pycache__
+application/auth/__init__.pyc
+application/auth/views.pyc
+application/auth/models.pyc
+application/auth/forms.pyc
+application/results/__init__.pyc
+application/results/models.pyc
+application/results/forms.pyc
+application/results/views.pyc
+application/views.pyc
