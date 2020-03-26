@@ -1,9 +1,17 @@
-## käyttötapaukset
+## käyttäjätapaukset
 
-# 1. versio
+* Normaali käyttäjä voi lisätä tehtyään treenin haluamansa määrän tuloksia, johon kuuluu tehty liike/treeni, esim juoksu, toistot/matka ja varsinainen tulos.
 
-* Käyttäjä lisää tekstimuotoisena tehdyn setin järjestelmään.
+* Normaali käyttäjä voi muokata ja poistaa tekemiään tuloskirjauksia.
 
-* Tehdyt treenit näkyy listaussivulla (päivämäärä ja kuvaus).
+* Normaali käyttäjä näkee tekemistään treeneistä historian.
 
-* Tulosta voi muokata valitsemalla sen lisäyssivulta.
+* Normaali käyttäjä näkee maksimituloksensa erillisellä analytiikkasivulla.
+
+* Normaali käyttäjä näkee statistiikkaa maksimiensa kehityksestä.
+
+* Normaali käyttäjä näkee, kuinka usein on tehnyt treenejä.
+
+* Ylläpitäjä näkee normaalien käyttäjien nimet ja käyttäjänimet.
+
+* Ylläpitäjä näkee statistiikkaa normaalien käyttäjien sovelluksen käyttöasteesta.
