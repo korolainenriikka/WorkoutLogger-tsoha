@@ -1,14 +1,17 @@
 from flask import redirect, render_template, request, url_for
+from flask_login import login_required
 
 from application import app, db
 from application.results.models import Result
 from application.results.forms import ResultForm, ModifyForm
 
 @app.route("/results", methods=["GET"])
+@login_required
 def results_list():
     return render_template("results/list.html", results = Result.query.all())
 
 @app.route("/results/new", methods=["GET", "POST"])
+@login_required
 def results_create():
     if request.method == "GET":
         return render_template("results/new.html", form = ResultForm())
@@ -26,6 +29,7 @@ def results_create():
     return redirect(url_for("results_list"))
 
 @app.route("/results/modify/<result_id>", methods=["GET", "POST"])
+@login_required
 def results_modify(result_id):
     if request.method == "GET":
         return render_template("results/modify.html", result_id = result_id,
@@ -43,6 +47,7 @@ def results_modify(result_id):
     return redirect(url_for("results_list"))
 
 @app.route("/results/<result_id>", methods=["GET"])
+@login_required
 def results_delete(result_id):
     r = Result.query.get(result_id)
 

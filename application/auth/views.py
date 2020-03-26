@@ -1,5 +1,5 @@
 from flask import render_template, request, redirect, url_for
-from flask_login import login_user, logout_user, current_user
+from flask_login import login_user, logout_user, current_user, login_required
 from werkzeug import check_password_hash
 
 from application import app, db
@@ -24,6 +24,7 @@ def auth_login():
     return redirect(url_for("index"))
 
 @app.route("/auth/logout", methods = ["GET", "POST"])
+@login_required
 def auth_logout():
     logout_user()
     user = current_user
