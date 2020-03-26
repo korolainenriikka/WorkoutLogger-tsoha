@@ -2,13 +2,11 @@
 
 Harjoitustyönä on treenipäiväkirja, jolla pidetään kirjaa crossfit-tyylisen harjoittelun tuloksista, siis mm. voima- ja kestävyystuloksista, ja tekee niistä statistiikkaa.
 
-Nykyisessä versiossa sovelluksessa on rekisteröitymis- ja kirjautumistoiminnallisuus, sekä mahdollisuus lisätä, muokata ja poistaa tekstimuotoisia tuloksia.
+Nykyisessä versiossa sovelluksessa on rekisteröitymis- ja kirjautumistoiminnallisuus, sekä mahdollisuus lisätä, muokata ja poistaa tekstimuotoisia tuloksia. Sovellus ei vielä osaa listata tuloksia käyttäjäkohtaisesti.
 
 Testikäyttäjätunnus:
 * username: testikayttis
 * password: koirapuisto
-
-(ainakin kaks: periaatteessa vois jo muokata sillai että kaikki liikkeet ois jossain omassa tallessa ja sinne viitattais)
 
 [tietokantakaavio](https://github.com/korolainenriikka/WorkoutLogger-tsoha/blob/master/documentation/tshohadiagram.png)
 
