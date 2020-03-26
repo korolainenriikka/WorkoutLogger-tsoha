@@ -5,8 +5,8 @@ Harjoitustyönä on treenipäiväkirja, jolla pidetään kirjaa crossfit-tyylise
 Nykyisessä versiossa sovelluksessa on rekisteröitymis- ja kirjautumistoiminnallisuus, sekä mahdollisuus lisätä, muokata ja poistaa tekstimuotoisia tuloksia.
 
 Testikäyttäjätunnus:
-* username: koira
-* password: puisto
+* username: testikayttis
+* password: koirapuisto
 
 (ainakin kaks: periaatteessa vois jo muokata sillai että kaikki liikkeet ois jossain omassa tallessa ja sinne viitattais)
 

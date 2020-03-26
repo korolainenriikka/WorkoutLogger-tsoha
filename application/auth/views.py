@@ -21,6 +21,10 @@ def auth_login():
 
     return redirect(url_for("index"))
 
+@app.route("/auth/logout", methods = ["GET", "POST"])
+def auth_logout():
+    return redirect("/")
+
 @app.route("/auth/register", methods = ["GET", "POST"])
 def auth_register():
     if request.method == "GET":

@@ -7,17 +7,19 @@
 
   <body>
     {% if current_user.is_authenticated %}
-    <p>
-      Kirjautunut nimellä {{ current_user.name }}
-    </p>
-    {% endif %}
     <div>
-      WorkoutLogger:
+      Kirjautunut nimellä {{ current_user.name }}
+      <a href="{{ url_for('auth_logout') }}">Logout</a>
+    </div>
+    {% else %}
+      <a href="{{ url_for('auth_login') }}">Login</a>
+      <a href="{{ url_for('auth_register') }}">Sign up</a>
+    {% endif %}
+    <hr>
+    <div>
       <a href="/">Home</a>
       <a href="{{ url_for('results_list') }}">List Results</a>
       <a href="{{ url_for('results_create') }}">Create a new result</a>
-      <a href="{{ url_for('auth_login') }}">Login</a>
-      <a href="{{ url_for('auth_register') }}">Register</a>
     </div>
     <hr>
     <div>
