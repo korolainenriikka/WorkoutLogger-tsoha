@@ -1,6 +1,6 @@
 from flask import render_template, request, redirect, url_for
 from flask_login import login_user, logout_user, current_user, login_required
-from werkzeug import check_password_hash
+from werkzeug.security import check_password_hash
 
 from application import app, db
 from application.auth.models import User
