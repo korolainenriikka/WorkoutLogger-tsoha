@@ -1,5 +1,5 @@
-from flask import render_template, request, redirect, url_for
-from flask_login import login_user, logout_user
+from flask import render_template, request, redirect, url_for, flash
+from flask_login import login_user, logout_user, current_user
 
 from application import app, db
 from application.auth.models import User
@@ -18,12 +18,12 @@ def auth_login():
                                error = "No such username or password")
 
     login_user(user)
-
     return redirect(url_for("index"))
 
 @app.route("/auth/logout", methods = ["GET", "POST"])
 def auth_logout():
     logout_user()
+    user = current_user
     return redirect("/")
 
 @app.route("/auth/register", methods = ["GET", "POST"])

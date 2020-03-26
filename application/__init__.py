@@ -7,15 +7,17 @@ from flask_sqlalchemy import SQLAlchemy
 import os
 if os.environ.get("HEROKU"):
     app.config["SQLALCHEMY_DATABASE_URI"] = os.environ.get("DATABASE_URL")
+    app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 else:
     app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///wologger.db"
     app.config["SQLALCHEMY_ECHO"] = True
+    app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 
 db = SQLAlchemy(app)
 
 # migraatio
 from flask_migrate import Migrate
-app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
+
 
 migrate = Migrate(app, db)
 
