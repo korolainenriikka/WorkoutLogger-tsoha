@@ -1,4 +1,5 @@
 from flask import render_template, request, redirect, url_for
+from flask_login import login_user
 
 from application import app, db
 from application.auth.models import User
@@ -16,6 +17,7 @@ def auth_login():
         return render_template("auth/loginform.html", form = form,
                                error = "No such username or password")
 
+    login_user(user)
 
     return redirect(url_for("index"))
 
