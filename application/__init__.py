@@ -1,11 +1,18 @@
 from flask import Flask
 from flask_migrate import Migrate
+from flask_sqlalchemy import SQLAlchemy
+
 app = Flask(__name__)
 
-from flask_sqlalchemy import SQLAlchemy
-app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///wologger.db"
-app.config["SQLALCHEMY_ECHO"] = True
-app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
+import os
+
+if os.environ.get("HEROKU"):
+    app.config["SQLALCHEMY_DATABASE_URI"] = os.environ.get("DATABASE_URL")
+else:
+    app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///wologger.db"
+    app.config["SQLALCHEMY_ECHO"] = True
+    app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
+
 db = SQLAlchemy(app)
 migrate = Migrate(app, db)
 
