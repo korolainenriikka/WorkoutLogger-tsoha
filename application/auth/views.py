@@ -1,5 +1,6 @@
-from flask import render_template, request, redirect, url_for, flash
+from flask import render_template, request, redirect, url_for
 from flask_login import login_user, logout_user, current_user
+from werkzeug import check_password_hash
 
 from application import app, db
 from application.auth.models import User
@@ -12,8 +13,10 @@ def auth_login():
 
     form = LoginForm(request.form)
 
-    user = User.query.filter_by(username=form.username.data, password=form.password.data).first()
-    if not user:
+    user = User.query.filter_by(username=form.username.data).first()
+    rightPassword = check_password_hash(user.password_hash, form.password.data)
+
+    if not rightPassword:
         return render_template("auth/loginform.html", form = form,
                                error = "No such username or password")
 
