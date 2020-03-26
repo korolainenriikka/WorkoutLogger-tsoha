@@ -1,6 +1,4 @@
-## käyttötapaukset
-
-# 1. versio
+## käyttäjätapaukset
 
 * Normaali käyttäjä voi lisätä tehtyään treenin haluamansa määrän tuloksia, johon kuuluu tehty liike/treeni, esim juoksu, toistot/matka ja varsinainen tulos.
 
