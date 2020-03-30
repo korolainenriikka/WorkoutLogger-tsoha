@@ -16,7 +16,7 @@ Valmiissa sovelluksessa on tulosten kirjaamiseen laajasti lisää toiminnallisuu
 
 Sovellukseen toteutetaan myös ylläpitäjä-käyttäjätyyppi. Ylläpitäjä näkee kaikkien käyttäjien tulokset ja aktiivisuuden, ja voi halutessaan muokata ja poistaa käyttäjiä.
 
-[valmiin version tietokantakaavio](https://github.com/korolainenriikka/WorkoutLogger-tsoha/blob/master/documentation/filnalDiagram.png)
+[valmiin version tietokantakaavio](https://github.com/korolainenriikka/WorkoutLogger-tsoha/blob/master/documentation/finalDiagram.png)
 
 ## Testikäyttäjätunnus:
 * username: testikayttis
