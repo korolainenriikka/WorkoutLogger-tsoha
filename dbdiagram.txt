@@ -1,0 +1,63 @@
+Table Account as A {
+  id int [pk] // auto-increment
+  date_created datetime
+  date_modified datetime
+}
+
+Table Workout {
+  id int [pk]
+  name varchar
+}
+
+
+Table Session {
+  id int [pk]
+  date_created datetime
+  date_modified datetime
+ }
+ 
+Table Result {
+  id int [pk]
+  account_id int
+  workout_id int
+  description text
+  date_created datetime
+  date_modified datetime
+}
+
+Table ResultStrength {
+  resultID_strength int
+  reps int
+  weight double
+}
+
+Table ResultConditioning {
+  resultID_conditioning int
+  distance int
+  time time
+}
+
+Table ResultBenchmark {
+  resultID_benchmark int
+  result int
+}
+
+// Creating references
+// You can also define relaionship separately
+// > many-to-one; < one-to-many; - one-to-one
+Ref: A.id < Result.account_id  
+Ref: Workout.id > Result.workout_id
+Ref: Result.id - ResultStrength.resultID_strength
+Ref: Result.id - ResultConditioning.resultID_conditioning
+Ref: Result.id - ResultBenchmark.resultID_benchmark
+//----------------------------------------------//
+
+//// -- LEVEL 2
+//// -- Adding column settings
+
+Table session_result {
+  session_id int [ref: > Session.id]
+  result_id int [ref: > Result.id]
+}
+
+//
