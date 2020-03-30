@@ -7,5 +7,7 @@ class Result(db.Model):
 
   description = db.Column(db.String(144))
 
+  account_id = db.Column(db.Integer, db.ForeignKey('account.id'), nullable=True)
+
   def __init__(self, description):
     self.description = description

@@ -1,5 +1,5 @@
 from flask import redirect, render_template, request, url_for
-from flask_login import login_required
+from flask_login import login_required, current_user
 
 from application import app, db
 from application.results.models import Result
@@ -8,7 +8,7 @@ from application.results.forms import ResultForm, ModifyForm
 @app.route("/results", methods=["GET"])
 @login_required
 def results_list():
-    return render_template("results/list.html", results = Result.query.all())
+    return render_template("results/list.html", results = Result.query.filter_by(account_id=current_user.id).all())
 
 @app.route("/results/new", methods=["GET", "POST"])
 @login_required
@@ -22,6 +22,7 @@ def results_create():
         return render_template("results/new.html", form=form)
 
     r = Result(request.form.get("description"))
+    r.account_id = current_user.id
 
     db.session().add(r)
     db.session().commit()
