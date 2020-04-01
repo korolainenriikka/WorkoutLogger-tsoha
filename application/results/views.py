@@ -14,11 +14,13 @@ def results_list():
 @login_required
 def results_create():
     if request.method == "GET":
+        print("request get")
         return render_template("results/new.html", form = ResultForm())
 
     form = ResultForm(request.form)
 
     if not form.validate():
+        print("not validate")
         return render_template("results/new.html", form=form)
 
     r = Result(request.form.get("description"))

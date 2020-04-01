@@ -20,10 +20,12 @@ class User(UserMixin, db.Model):
 
 class Result(db.Model):
 	id = db.Column(db.Integer, primary_key=True)
-	date = db.Column(db.DateTime, default=db.func.current_timestamp())
 	description = db.Column(db.String(144))
-
 	account_id = db.Column(db.Integer, db.ForeignKey('account.id'), nullable=True)
 
 	def __init__(self, description):
 		self.description = description
+
+class Session(db.Model):
+	id = db.Column(db.Integer, primary_key=True)
+	date = db.Column(db.DateTime, default=db.func.current_timestamp())
