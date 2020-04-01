@@ -75,3 +75,9 @@ def results_delete(result_id):
     db.session().commit()
 
     return redirect(url_for("results_list"))
+
+@app.route("/results/analyze", methods=["GET"])
+@login_required
+def analyze():
+    return(render_template("results/analyze.html"))
+

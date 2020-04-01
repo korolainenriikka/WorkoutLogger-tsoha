@@ -4,11 +4,10 @@
 
   <table>
     <tr>
-      <th>Result</th>
+      <th>Recent workout results:</th>
     </tr>
     {% for result in results %}
     <tr>
-      <td> {{ result.date_created }}</td>
       <td>{{ result.description }}</td>
       <td>
         <form action="{{ url_for('results_modify', result_id=result.id) }}">
