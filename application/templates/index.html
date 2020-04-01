@@ -4,4 +4,21 @@
 <p>
 	Tervetuloa workout loggeriin! :)
 </p>
-{% endblock %}
+
+<div>
+	{% if current_user.is_authenticated %}
+	Kirjautunut nimellä {{ current_user.name }}
+	<a href="{{ url_for('auth_logout') }}">Logout</a>
+</div>
+{% else %}
+<ul>
+	<li>
+		<a href="{{ url_for('auth_login') }}">Login</a>
+	</li>
+	<li>
+		<a href="{{ url_for('auth_register') }}">Sign up</a>
+	</li>
+</ul>
+{% endif %}
+<div>
+	{% endblock %}
