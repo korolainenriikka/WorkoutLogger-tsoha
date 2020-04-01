@@ -30,7 +30,6 @@ def auth_login():
 @login_required
 def auth_logout():
     logout_user()
-    user = current_user
     return redirect("/")
 
 @app.route("/auth/register", methods = ["GET", "POST"])

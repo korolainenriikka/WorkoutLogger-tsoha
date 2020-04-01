@@ -2,7 +2,7 @@ from flask import redirect, render_template, request, url_for
 from flask_login import login_required, current_user
 
 from application import app, db
-from application.models import Result
+from application.models import Result, Session
 from application.forms import ResultForm, ModifyForm
 
 @app.route("/results", methods=["GET"])
@@ -12,20 +12,20 @@ def results_list():
 
 @app.route("/results/new", methods=["GET", "POST"])
 @login_required
-def results_create():
+def session_create():
     if request.method == "GET":
-        print("request get")
         return render_template("results/new.html", form = ResultForm())
 
     form = ResultForm(request.form)
 
     if not form.validate():
-        print("not validate")
         return render_template("results/new.html", form=form)
 
+    s = Session()
     r = Result(request.form.get("description"))
     r.account_id = current_user.id
 
+    db.session.add(s)
     db.session().add(r)
     db.session().commit()
 

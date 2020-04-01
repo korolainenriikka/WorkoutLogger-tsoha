@@ -1,7 +1,7 @@
 {% extends "layout.html" %}
 
 {% block body %}
-<form method="POST" action="{{ url_for('results_create') }}">
+<form method="POST" action="{{ url_for('session_create') }}">
 	<p>
 		{{ form.description.label }}
 		{{ form.description }}
