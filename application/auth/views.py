@@ -8,6 +8,9 @@ from application.forms import LoginForm, RegisterForm
 
 @app.route("/auth/login", methods = ["GET", "POST"])
 def auth_login():
+    if current_user.is_authenticated:
+        return redirect(url_for('index'))
+
     if request.method == "GET":
         return render_template("auth/loginform.html", form = LoginForm())
 

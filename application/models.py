@@ -4,12 +4,13 @@ from flask_login import UserMixin
 
 
 class User(UserMixin, db.Model):
+	__tablename__ = "account"
 	id = db.Column(db.Integer, primary_key=True)
 	name = db.Column(db.String(144), nullable=False)
 	username = db.Column(db.String(144), nullable=False, unique=True)
 	password_hash = db.Column(db.String(144), nullable=True)
 
-	results = db.relationship("Result", backref='User', lazy=True)
+	results = db.relationship("Result", backref='account', lazy=True)
 
 	def __init__(self, name, username, password):
 		self.name = name
@@ -22,7 +23,7 @@ class Result(db.Model):
 	date = db.Column(db.DateTime, default=db.func.current_timestamp())
 	description = db.Column(db.String(144))
 
-	account_id = db.Column(db.Integer, db.ForeignKey('User.id'), nullable=True)
+	account_id = db.Column(db.Integer, db.ForeignKey('account.id'), nullable=True)
 
 	def __init__(self, description):
 		self.description = description
