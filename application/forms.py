@@ -1,14 +1,19 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, validators, ValidationError
+from wtforms import Form, FieldList, PasswordField, validators, ValidationError, StringField, FormField
 
 from application.models import User
 
 
-class ResultForm(FlaskForm):
-    description = StringField("description", [validators.DataRequired()])
+#class ResultForm(FlaskForm):
+#    description = StringField("description", [validators.DataRequired()])
+#
+#    class Meta:
+#        csrf = False
 
-    class Meta:
-        csrf = False
+class SessionForm(Form):
+    result1 = StringField("description", [validators.DataRequired()])
+    result2 = StringField("description", [validators.DataRequired()])
+    result3 = StringField("description", [validators.DataRequired()])
 
 class ModifyForm(FlaskForm):
     newtext = StringField("edit description", [validators.DataRequired()])

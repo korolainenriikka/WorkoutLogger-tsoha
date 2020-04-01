@@ -3,7 +3,7 @@ from flask_login import login_required, current_user
 
 from application import app, db
 from application.models import Result, Session
-from application.forms import ResultForm, ModifyForm
+from application.forms import SessionForm, ModifyForm
 
 @app.route("/results", methods=["GET"])
 @login_required
@@ -14,16 +14,18 @@ def results_list():
 @login_required
 def session_create():
     if request.method == "GET":
-        return render_template("results/new.html", form = ResultForm())
+        return render_template("results/new.html", form = SessionForm())
 
-    form = ResultForm(request.form)
+    form = SessionForm(request.form)
 
     if not form.validate():
         return render_template("results/new.html", form=form)
 
+    #muist tarkistaa et kentässä on jotai! ei voia validoida atm
     s = Session()
     r = Result(request.form.get("description"))
     r.account_id = current_user.id
+    r.session_id = s.id
 
     db.session.add(s)
     db.session().add(r)
