@@ -3,8 +3,13 @@
 Harjoitustyönä on treenipäiväkirja, jolla pidetään kirjaa crossfit-tyylisen harjoittelun tuloksista, siis mm. voima- ja kestävyystuloksista, ja tekee niistä statistiikkaa.
 
 ## toiminnallisuudet
+### nykyiset toiminnallisuudet
 
-Nykyisessä versiossa voidaan lisätä loggeriin kokonainen harjoitus niin, että kukin tehty asia (esim voimasetti tai juoksuharjoitus) lisätään tekstimuotoisena tuloksena. Lisäksi sovellukseen voi rekisteröityä sekä kirjautua, ja kirjautuneena käyttäjä näkee tekemänsä tulokset. Tulokset ovat myös muokattavissa ja poistettavissa.
+Nykyisessä versiossa on rekisteröitymis- ja kirjautumistoiminnallisuudet, sekä kirjautuneena mahdollisuus lisätä, muokata ja poistaa tekstimuotoisia tuloksia. Lisäksi käytössä on salasanojen suojaus ja tietokantamigraatio.
+
+### seuraavat muutokset
+
+Seuraavassa versiossa voidaan lisätä loggeriin kokonainen harjoitus niin, että kukin tehty asia (esim voimasetti tai juoksuharjoitus) lisätään tekstimuotoisena tuloksena. Lisäksi sovellukseen voi rekisteröityä sekä kirjautua, ja kirjautuneena käyttäjä näkee tekemänsä tulokset. Tulokset ovat myös muokattavissa ja poistettavissa.
 
 Yhteenvetokyselynä sovelluksessa on analytiikka-sivu, jolla käyttäjä voi valita haluamansa ajanjakson, ja näkee, kuinka monena päivänä on harjoitellut ko. ajanjakson aikana.
 
