@@ -21,14 +21,29 @@ def session_create():
     if not form.validate():
         return render_template("results/new.html", form=form)
 
-    #muist tarkistaa et kentässä on jotai! ei voia validoida atm
     s = Session()
-    r = Result(request.form.get("description"))
-    r.account_id = current_user.id
-    r.session_id = s.id
-
+    print("testisyötettä!!!!!!!!!!!!")
     db.session.add(s)
-    db.session().add(r)
+    # lisää aina 1
+
+    thisSession = Session.query.order_by(Session.id.desc()).first()
+    print(thisSession.id)
+    r1 = Result(request.form.get("result1"))
+    r1.account_id = current_user.id
+    r1.session_id = thisSession.id
+
+    r2 = Result(request.form.get("result2"))
+    r2.account_id = current_user.id
+    r2.session_id = thisSession.id
+
+    r3 = Result(request.form.get("result3"))
+    r3.account_id = current_user.id
+    r3.session_id = thisSession.id
+
+
+    db.session().add(r1)
+    db.session().add(r2)
+    db.session().add(r3)
     db.session().commit()
 
     return redirect(url_for("results_list"))

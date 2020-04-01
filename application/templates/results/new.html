@@ -5,17 +5,21 @@
 	<p>
 		{{ form.result1.label }}
 		{{ form.result1 }}
+		{% for error in form.result1.errors %}
+		<span style="color: red;">[{{ error }}]</span>
+		{% endfor %}
 	</p>
 	<p>
 		{{ form.result2.label }}
 		{{ form.result2 }}
+		{% for error in form.result2.errors %}
+		<span style="color: red;">[{{ error }}]</span>
+		{% endfor %}
 	</p>
 	<p>
 		{{ form.result3.label }}
 		{{ form.result3 }}
-	</p>
-	<p>
-		{% for error in form.result1.errors %}
+		{% for error in form.result3.errors %}
 		<span style="color: red;">[{{ error }}]</span>
 		{% endfor %}
 	</p>
