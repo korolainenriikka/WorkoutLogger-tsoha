@@ -22,7 +22,7 @@ from flask_migrate import Migrate
 migrate = Migrate(app, db)
 
 # kirjautuminen
-from application.auth.models import User
+from application.models import User
 from os import urandom
 app.config["SECRET_KEY"] = urandom(32)
 
@@ -38,12 +38,10 @@ def load_user(user_id):
     return User.query.get(user_id)
 
 # oma sovellus
-from application import views
+from application import views, models
 
-from application.results import models
+from application import models
 from application.results import views
-
-from application.auth import models
 from application.auth import views
 
 #luodaan tietokantataulut

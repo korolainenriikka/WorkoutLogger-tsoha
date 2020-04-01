@@ -3,8 +3,8 @@ from flask_login import login_user, logout_user, current_user, login_required
 from werkzeug.security import check_password_hash
 
 from application import app, db
-from application.auth.models import User
-from application.auth.forms import LoginForm, RegisterForm
+from application.models import User
+from application.forms import LoginForm, RegisterForm
 
 @app.route("/auth/login", methods = ["GET", "POST"])
 def auth_login():
