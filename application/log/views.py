@@ -17,6 +17,7 @@ def session_create():
         return render_template("log/new.html", form=form)
 
     s = Session()
+    s.account_id = current_user.id
     db.session.add(s)
 
     thisSession = Session.query.order_by(Session.id.desc()).first()
@@ -38,12 +39,7 @@ def session_create():
     db.session().add(r3)
     db.session().commit()
 
-    return redirect(url_for("results_list"))
-
-@app.route("/analyze/", methods=["GET"])
-@login_required
-def list_for_modify():
-    return render_template("analyze/list.html", results = Result.query.filter_by(account_id=current_user.id).all())
+    return redirect(url_for("list_recent"))
 
 @app.route("/results/modify/<result_id>", methods=["GET", "POST"])
 @login_required
@@ -61,7 +57,7 @@ def results_modify(result_id):
     r.description = newText
     db.session().commit()
 
-    return redirect(url_for("results_list"))
+    return redirect(url_for("list_recent"))
 
 @app.route("/results/<result_id>", methods=["GET"])
 @login_required
@@ -71,7 +67,7 @@ def results_delete(result_id):
     db.session().delete(r)
     db.session().commit()
 
-    return redirect(url_for("results_list"))
+    return redirect(url_for("list_recent"))
 
 
 

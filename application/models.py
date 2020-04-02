@@ -10,7 +10,7 @@ class User(UserMixin, db.Model):
 	username = db.Column(db.String(144), nullable=False, unique=True)
 	password_hash = db.Column(db.String(144), nullable=True)
 
-	results = db.relationship("Result", backref='account', lazy=True)
+	results = db.relationship("Session", backref='account', lazy=True)
 
 	def __init__(self, name, username, password):
 		self.name = name
@@ -21,7 +21,6 @@ class User(UserMixin, db.Model):
 class Result(db.Model):
 	id = db.Column(db.Integer, primary_key=True)
 	description = db.Column(db.String(144))
-	account_id = db.Column(db.Integer, db.ForeignKey('account.id'), nullable=True)
 	session_id = db.Column(db.Integer, db.ForeignKey('session.id'))
 
 	def __init__(self, description):
@@ -30,5 +29,6 @@ class Result(db.Model):
 class Session(db.Model):
 	id = db.Column(db.Integer, primary_key=True)
 	date = db.Column(db.DateTime, default=db.func.current_timestamp())
+	account_id = db.Column(db.Integer, db.ForeignKey('account.id'), nullable=True)
 
 	results = db.relationship("Result", backref='session', lazy=True)
