@@ -5,21 +5,16 @@ from application import app, db
 from application.models import Result, Session
 from application.forms import SessionForm, ModifyForm
 
-@app.route("/results", methods=["GET"])
-@login_required
-def results_list():
-    return render_template("results/list.html", results = Result.query.filter_by(account_id=current_user.id).all())
-
 @app.route("/results/new", methods=["GET", "POST"])
 @login_required
 def session_create():
     if request.method == "GET":
-        return render_template("results/new.html", form = SessionForm())
+        return render_template("log/new.html", form = SessionForm())
 
     form = SessionForm(request.form)
 
     if not form.validate():
-        return render_template("results/new.html", form=form)
+        return render_template("log/new.html", form=form)
 
     s = Session()
     db.session.add(s)
@@ -49,12 +44,12 @@ def session_create():
 @login_required
 def results_modify(result_id):
     if request.method == "GET":
-        return render_template("results/modify.html", result_id = result_id,
+        return render_template("log/modify.html", result_id = result_id,
                            form = ModifyForm(newtext = Result.query.get(result_id).description))
 
     form = ModifyForm(request.form)
     if not form.validate():
-        return render_template("results/modify.html", result_id=result_id, form=form)
+        return render_template("log/modify.html", result_id=result_id, form=form)
 
     newText = request.form.get("newtext")
     r = Result.query.get(result_id)
@@ -73,8 +68,5 @@ def results_delete(result_id):
 
     return redirect(url_for("results_list"))
 
-@app.route("/results/analyze", methods=["GET"])
-@login_required
-def analyze():
-    return(render_template("results/analyze.html"))
+
 

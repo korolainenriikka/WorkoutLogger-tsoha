@@ -38,11 +38,10 @@ def load_user(user_id):
     return User.query.get(user_id)
 
 # oma sovellus
-from application import views, models
-
-from application import models
+from application import views, models, forms
 from application.log import views
 from application.auth import views
+from application.analyze import views
 
 #luodaan tietokantataulut
 db.create_all()
