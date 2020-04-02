@@ -28,7 +28,7 @@ class Result(db.Model):
 
 class Session(db.Model):
 	id = db.Column(db.Integer, primary_key=True)
-	date = db.Column(db.Date, default=db.func.date())
+	date = db.Column(db.Date, default=db.func.current_date())
 	account_id = db.Column(db.Integer, db.ForeignKey('account.id'), nullable=True)
 
 	results = db.relationship("Result", backref='session', lazy=True)
