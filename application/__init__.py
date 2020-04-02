@@ -41,7 +41,7 @@ def load_user(user_id):
 from application import views, models
 
 from application import models
-from application.results import views
+from application.log import views
 from application.auth import views
 
 #luodaan tietokantataulut

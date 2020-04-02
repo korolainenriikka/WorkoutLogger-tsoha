@@ -22,12 +22,9 @@ def session_create():
         return render_template("results/new.html", form=form)
 
     s = Session()
-    print("testisyötettä!!!!!!!!!!!!")
     db.session.add(s)
-    # lisää aina 1
 
     thisSession = Session.query.order_by(Session.id.desc()).first()
-    print(thisSession.id)
     r1 = Result(request.form.get("result1"))
     r1.account_id = current_user.id
     r1.session_id = thisSession.id
