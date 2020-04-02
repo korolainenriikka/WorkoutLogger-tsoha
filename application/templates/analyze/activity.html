@@ -3,5 +3,10 @@
 {% block body %}
 <p>
 	Your activity in the last 30 days:
+	<ul>
+		<li>workout days: {{ count }}</li>
+		<li>rest days: {{ 30 - count }}</li>
+		<li>activity: {{ count / 30 }} %</li>
+	</ul>
 </p>
 {% endblock %}
