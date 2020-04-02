@@ -6,10 +6,11 @@ from application.models import Result
 
 @app.route("/analyze/", methods=["GET"])
 @login_required
-def analyze():
-    return render_template("analyze/list.html")
-
-@app.route("/analyze/list", methods=["GET"])
-@login_required
-def results_list():
+def list_recent():
     return render_template("analyze/list.html", results = Result.query.filter_by(account_id=current_user.id).all())
+
+@app.route("/analyze/showactivity", methods=["GET"])
+@login_required
+def show_activity():
+    return render_template("analyze/activity.html")
+

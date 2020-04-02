@@ -17,8 +17,6 @@ db = SQLAlchemy(app)
 
 # migraatio
 from flask_migrate import Migrate
-
-
 migrate = Migrate(app, db)
 
 # kirjautuminen

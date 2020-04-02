@@ -1,0 +1,41 @@
+{% include "layout.html" %}
+<div>
+	<div id="wrapper" class="toggled">
+
+		<!-- Sidebar -->
+		<div id="sidebar-wrapper">
+			<ul class="sidebar-nav">
+				<!--<li class="sidebar-brand">
+					<a href="#">
+						 tähän otsikkkooo Start Bootstrap
+					</a>
+				</li> -->
+				<li>
+					<a href="{{ url_for('session_create') }}">Log a session</a>
+				</li>
+				<li>
+					<a href="{{ url_for('list_for_modify') }}">Edit recent</a>
+				</li>
+			</ul>
+		</div>
+		<!-- /#sidebar-wrapper -->
+
+		<!-- Page Content -->
+		<div id="page-content-wrapper">
+			<div class="container-fluid">
+				{% block body %}{% endblock %}
+			</div>
+		</div>
+		<!-- /#page-content-wrapper -->
+
+	</div>
+	<!-- /#wrapper -->
+
+	<!-- Menu Toggle Script -->
+	<script>
+    $("#menu-toggle").click(function(e) {
+        e.preventDefault();
+        $("#wrapper").toggleClass("toggled");
+    });
+	</script>
+</div>

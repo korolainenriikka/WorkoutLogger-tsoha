@@ -40,6 +40,11 @@ def session_create():
 
     return redirect(url_for("results_list"))
 
+@app.route("/analyze/", methods=["GET"])
+@login_required
+def list_for_modify():
+    return render_template("analyze/list.html", results = Result.query.filter_by(account_id=current_user.id).all())
+
 @app.route("/results/modify/<result_id>", methods=["GET", "POST"])
 @login_required
 def results_modify(result_id):
