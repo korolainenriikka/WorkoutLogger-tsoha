@@ -18,13 +18,7 @@ def auth_login():
 
     user = User.query.filter_by(username=form.username.data).first()
 
-    if not isinstance(user, User):
-        return render_template("auth/loginform.html", form=form,
-                               error="No such username or password")
-
-    rightPassword = check_password_hash(user.password_hash, form.password.data)
-
-    if not rightPassword:
+    if user is None or not user.check_password(form.password.data):
         return render_template("auth/loginform.html", form = form,
                                error = "No such username or password")
 

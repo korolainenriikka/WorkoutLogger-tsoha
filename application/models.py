@@ -1,7 +1,8 @@
 from application import db
-from werkzeug.security import generate_password_hash
+from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin, current_user
 from sqlalchemy.sql import text
+
 
 class User(UserMixin, db.Model):
 	__tablename__ = "account"
@@ -17,6 +18,9 @@ class User(UserMixin, db.Model):
 		self.username = username
 		self.password_hash = generate_password_hash(password)
 
+	def check_password(self, password):
+		return check_password_hash(self.password_hash, password)
+
 
 class Result(db.Model):
 	id = db.Column(db.Integer, primary_key=True)
@@ -25,6 +29,7 @@ class Result(db.Model):
 
 	def __init__(self, description):
 		self.description = description
+
 
 class Session(db.Model):
 	id = db.Column(db.Integer, primary_key=True)
@@ -36,7 +41,7 @@ class Session(db.Model):
 	@staticmethod
 	def count_sessions_last_30_days():
 		stmt = text("SELECT COUNT(DISTINCT date) FROM session WHERE date  BETWEEN date('now', '-30 days') AND date("
-					"'now', 'localtime') AND account_id =" +  str(current_user.id) + ";")
+					"'now', 'localtime') AND account_id =" + str(current_user.id) + ";")
 		res = db.engine.execute(stmt)
 		result = []
 		for row in res:
