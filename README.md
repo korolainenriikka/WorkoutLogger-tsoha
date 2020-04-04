@@ -1,3 +1,11 @@
+### ohjaaja:
+
+sovelluksen tietokantatoiminnallisuudet eivät toimi tällä hetkellä herokussa, sillä postgresql ei suorita tietokantakomentoja samaan tapaan kuin paikallinen ohjelma (esimerkiksi lisää id-riviin nullin ja aiheuttaa errorin "not null constraint failed")
+
+ongelma on todennäköisesti riippuvuuksissa (latasin aiemmin suuren määrän tarpeettomia, herokussa toimimattomia riippuvuuksia vahingossa, eli pip freeze ei ole käytettävissä), mutta niiden korjaus ei ollut ajan puitteissa mahdollista.
+
+mikäli on siis mahdollista, että ohjaaja pystyy/jaksaa kokeilla ohjelmaa paikallisesti, se auttaisi sovelluksen kehitystä eteenpäin!
+
 ### Workout logger
 
 Harjoitustyönä on treenipäiväkirja, jolla pidetään kirjaa crossfit-tyylisen harjoittelun tuloksista, siis mm. voima- ja kestävyystuloksista, ja tekee niistä statistiikkaa.
