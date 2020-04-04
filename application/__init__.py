@@ -19,6 +19,11 @@ db = SQLAlchemy(app)
 from flask_migrate import Migrate
 migrate = Migrate(app, db)
 
+# dynaamiset kentät
+from wtforms_dynamic_fields import WTFormsDynamicFields
+dynamic = WTFormsDynamicFields()
+
+
 # kirjautuminen
 from application.models import User
 from os import urandom

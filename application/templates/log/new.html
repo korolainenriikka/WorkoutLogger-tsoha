@@ -3,25 +3,14 @@
 {% block body %}
 <form method="POST" action="{{ url_for('session_create') }}">
 	<p>
-		{{ form.result1.label }}
-		{{ form.result1 }}
-		{% for error in form.result1.errors %}
+		{{ form.description.label }}
+		{{ form.description }}
+		{% for error in form.description.errors %}
 		<span style="color: red;">[{{ error }}]</span>
 		{% endfor %}
 	</p>
 	<p>
-		{{ form.result2.label }}
-		{{ form.result2 }}
-		{% for error in form.result2.errors %}
-		<span style="color: red;">[{{ error }}]</span>
-		{% endfor %}
-	</p>
-	<p>
-		{{ form.result3.label }}
-		{{ form.result3 }}
-		{% for error in form.result3.errors %}
-		<span style="color: red;">[{{ error }}]</span>
-		{% endfor %}
+		<input type="button" value="add a row"
 	</p>
 	<p>
 		<input type="submit" value="add a new result"/>
