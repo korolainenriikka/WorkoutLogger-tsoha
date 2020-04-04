@@ -8,6 +8,9 @@ class ResultForm(FlaskForm):
     description = StringField("description", [validators.DataRequired()])
     dynamic.add_field(description, "description", StringField)
 
+    def dorandomthings(self):
+        print("täällä lissäillään rivei!")
+
     class Meta:
         csrf = False
 
