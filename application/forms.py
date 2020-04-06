@@ -1,21 +1,17 @@
 from flask_wtf import FlaskForm
-from wtforms import Form, FieldList, PasswordField, validators, ValidationError, StringField, FormField
+from wtforms import Form, FieldList, PasswordField, validators, ValidationError, StringField, FormField, SubmitField
 from application import dynamic
 from application.models import User
 
 
 class ResultForm(FlaskForm):
     description = StringField("description", [validators.DataRequired()])
-    dynamic.add_field(description, "description", StringField)
 
-    def dorandomthings(self):
-        print("täällä lissäillään rivei!")
 
-    class Meta:
-        csrf = False
-
-#class SessionForm(FlaskForm):
-  #  results = FieldList(FormField(ResultForm), min_entries=1)
+class SessionForm(FlaskForm):
+    results = FieldList(FormField(ResultForm), min_entries=1)
+    add_row_button = SubmitField()
+    submit_button = SubmitField()
 
 class ModifyForm(FlaskForm):
     newtext = StringField("edit description", [validators.DataRequired()])

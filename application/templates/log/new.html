@@ -2,18 +2,20 @@
 
 {% block body %}
 <form method="POST" action="{{ url_for('session_create') }}">
+	{% for result in form.results %}
+		<p>
+			{{ result.description.label }}
+			{{ result.description }}
+			{% for error in result.errors %}
+			<span style="color: red;">[{{ error }}]</span>
+			{% endfor %}
+		</p>
+	{% endfor %}
 	<p>
-		{{ form.description.label }}
-		{{ form.description }}
-		{% for error in form.description.errors %}
-		<span style="color: red;">[{{ error }}]</span>
-		{% endfor %}
+		 <input type="submit" name="add_row_button" value="add a row"/>
 	</p>
 	<p>
-		<input type="button" onclick={{ form.dorandomthings() }} value="add a row"
-	</p>
-	<p>
-		<input type="submit" value="add a new result"/>
+		<input type="submit" name="submit_button" value="add a new result"/>
 	</p>
 </form>
 {% endblock %}
