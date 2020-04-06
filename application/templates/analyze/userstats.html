@@ -1,0 +1,33 @@
+{% extends "analyze/base.html" %}
+
+{% block body %}
+<p>
+	Users registered in application:
+<table style="width:15%">
+	<tr>
+		<th>Name</th>
+		<th>Username</th>
+	</tr>
+	{% for user in users %}
+	<tr>
+		<td>{{ user.name }}</td>
+		<td>{{ user.username }}</td>
+	</tr>
+	{% endfor %}
+</table>
+</p>
+<p>
+	Total sessions logged:
+<table style="width:15%">
+	<tr>
+		<th>Total logged</th>
+		<th>Ave logs per user</th>
+	</tr>
+	<tr>
+		<td>{{ countSesh }}</td>
+		<td>{{ countSesh/countUser }}</td>
+	</tr>
+</table>
+</ul>
+</p>
+{% endblock %}

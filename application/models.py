@@ -28,6 +28,16 @@ class User(UserMixin, db.Model):
 	def check_password(self, password):
 		return check_password_hash(self.password_hash, password)
 
+	@staticmethod
+	def count_users():
+		stmt = text("SELECT COUNT(*) FROM account;")
+		res = db.engine.execute(stmt)
+		result = []
+		for row in res:
+			result.append(row[0])
+
+		return result[0]
+
 
 class Result(db.Model):
 	id = db.Column(db.Integer, primary_key=True)
@@ -55,3 +65,14 @@ class Session(db.Model):
 			result.append(row[0])
 
 		return result[0]
+
+	@staticmethod
+	def count_sessions():
+		stmt = text("SELECT COUNT(*) FROM session;")
+		res = db.engine.execute(stmt)
+		result = []
+		for row in res:
+			result.append(row[0])
+
+		return result[0]
+

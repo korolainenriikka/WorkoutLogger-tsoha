@@ -2,7 +2,7 @@ from flask import render_template
 from flask_login import login_required, current_user
 
 from application import app, admin_permission
-from application.models import Result, Session
+from application.models import Result, Session, User
 
 
 @app.route("/analyze/", methods=["GET"])
@@ -21,5 +21,6 @@ def show_activity():
 @login_required
 @admin_permission.require()
 def list_users():
-    return render_template("analyze/activity.html", count=Session.count_sessions_last_30_days())
+    return render_template("analyze/userstats.html", users=User.query.all(), countSesh=Session.count_sessions(),
+						   countUser = User.count_users())
 

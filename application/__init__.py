@@ -35,7 +35,6 @@ login_manager.login_message = "Please login to view this functionality"
 @login_manager.user_loader
 def load_user(user_id):
     return User.query.get(user_id)
-
 # user types
 from flask_principal import Principal, Permission, RoleNeed, UserNeed, identity_loaded
 
