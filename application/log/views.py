@@ -2,7 +2,7 @@ from flask import redirect, render_template, request, url_for
 from flask_login import login_required, current_user
 from wtforms import StringField, validators
 
-from application import app, db, dynamic
+from application import app, db
 from application.models import Result, Session
 from application.forms import ResultForm, ModifyForm, SessionForm
 

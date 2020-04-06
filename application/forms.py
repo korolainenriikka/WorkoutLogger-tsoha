@@ -1,6 +1,5 @@
 from flask_wtf import FlaskForm
 from wtforms import Form, FieldList, PasswordField, validators, ValidationError, StringField, FormField, SubmitField
-from application import dynamic
 from application.models import User
 
 

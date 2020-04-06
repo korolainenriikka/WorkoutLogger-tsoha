@@ -1,8 +1,8 @@
-# flask-sovellus
+# flask app
 from flask import Flask
 app = Flask(__name__)
 
-# tietokanta
+# database
 from flask_sqlalchemy import SQLAlchemy
 import os
 if os.environ.get("HEROKU"):
@@ -15,16 +15,11 @@ else:
 
 db = SQLAlchemy(app)
 
-# migraatio
+# migration
 from flask_migrate import Migrate
 migrate = Migrate(app, db)
 
-# dynaamiset kentät
-from wtforms_dynamic_fields import WTFormsDynamicFields
-dynamic = WTFormsDynamicFields()
-
-
-# kirjautuminen
+# login
 from application.models import User
 from os import urandom
 app.config["SECRET_KEY"] = urandom(32)
@@ -40,11 +35,13 @@ login_manager.login_message = "Please login to view this functionality"
 def load_user(user_id):
     return User.query.get(user_id)
 
-# oma sovellus
+# user types
+
+# app
 from application import views, models, forms
 from application.log import views
 from application.auth import views
 from application.analyze import views
 
-#luodaan tietokantataulut
+# create db
 db.create_all()
