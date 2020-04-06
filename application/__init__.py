@@ -24,7 +24,8 @@ from application.models import User
 from os import urandom
 app.config["SECRET_KEY"] = urandom(32)
 
-from flask_login import LoginManager
+from flask_login import LoginManager, current_user
+
 login_manager = LoginManager()
 login_manager.init_app(app)
 
@@ -36,6 +37,18 @@ def load_user(user_id):
     return User.query.get(user_id)
 
 # user types
+from flask_principal import Principal, Permission, RoleNeed, UserNeed, identity_loaded
+
+principal = Principal(app)
+admin_permission = Permission(RoleNeed('admin'))
+
+@identity_loaded.connect_via(app)
+def on_identity_loaded(sender, identity):
+    # Set the identity user object
+    identity.user = current_user
+    if hasattr(current_user, 'id'):
+        identity.provides.add(UserNeed(current_user.id))
+        identity.provides.add(RoleNeed(current_user.user_type))
 
 # app
 from application import views, models, forms

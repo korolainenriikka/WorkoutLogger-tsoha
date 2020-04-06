@@ -14,16 +14,16 @@ class User(UserMixin, db.Model):
 	id = db.Column(db.Integer, primary_key=True)
 	name = db.Column(db.String(144), nullable=False)
 	username = db.Column(db.String(144), nullable=False, unique=True)
-	user_type = db.Column(Enum(UserType))
+	user_type = db.Column(db.String(144))
 	password_hash = db.Column(db.String(144))
 
 	results = db.relationship("Session", backref='account', lazy=True)
 
-	def __init__(self, name, username, password):
+	def __init__(self, name, username, password, user_type='user'):
 		self.name = name
 		self.username = username
 		self.password_hash = generate_password_hash(password)
-		self.user_type = "user"
+		self.user_type = user_type
 
 	def check_password(self, password):
 		return check_password_hash(self.password_hash, password)
