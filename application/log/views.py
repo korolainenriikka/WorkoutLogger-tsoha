@@ -14,10 +14,11 @@ def session_create():
     if request.method == "GET":
         form=ResultForm()
         return render_template("log/new.html", form = form)
-
-    if request.form.get("submit_button"):
-        print("heimoi!!!")
-        return render_template("log/new.html", form=ResultForm())
+    print(request.form.get('add_a_row_button'))
+    print(request.form.get('submit_button'))
+    if request.form.get('submit_button') != "add a new result":
+        form = ResultForm(request.form)
+        return render_template("log/new.html", form=form)
     else:
         form = ResultForm(request.form)
         print("submit!")
