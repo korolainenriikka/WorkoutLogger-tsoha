@@ -13,17 +13,21 @@ from application.forms import ResultForm, ModifyForm, SessionForm
 def session_create():
     if request.method == "GET":
         form=ResultForm()
-        return render_template("log/new.html", form = form)
-    print(request.form.get('add_a_row_button'))
-    print(request.form.get('submit_button'))
+        forms = []
+        forms.append(form)
+        return render_template("log/new.html", forms = forms)
+    #print(request.form.get('add_a_row_button'))
+    #print(request.form.get('submit_button'))
     if request.form.get('submit_button') != "add a new result":
-        form = ResultForm(request.form)
-        return render_template("log/new.html", form=form)
+        forms = []
+        forms.append(ResultForm(request.form))
+        forms.append(ResultForm())
+        return render_template("log/new.html", forms=forms)
     else:
         form = ResultForm(request.form)
-        print("submit!")
+        #print("submit!")
         if not form.validate():
-            print("ei validoitu!")
+            #print("ei validoitu!")
             return render_template("log/new.html", form=form)
 
         s = Session()

@@ -2,6 +2,7 @@
 
 {% block body %}
 <form method="POST" action="{{ url_for('session_create') }}">
+		{% for form in forms %}
 		<p>
 			{{ form.description.label }}
 			{{ form.description }}
@@ -9,6 +10,7 @@
 			<span style="color: red;">[{{ error }}]</span>
 			{%endfor%}
 		</p>
+		{% endfor %}
 	<p>
 		 <input type="submit" name="add_row_button" value="add a row"/>
 	</p>
