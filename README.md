@@ -13,6 +13,8 @@ Sovelluksessa on mahdollista luoda ainoastaan yksi admin-tyypin käyttäjä, jok
 
 ## seuraava jatkokehitys
 
+Nyt työn alla on log-välilehden muokkaus niin, että formiin voidaan lisätä kenttiä. Nykyisessä versiossa kenttiä lisätään, mutta lisättäviin kentiin kopioituu ensimmäisen kentän arvo, eikä arvojen hakemiseen kentistä ole toiminnallisuuksia.
+
 Seuraavassa versiossa voidaan lisätä loggeriin kokonainen harjoitus niin, että kukin tehty asia (esim voimasetti tai juoksuharjoitus) lisätään tekstimuotoisena tuloksena. Lisäksi sovellukseen voi rekisteröityä sekä kirjautua, ja kirjautuneena käyttäjä näkee tekemänsä tulokset. Tulokset ovat myös muokattavissa ja poistettavissa.
 
 Yhteenvetokyselynä sovelluksessa on analytiikka-sivu, jolla käyttäjä voi valita haluamansa ajanjakson, ja näkee, kuinka monena päivänä on harjoitellut ko. ajanjakson aikana.
