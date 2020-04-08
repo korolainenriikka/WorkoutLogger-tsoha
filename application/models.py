@@ -2,12 +2,6 @@ from application import db
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin, current_user
 from sqlalchemy.sql import text
-from sqlalchemy import Enum
-import enum
-
-class UserType(enum.Enum):
-	user = 1
-	admin = 2
 
 class User(UserMixin, db.Model):
 	__tablename__ = "account"
@@ -47,11 +41,16 @@ class Result(db.Model):
 	def __init__(self, description):
 		self.description = description
 
+class Conditioning(Result):
+	id = db.Column(db.ForeignKey("result.id"), primary_key=True)
+	#workout = db.Column(db.String, nullable=False) #tämä kun on luotu workouts-taulu
+	distance = db.Column(db.Integer, nullable=False) #tän ois hyvä olla 5 10 tai 50m välein???
+	time = db.Column(db.DateTime, nullable=False)
 
 class Session(db.Model):
 	id = db.Column(db.Integer, primary_key=True)
-	date = db.Column(db.Date, default=db.func.current_date())
-	account_id = db.Column(db.Integer, db.ForeignKey('account.id'), nullable=True)
+	date = db.Column(db.Date, default=db.func.current_date(), nullable=False)
+	account_id = db.Column(db.Integer, db.ForeignKey('account.id'), nullable=False)
 
 	results = db.relationship("Result", backref='session', lazy=True)
 

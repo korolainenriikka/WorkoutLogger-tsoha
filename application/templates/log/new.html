@@ -2,7 +2,7 @@
 
 {% block body %}
 <form method="POST" action="{{ url_for('session_create') }}">
-	{% for result in form.results %}
+<!--	DYNAAMISEN ALOTUS{% for result in form.results %}
 		<p>
 			{{ result.description.label }}
 			{{ result.description }}
@@ -14,6 +14,17 @@
 	<p>
 		 <input type="submit" name="add_row_button" value="add a row"/>
 	</p>
+	<p>
+		<input type="submit" name="submit_button" value="add a new result"/>
+	</p>
+</form>-->
+	<p>
+			{{ form.description.label }}
+			{{ form.description }}
+			{% for error in form.errors %}
+			<span style="color: red;">[{{ error }}]</span>
+			{% endfor %}
+		</p>
 	<p>
 		<input type="submit" name="submit_button" value="add a new result"/>
 	</p>

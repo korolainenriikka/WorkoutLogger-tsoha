@@ -6,11 +6,13 @@ from application.models import User
 class ResultForm(FlaskForm):
     description = StringField("description", [validators.DataRequired()])
 
+    class Meta:
+        csrf=False
 
-class SessionForm(FlaskForm):
-    results = FieldList(FormField(ResultForm), min_entries=1)
-    add_row_button = SubmitField()
-    submit_button = SubmitField()
+##class SessionForm(FlaskForm):
+ #   results = FieldList(FormField(ResultForm), min_entries=1)
+  #  add_row_button = SubmitField()
+   # submit_button = SubmitField()
 
 class ModifyForm(FlaskForm):
     newtext = StringField("edit description", [validators.DataRequired()])
