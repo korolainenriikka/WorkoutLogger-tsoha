@@ -35,7 +35,7 @@ class User(UserMixin, db.Model):
 
 class Result(db.Model):
 	id = db.Column(db.Integer, primary_key=True)
-	description = db.Column(db.String(144))
+	#description = db.Column(db.String(144))
 	session_id = db.Column(db.Integer, db.ForeignKey('session.id'))
 
 	def __init__(self, description):

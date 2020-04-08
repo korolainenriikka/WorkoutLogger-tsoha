@@ -11,14 +11,14 @@ from application.forms import ResultForm, ModifyForm, SessionForm
 def session_create():
     if request.method == "GET":
         form = SessionForm()
-        form.results.append_entry()
-        form = ResultForm()
+        #form.results.append_entry()
+        form = SessionForm()
         return render_template("log/new.html", form = form)
 
-    form = ResultForm(request.form)
+    form = SessionForm(request.form)
     if form.add_row_button:
         print("lisätää riveiiii")
-        setattr(form, "description", StringField("description", [validators.DataRequired()]))
+        form.results.append_entry()
         form.add_row_button=False
         return render_template("log/new.html", form=form)
     else:

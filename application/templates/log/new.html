@@ -2,13 +2,11 @@
 
 {% block body %}
 <form method="POST" action="{{ url_for('session_create') }}">
-{% for result in form.results %}
 		<p>
-			{{ result.description.label }}
-			{{ result.description }}
-			{% for error in result.errors %}
+			{{ form.description.label }}
+			{{ form.description }}
+			{% for error in form.errors %}
 			<span style="color: red;">[{{ error }}]</span>
-			{% endfor %}
 		</p>
 	{% endfor %}
 	<p>
