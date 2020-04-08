@@ -15,15 +15,14 @@ def session_create(form_count):
         form=ResultForm()
         forms = []
         forms.append(form)
-        return render_template("log/new.html", forms = forms, form_count=forms.__sizeof__())
+        return render_template("log/new.html", forms = forms, form_count=len(forms))
     #print(request.form.get('add_a_row_button'))
     #print(request.form.get('submit_button'))
     if request.form.get('submit_button') != "add a new result":
         forms = []
-        forms.append(ResultForm(request.form))
-        forms.append(ResultForm(request.form))
-        forms.append(ResultForm())
-        return render_template("log/new.html", forms=forms)
+        for i in range(int(form_count)+1):
+            forms.append(ResultForm())
+        return render_template("log/new.html", forms=forms, form_count=len(forms))
     else:
         form = ResultForm(request.form)
         #print("submit!")
