@@ -2,7 +2,7 @@
 
 {% block body %}
 <form method="POST" action="{{ url_for('session_create') }}">
-<!--	DYNAAMISEN ALOTUS{% for result in form.results %}
+{% for result in form.results %}
 		<p>
 			{{ result.description.label }}
 			{{ result.description }}
@@ -17,8 +17,8 @@
 	<p>
 		<input type="submit" name="submit_button" value="add a new result"/>
 	</p>
-</form>-->
-	<p>
+</form>
+	<!--	FORM ILMAN DYNAAMISIA KENTTIÄ<p>
 			{{ form.description.label }}
 			{{ form.description }}
 			{% for error in form.errors %}
@@ -27,6 +27,6 @@
 		</p>
 	<p>
 		<input type="submit" name="submit_button" value="add a new result"/>
-	</p>
+	</p>-->
 </form>
 {% endblock %}

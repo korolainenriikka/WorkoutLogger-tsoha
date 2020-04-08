@@ -4,43 +4,42 @@ from wtforms import StringField, validators
 
 from application import app, db
 from application.models import Result, Session
-from application.forms import ResultForm, ModifyForm#, #SessionForm
+from application.forms import ResultForm, ModifyForm, SessionForm
 
 @app.route("/results/new", methods=["GET", "POST"])
 @login_required
 def session_create():
-    # merkattuna dynaaminen sessionformsetti!
     if request.method == "GET":
-        #form = SessionForm()
-        #form.results.append_entry()
+        form = SessionForm()
+        form.results.append_entry()
         form = ResultForm()
         return render_template("log/new.html", form = form)
 
     form = ResultForm(request.form)
-    #if form.add_row_button:
-    #    print("lisätää riveiiii")
-        #setattr(form, "description", StringField("description", [validators.DataRequired()]))
-     #   form.add_row_button=False
-      #  return render_template("log/new.html", form=form)
-    #else:
-     #   print("submit!")
-    if not form.validate():
-        print("ei validoitu!")
+    if form.add_row_button:
+        print("lisätää riveiiii")
+        setattr(form, "description", StringField("description", [validators.DataRequired()]))
+        form.add_row_button=False
         return render_template("log/new.html", form=form)
+    else:
+        print("submit!")
+        if not form.validate():
+            print("ei validoitu!")
+            return render_template("log/new.html", form=form)
 
-    s = Session()
-    s.account_id = current_user.id
-    db.session.add(s)
+        s = Session()
+        s.account_id = current_user.id
+        db.session.add(s)
 
-    thisSession = Session.query.order_by(Session.id.desc()).first()
-    r1 = Result(request.form.get("description"))
-    r1.account_id = current_user.id
-    r1.session_id = thisSession.id
+        thisSession = Session.query.order_by(Session.id.desc()).first()
+        r1 = Result(request.form.get("description"))
+        r1.account_id = current_user.id
+        r1.session_id = thisSession.id
 
-    db.session().add(r1)
-    db.session().commit()
+        db.session().add(r1)
+        db.session().commit()
 
-    return redirect(url_for("list_recent"))
+        return redirect(url_for("list_recent"))
 
 @app.route("/results/modify/<result_id>", methods=["GET", "POST"])
 @login_required
