@@ -8,6 +8,9 @@ class ResultForm(FlaskForm):
     add_row_button = SubmitField()
     submit_button = SubmitField()
 
+    def __init__(self, index):
+        description = StringField("description" + str(index), [validators.DataRequired()])
+
     class Meta:
         csrf=False
 

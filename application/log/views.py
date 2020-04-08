@@ -8,39 +8,41 @@ from application.forms import ResultForm, ModifyForm, SessionForm
 
 
 
-@app.route("/results/new/<form_count>", methods=["GET", "POST"])
+@app.route("/results/new/", methods=["GET", "POST"])
 @login_required
-def session_create(form_count):
+def session_create():
     if request.method == "GET":
-        form=ResultForm()
-        forms = []
-        forms.append(form)
-        return render_template("log/new.html", forms = forms, form_count=len(forms))
-    #print(request.form.get('add_a_row_button'))
-    #print(request.form.get('submit_button'))
+        return render_template("log/new.html", forms = [ResultForm(0)])
+
     if request.form.get('submit_button') != "add a new result":
+        form = request.form
+        print(form)
         forms = []
-        for i in range(int(form_count)+1):
-            forms.append(ResultForm())
-        return render_template("log/new.html", forms=forms, form_count=len(forms))
+        for key in form:
+            print(form[key])
+            forms.append(ResultForm(description="heimoi!"))
+        return render_template("log/new.html", forms=forms)
     else:
-        form = ResultForm(request.form)
+        form = request.form
+        #results = {}
+        print(form)
+
         #print("submit!")
-        if not form.validate():
+        #if not form.validate():
             #print("ei validoitu!")
-            return render_template("log/new.html", form=form)
+         #   return render_template("log/new.html", form=form)
 
-        s = Session()
-        s.account_id = current_user.id
-        db.session.add(s)
+        #s = Session()
+       # s.account_id = current_user.id
+        #db.session.add(s)
 
-        thisSession = Session.query.order_by(Session.id.desc()).first()
-        r1 = Result(request.form.get("description"))
-        r1.account_id = current_user.id
-        r1.session_id = thisSession.id
+        #thisSession = Session.query.order_by(Session.id.desc()).first()
+        #r1 = Result(request.form.get("description"))
+       # r1.account_id = current_user.id
+        #r1.session_id = thisSession.id
 
-        db.session().add(r1)
-        db.session().commit()
+        #db.session().add(r1)
+        #db.session().commit()
 
         return redirect(url_for("list_recent"))
 
