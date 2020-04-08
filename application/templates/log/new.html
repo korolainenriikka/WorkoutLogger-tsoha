@@ -5,7 +5,7 @@
 		<p>
 			{{ form.description.label }}
 			{{ form.description }}
-			{% for error in form.errors %}
+			{% for error in form.description.errors %}
 			<span style="color: red;">[{{ error }}]</span>
 			{%endfor%}
 		</p>
