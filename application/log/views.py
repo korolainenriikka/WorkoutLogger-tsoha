@@ -11,8 +11,7 @@ from application.forms import ResultForm, ModifyForm, SessionForm
 def session_create():
     if request.method == "GET":
         form = SessionForm()
-        #form.results.append_entry()
-        form = SessionForm()
+        form.results.append_entry(ResultForm())
         return render_template("log/new.html", form = form)
 
     form = SessionForm(request.form)
