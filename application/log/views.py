@@ -8,17 +8,23 @@ from application.forms import ResultForm, ModifyForm, SessionForm
 
 @app.route("/results/new", methods=["GET", "POST"])
 @login_required
+def create_new_form():
+    print("lisää riveiiiiiiiiiii!")
+    return render_template("log/new.html", form=ResultForm())
+
+@app.route("/results/new", methods=["GET", "POST"])
+@login_required
 def session_create():
     if request.method == "GET":
-        form = SessionForm()
-        form.results.append_entry(ResultForm())
+        #form = SessionForm()
+        #form.results.append_entry(StringField("description"))
+        form=ResultForm()
         return render_template("log/new.html", form = form)
 
-    form = SessionForm(request.form)
-    if form.add_row_button:
-        print("lisätää riveiiii")
-        form.results.append_entry()
-        form.add_row_button=False
+    form = ResultForm(request.form)
+
+    if form.get('submit_button'):
+        print("heimoi!!!")
         return render_template("log/new.html", form=form)
     else:
         print("submit!")
