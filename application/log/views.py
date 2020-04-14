@@ -1,9 +1,8 @@
-from flask import redirect, render_template, request, url_for
-from flask_login import login_required, current_user
-from wtforms import StringField, validators
+from flask import redirect, render_template, request, url_for, flash
+from flask_login import login_required
 
 from application import app, db
-from application.models import Result, Session
+from application.models import Result
 from application.forms import ResultForm, ModifyForm, SessionForm
 
 
@@ -34,6 +33,7 @@ def results_create(sets, reps):
 	errorMessage = validateResults(sets, reps, results)
 	if errorMessage != "":
 		print(errorMessage)
+		flash(errorMessage)
 		return render_template("log/newresults.html", form=form, sets=sets, reps=reps, errorMessage = errorMessage)
 	for result in results:
 		print(result)
