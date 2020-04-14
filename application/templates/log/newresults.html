@@ -1,0 +1,8 @@
+{% extends "log/base.html" %}
+
+{% block body %}
+<form method="POST" action="{{ url_for('results_create') }}">
+		Insert results separated with enter:
+		{{ form.results }}
+</form>
+{% endblock %}

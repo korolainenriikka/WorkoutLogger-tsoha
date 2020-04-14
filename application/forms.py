@@ -1,15 +1,10 @@
 from flask_wtf import FlaskForm
-from wtforms import PasswordField, validators, ValidationError, StringField, SubmitField, IntegerField
+from wtforms import PasswordField, validators, ValidationError, StringField, SubmitField, IntegerField, TextAreaField
 from application.models import User
 
 
 class ResultForm(FlaskForm):
-    description = StringField("description", [validators.DataRequired()])
-    add_row_button = SubmitField()
-    submit_button = SubmitField()
-
-    #def __init__(self, index):
-     #   description = StringField("description" + str(index), [validators.DataRequired()])
+    results = TextAreaField()
 
     class Meta:
         csrf=False

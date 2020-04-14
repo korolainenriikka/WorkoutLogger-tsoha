@@ -1,7 +1,7 @@
 {% extends "log/base.html" %}
 
 {% block body %}
-<form method="POST" action="{{ url_for('result_create') }}">
+<form method="POST" action="{{ url_for('results_log') }}">
 	<p>
 		{{ form.workout.label }}
 		{{ form.workout }}

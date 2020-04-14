@@ -7,46 +7,53 @@ from application.models import Result, Session
 from application.forms import ResultForm, ModifyForm, SessionForm
 
 
-
 @app.route("/results/new/")
 @login_required
-def session_create():
-    return render_template("log/newsession.html", form = SessionForm())
+def session_log():
+	return render_template("log/newsession.html", form=SessionForm())
+
 
 @app.route("/results/newresults/", methods=["GET", "POST"])
 @login_required
-def result_create():
-    form = SessionForm(request.form)
-    if not form.validate():
-        return render_template("log/newsession.html", form=form)
+def results_log():
+	form = SessionForm(request.form)
+	if not form.validate():
+		return render_template("log/newsession.html", form=form)
+	return render_template("log/newresults.html", form=ResultForm())
+
+
+@app.route("/results/createresults/", methods=["POST"])
+@login_required
+def results_create():
+	form = ResultForm(request.form)
+	results = request.form.get("results")
+
 
 @app.route("/results/modify/<result_id>", methods=["GET", "POST"])
 @login_required
 def results_modify(result_id):
-    if request.method == "GET":
-        return render_template("log/modify.html", result_id = result_id,
-                           form = ModifyForm(newtext = Result.query.get(result_id).description))
+	if request.method == "GET":
+		return render_template("log/modify.html", result_id=result_id,
+							   form=ModifyForm(newtext=Result.query.get(result_id).description))
 
-    form = ModifyForm(request.form)
-    if not form.validate():
-        return render_template("log/modify.html", result_id=result_id, form=form)
+	form = ModifyForm(request.form)
+	if not form.validate():
+		return render_template("log/modify.html", result_id=result_id, form=form)
 
-    newText = request.form.get("newtext")
-    r = Result.query.get(result_id)
-    r.description = newText
-    db.session().commit()
+	newText = request.form.get("newtext")
+	r = Result.query.get(result_id)
+	r.description = newText
+	db.session().commit()
 
-    return redirect(url_for("list_recent"))
+	return redirect(url_for("list_recent"))
+
 
 @app.route("/results/<result_id>", methods=["GET"])
 @login_required
 def results_delete(result_id):
-    r = Result.query.get(result_id)
+	r = Result.query.get(result_id)
 
-    db.session().delete(r)
-    db.session().commit()
+	db.session().delete(r)
+	db.session().commit()
 
-    return redirect(url_for("list_recent"))
-
-
-
+	return redirect(url_for("list_recent"))
