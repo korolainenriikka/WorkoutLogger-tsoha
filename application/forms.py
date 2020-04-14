@@ -10,7 +10,7 @@ class ResultForm(FlaskForm):
         csrf=False
 
 class SessionForm(FlaskForm):
-    workout = StringField("workout:", [validators.DataRequired()])
+   # workout = StringField("workout:", [validators.DataRequired()])
     sets = IntegerField("repetitions:", [validators.NumberRange(min=1)])
     repetitions = IntegerField([validators.NumberRange(min=1)])
 

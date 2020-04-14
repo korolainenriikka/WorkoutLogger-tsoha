@@ -17,17 +17,29 @@ def session_log():
 @login_required
 def results_log():
 	form = SessionForm(request.form)
+	#workout = request.form.get("workout")
+	sets = request.form.get("sets")
+	reps = request.form.get("repetitions")
 	if not form.validate():
 		return render_template("log/newsession.html", form=form)
-	return render_template("log/newresults.html", form=ResultForm())
+	return render_template("log/newresults.html", form=ResultForm(), sets=sets, reps=reps)
 
 
-@app.route("/results/createresults/", methods=["POST"])
+@app.route("/results/createresults/<sets><reps>", methods=["POST"])
 @login_required
-def results_create():
+def results_create(sets, reps):
 	form = ResultForm(request.form)
-	results = request.form.get("results")
+	results = []
+	results = request.form.get("results").splitlines()
+	if not validateResults(sets, reps, results):
+		return render_template("log/newresults.html", form=form)
+	for result in results:
+		print(result)
 
+def validateResults(sets, reps, results):
+	if(results.len()!= sets):
+		return False
+	return True
 
 @app.route("/results/modify/<result_id>", methods=["GET", "POST"])
 @login_required

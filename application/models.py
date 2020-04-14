@@ -71,15 +71,15 @@ class Conditioning(Result):
 	id = db.Column(db.ForeignKey("result.id"), primary_key=True)
 	distance = db.Column(db.Integer, nullable=False)
 	time = db.Column(db.DateTime, nullable=False)
-	workout_id = db.Column(db.Integer, db.ForeignKey('workout.id'))
+	workout_id = db.Column(db.Integer, db.ForeignKey('session.id'))
 
-class Strength(Result):
-	id = db.Column(db.ForeignKey("result.id"), primary_key=True)
-	reps = db.Column(db.Integer, nullable=False)
-	weight = db.Column(db.Integer, nullable=False)
-	workout_id = db.Column(db.Integer, db.ForeignKey('workout.id'))
+#class Strength(Result):
+#	id = db.Column(db.ForeignKey("result.id"), primary_key=True)
+#	reps = db.Column(db.Integer, nullable=False)
+#	weight = db.Column(db.Integer, nullable=False)
+#	workout_id = db.Column(db.Integer, db.ForeignKey('workout.id'))
 
 class Workout(db.Model):
-	id = db.Column(db.ForeignKey("result.id"), primary_key=True)
+	id = db.Column(db.Integer, primary_key=True)
 	name = db.Column(db.String(144), nullable=False)
 

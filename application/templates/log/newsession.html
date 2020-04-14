@@ -2,13 +2,7 @@
 
 {% block body %}
 <form method="POST" action="{{ url_for('results_log') }}">
-	<p>
-		{{ form.workout.label }}
-		{{ form.workout }}
-		{% for error in form.workout.errors %}
-		<span style="color: red;">[sets: {{ error }}]</span>
-		{% endfor %}
-	</p>
+	<p>Insert run intervals, distance in m</p>
 	<p>
 		{{ form.sets.label }}
 		{{ form.sets }} x {{form.repetitions}}

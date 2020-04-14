@@ -1,8 +1,17 @@
 {% extends "log/base.html" %}
 
 {% block body %}
-<form method="POST" action="{{ url_for('results_create') }}">
-		Insert results separated with enter:
-		{{ form.results }}
+<form method="POST" action="{{ url_for('results_create', sets=sets, reps=reps) }}">
+		<div>
+			Insert run times ({{ workout }}, {{ sets }} x {{ reps }})
+			separated
+			with enter, form hh:mm:ss:
+		</div>
+		<div>
+			{{ form.results }}
+		</div>
+		<p>
+			<input type="submit" name="submit_button" value="save results"/>
+		</p>
 </form>
 {% endblock %}
