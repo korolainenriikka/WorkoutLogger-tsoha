@@ -32,21 +32,6 @@ class User(UserMixin, db.Model):
 
 		return result[0]
 
-
-class Result(db.Model):
-	id = db.Column(db.Integer, primary_key=True)
-	#description = db.Column(db.String(144))
-	session_id = db.Column(db.Integer, db.ForeignKey('session.id'))
-
-	def __init__(self, description):
-		self.description = description
-
-class Conditioning(Result):
-	id = db.Column(db.ForeignKey("result.id"), primary_key=True)
-	#workout = db.Column(db.String, nullable=False) #tämä kun on luotu workouts-taulu
-	distance = db.Column(db.Integer, nullable=False) #tän ois hyvä olla 5 10 tai 50m välein???
-	time = db.Column(db.DateTime, nullable=False)
-
 class Session(db.Model):
 	id = db.Column(db.Integer, primary_key=True)
 	date = db.Column(db.Date, default=db.func.current_date(), nullable=False)
@@ -74,4 +59,27 @@ class Session(db.Model):
 			result.append(row[0])
 
 		return result[0]
+
+class Result(db.Model):
+	id = db.Column(db.Integer, primary_key=True)
+	session_id = db.Column(db.Integer, db.ForeignKey('session.id'))
+
+	def __init__(self, description):
+		self.description = description
+
+class Conditioning(Result):
+	id = db.Column(db.ForeignKey("result.id"), primary_key=True)
+	distance = db.Column(db.Integer, nullable=False)
+	time = db.Column(db.DateTime, nullable=False)
+	workout_id = db.Column(db.Integer, db.ForeignKey('workout.id'))
+
+class Strength(Result):
+	id = db.Column(db.ForeignKey("result.id"), primary_key=True)
+	reps = db.Column(db.Integer, nullable=False)
+	weight = db.Column(db.Integer, nullable=False)
+	workout_id = db.Column(db.Integer, db.ForeignKey('workout.id'))
+
+class Workout(db.Model):
+	id = db.Column(db.ForeignKey("result.id"), primary_key=True)
+	name = db.Column(db.String(144), nullable=False)
 

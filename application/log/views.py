@@ -11,40 +11,7 @@ from application.forms import ResultForm, ModifyForm, SessionForm
 @app.route("/results/new/", methods=["GET", "POST"])
 @login_required
 def session_create():
-    if request.method == "GET":
-        return render_template("log/new.html", forms = [ResultForm(0)])
-
-    if request.form.get('submit_button') != "add a new result":
-        form = request.form
-        print(form)
-        forms = []
-        for key in form:
-            print(form[key])
-            forms.append(ResultForm(description="heimoi!"))
-        return render_template("log/new.html", forms=forms)
-    else:
-        form = request.form
-        #results = {}
-        print(form)
-
-        #print("submit!")
-        #if not form.validate():
-            #print("ei validoitu!")
-         #   return render_template("log/new.html", form=form)
-
-        #s = Session()
-       # s.account_id = current_user.id
-        #db.session.add(s)
-
-        #thisSession = Session.query.order_by(Session.id.desc()).first()
-        #r1 = Result(request.form.get("description"))
-       # r1.account_id = current_user.id
-        #r1.session_id = thisSession.id
-
-        #db.session().add(r1)
-        #db.session().commit()
-
-        return redirect(url_for("list_recent"))
+    return render_template("log/newsession.html", form = SessionForm())
 
 @app.route("/results/modify/<result_id>", methods=["GET", "POST"])
 @login_required
