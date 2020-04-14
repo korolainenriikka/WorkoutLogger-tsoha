@@ -5,13 +5,19 @@
 	<p>
 		{{ form.workout.label }}
 		{{ form.workout }}
+		{% for error in form.workout.errors %}
+		<span style="color: red;">[sets: {{ error }}]</span>
+		{% endfor %}
 	</p>
 	<p>
 		{{ form.sets.label }}
 		{{ form.sets }} x {{form.repetitions}}
 	</p>
 	{% for error in form.sets.errors %}
-	<span style="color: red;">[{{ error }}]</span>
+	<span style="color: red;">[sets: {{ error }}]</span>
+	{% endfor %}
+	{% for error in form.repetitions.errors %}
+	<span style="color: red;">[repetitions: {{ error }}]</span>
 	{% endfor %}
 	<p>
 		<input type="submit" name="submit_button" value="confirm"/>

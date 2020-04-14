@@ -13,10 +13,12 @@ from application.forms import ResultForm, ModifyForm, SessionForm
 def session_create():
     return render_template("log/newsession.html", form = SessionForm())
 
-@app.route("/results/newresults/")
+@app.route("/results/newresults/", methods=["GET", "POST"])
 @login_required
 def result_create():
-    return render_template("log/newsession.html", form=SessionForm())
+    form = SessionForm(request.form)
+    if not form.validate():
+        return render_template("log/newsession.html", form=form)
 
 @app.route("/results/modify/<result_id>", methods=["GET", "POST"])
 @login_required
