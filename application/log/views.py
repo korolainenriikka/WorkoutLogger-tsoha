@@ -1,8 +1,8 @@
 from flask import redirect, render_template, request, url_for, flash
-from flask_login import login_required
+from flask_login import login_required, current_user
 
 from application import app, db
-from application.models import Result
+from application.models import Result, Session
 from application.forms import ResultForm, ModifyForm, SessionForm
 
 
@@ -32,11 +32,18 @@ def results_create(sets, reps):
 	results = request.form.get("results").splitlines()
 	errorMessage = validateResults(sets, reps, results)
 	if errorMessage != "":
-		print(errorMessage)
 		flash(errorMessage)
 		return render_template("log/newresults.html", form=form, sets=sets, reps=reps, errorMessage = errorMessage)
+	#luodaan tietoo: session(id,date, account_id) resultcond(session_id)
 	for result in results:
 		print(result)
+
+	s = Session()
+	s.account_id = current_user.id
+	db.session.add(s)
+	db.session.commit()
+	return redirect(url_for("list_recent"))
+
 
 import re
 def validateResults(sets, reps, results):

@@ -62,6 +62,8 @@ class Session(db.Model):
 
 class Result(db.Model):
 	id = db.Column(db.Integer, primary_key=True)
+	distance = db.Column(db.Integer, nullable=False)
+	time = db.Column(db.DateTime, nullable=False)
 	session_id = db.Column(db.Integer, db.ForeignKey('session.id'))
 
 	def __init__(self, description):
@@ -69,8 +71,7 @@ class Result(db.Model):
 
 class Conditioning(Result):
 	id = db.Column(db.ForeignKey("result.id"), primary_key=True)
-	distance = db.Column(db.Integer, nullable=False)
-	time = db.Column(db.DateTime, nullable=False)
+
 	workout_id = db.Column(db.Integer, db.ForeignKey('session.id'))
 
 #class Strength(Result):
