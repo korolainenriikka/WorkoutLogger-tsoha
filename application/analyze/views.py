@@ -8,8 +8,17 @@ from application.models import Result, Session, User
 @app.route("/analyze/", methods=["GET"])
 @login_required
 def list_recent():
-	results = Result.query.join(Session).filter_by(account_id=current_user.id).all()
-	return render_template("analyze/list.html", results=results)
+	recentsessions = {}
+	sessions = Session.query.filter_by(account_id=current_user.id).all()
+	for session in sessions:
+		#print("PRINTIT!!!!!!!!!!!!!!")
+		#print(session.id)
+		#print(session.date)
+		resultsInSession = Result.query.filter_by(session_id=session.id).all()
+		#print(Result.query.filter_by(session_id=session.id).all())
+		recentsessions[(session.id, session.date)] = Result.query.filter_by(session_id=session.id).all()
+	print(recentsessions)
+	return render_template("analyze/list.html", recent=recentsessions)
 
 
 @app.route("/analyze/showactivity", methods=["GET"])

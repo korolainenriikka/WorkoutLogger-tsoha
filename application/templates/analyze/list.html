@@ -2,25 +2,20 @@
 
 {% block body %}
 
-  <table>
+  <table style="width:100%">
     <tr>
       <th>Recent workout results:</th>
     </tr>
-    {% for result in results %}
+    {% for session in recent.keys() %}
     <tr>
-      <td>{{ result.description }}</td>
-      <td>
-        <form action="{{ url_for('results_modify', result_id=result.id) }}">
-          <input type="submit" value="modify"/>
-        </form>
-      </td>
-      <td>
-        <form action="{{ url_for('results_delete', result_id=result.id) }}">
-          <input type="submit" value="delete"/>
-        </form>
-      </td>
+      <td>{{ session[1] }}:</td>
     </tr>
-    
+    {% for result in recent[session] %}
+    <tr>
+      <td width="15%">{{ result.distance }} m</td>
+      <td>{{ result.time }}</td>
+    </tr>
+    {% endfor %}
     {% endfor %}
   </table>
   {% endblock %}
