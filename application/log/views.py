@@ -22,24 +22,35 @@ def results_log():
 	reps = request.form.get("repetitions")
 	if not form.validate():
 		return render_template("log/newsession.html", form=form)
-	return render_template("log/newresults.html", form=ResultForm(), sets=sets, reps=reps)
+	return render_template("log/newresults.html", form=ResultForm(), sets=sets, reps=reps, errorMessage = "")
 
 
-@app.route("/results/createresults/<sets><reps>", methods=["POST"])
+@app.route("/results/createresults/<sets>&<reps>", methods=["POST"])
 @login_required
 def results_create(sets, reps):
 	form = ResultForm(request.form)
 	results = []
 	results = request.form.get("results").splitlines()
-	if not validateResults(sets, reps, results):
-		return render_template("log/newresults.html", form=form)
+	errorMessage = validateResults(sets, reps, results)
+	if errorMessage != "":
+		print(errorMessage)
+		return render_template("log/newresults.html", form=form, sets=sets, reps=reps, errorMessage = errorMessage)
 	for result in results:
 		print(result)
 
+import re
 def validateResults(sets, reps, results):
-	if(results.len()!= sets):
-		return False
-	return True
+	#validoinnit: rivejä yhtä monta ku settejä,
+	# rivien muoto hh:mm:ss
+	regex = re.compile('..:..:..')
+	matches = [string for string in results if re.match(regex, string)]
+	if(len(matches) != len(results)):
+		return "Inserted results do not match requested form"
+	if(len(results) == sets):
+		print(len(results))
+		print(sets)
+		return "Wrong number of inserted results"
+	return ""
 
 @app.route("/results/modify/<result_id>", methods=["GET", "POST"])
 @login_required
