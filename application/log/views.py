@@ -1,3 +1,5 @@
+import datetime
+
 from flask import redirect, render_template, request, url_for, flash
 from flask_login import login_required, current_user
 
@@ -42,6 +44,14 @@ def results_create(sets, reps):
 	s.account_id = current_user.id
 	db.session.add(s)
 	db.session.commit()
+	session = Session.query.order_by(Session.id.desc()).first()
+	for result in results:
+		r = Result()
+		r.time = datetime.datetime.strptime(result, '%H:%M:%S').time()
+		r.distance = reps
+		r.session_id = session.id
+		db.session.add(r)
+	db.session.commit()
 	return redirect(url_for("list_recent"))
 
 
@@ -53,7 +63,7 @@ def validateResults(sets, reps, results):
 	matches = [string for string in results if re.match(regex, string)]
 	if(len(matches) != len(results)):
 		return "Inserted results do not match requested form"
-	if(len(results) == sets):
+	if(len(results) == sets): #tämä: ??????????????
 		print(len(results))
 		print(sets)
 		return "Wrong number of inserted results"
