@@ -2,20 +2,19 @@
 
 {% block body %}
 <form method="POST" action="{{ url_for('result_create') }}">
-		{% for form in forms %}
-		<p>
-			{{ form.description.label }}
-			{{ form.description }}
-			{% for error in form.description.errors %}
-			<span style="color: red;">[{{ error }}]</span>
-			{% endfor %}
-		</p>
-		{% endfor %}
 	<p>
-		 <input type="submit" name="add_row_button" value="add a row"/>
+		{{ form.workout.label }}
+		{{ form.workout }}
 	</p>
 	<p>
-		<input type="submit" name="submit_button" value="add a new result"/>
+		{{ form.sets.label }}
+		{{ form.sets }} x {{form.repetitions}}
+	</p>
+	{% for error in form.sets.errors %}
+	<span style="color: red;">[{{ error }}]</span>
+	{% endfor %}
+	<p>
+		<input type="submit" name="submit_button" value="confirm"/>
 	</p>
 </form>
 {% endblock %}

@@ -8,10 +8,15 @@ from application.forms import ResultForm, ModifyForm, SessionForm
 
 
 
-@app.route("/results/new/", methods=["GET", "POST"])
+@app.route("/results/new/")
 @login_required
 def session_create():
     return render_template("log/newsession.html", form = SessionForm())
+
+@app.route("/results/newresults/")
+@login_required
+def result_create():
+    return render_template("log/newsession.html", form=SessionForm())
 
 @app.route("/results/modify/<result_id>", methods=["GET", "POST"])
 @login_required

@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import Form, FieldList, PasswordField, validators, ValidationError, StringField, FormField, SubmitField
+from wtforms import PasswordField, validators, ValidationError, StringField, SubmitField, IntegerField
 from application.models import User
 
 
@@ -15,7 +15,9 @@ class ResultForm(FlaskForm):
         csrf=False
 
 class SessionForm(FlaskForm):
-    results = FieldList(StringField("description", [validators.DataRequired()]))
+    workout = StringField("workout:", [validators.DataRequired()])
+    sets = IntegerField("repetitions:", [validators.NumberRange(min=1)])
+    repetitions = IntegerField([validators.NumberRange(min=1)])
 
     class Meta:
         csrf=False
