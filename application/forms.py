@@ -19,8 +19,8 @@ class SessionForm(FlaskForm):
 
 
 class ModifyForm(FlaskForm):
-	distance = IntegerField([validators.NumberRange(min=1, max=15)])
-	time = StringField()
+	distance = IntegerField("distance (m):", [validators.NumberRange(min=1, max=15)])
+	time = StringField("time:")
 
 	class Meta:
 		csrf = False
