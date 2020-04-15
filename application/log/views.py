@@ -68,9 +68,9 @@ def validateResults(rounds, results):
 	return ""
 
 
-@app.route("/results/modify/<result_id>", methods=["GET", "POST"])
+@app.route("/results/modify/", methods=["GET", "POST"])
 @login_required
-def results_modify(result_id):
+def modify(result_id):
 	if request.method == "GET":
 		return render_template("log/modify.html", result_id=result_id,
 							   form=ModifyForm(newtext=Result.query.get(result_id).description))
