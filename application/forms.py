@@ -27,18 +27,18 @@ class ModifyForm(FlaskForm):
 
 
 class LoginForm(FlaskForm):
-	username = StringField("Username", render_kw={"placeholder": "Username"})
-	password = PasswordField("Password", render_kw={"placeholder": "Password"})
+	username = StringField(render_kw={"placeholder": "Username"})
+	password = PasswordField(render_kw={"placeholder": "Password"})
 
 	class Meta:
 		csrf = False
 
 
 class RegisterForm(FlaskForm):
-	name = StringField("Name", [validators.DataRequired()], render_kw={"placeholder": "Full name"})
-	username = StringField("Username", [validators.DataRequired()], render_kw={"placeholder": "Username"})
-	password = PasswordField("Password", [validators.DataRequired()], render_kw={"placeholder": "Password"})
-	repeatPassword = PasswordField("Repeat password", [validators.DataRequired(), validators.equal_to("password")],
+	name = StringField([validators.DataRequired()], render_kw={"placeholder": "Full name"})
+	username = StringField([validators.DataRequired()], render_kw={"placeholder": "Username"})
+	password = PasswordField([validators.DataRequired()], render_kw={"placeholder": "Password"})
+	repeatPassword = PasswordField([validators.DataRequired(), validators.equal_to("password")],
 								   render_kw={"placeholder": "Repeat password"})
 
 	def validate_username(self, username):

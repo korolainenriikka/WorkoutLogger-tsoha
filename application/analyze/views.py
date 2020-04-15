@@ -22,10 +22,10 @@ def list_recent():
 def show_activity():
 	return render_template("analyze/activity.html", count=Session.count_sessions_last_30_days())
 
+
 @app.route("/analyze/listusers", methods=["GET"])
 @login_required
 @admin_permission.require()
 def list_users():
-    return render_template("analyze/userstats.html", users=User.query.all(), countSesh=Session.count_sessions(),
-						   countUser = User.count_users())
-
+	return render_template("analyze/userstats.html", users=User.query.all(), countSesh=Session.count_sessions(),
+						   countUser=User.count_users())

@@ -3,6 +3,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin, current_user
 from sqlalchemy.sql import text
 
+
 class User(UserMixin, db.Model):
 	__tablename__ = "account"
 	id = db.Column(db.Integer, primary_key=True)
@@ -32,6 +33,7 @@ class User(UserMixin, db.Model):
 
 		return result[0]
 
+
 class Session(db.Model):
 	id = db.Column(db.Integer, primary_key=True)
 	date = db.Column(db.Date, default=db.func.current_date(), nullable=False)
@@ -60,18 +62,21 @@ class Session(db.Model):
 
 		return result[0]
 
+
 class Result(db.Model):
 	id = db.Column(db.Integer, primary_key=True)
 	distance = db.Column(db.Integer, nullable=False)
 	time = db.Column(db.Time, nullable=False)
 	session_id = db.Column(db.Integer, db.ForeignKey('session.id'))
 
+
 class Conditioning(Result):
 	id = db.Column(db.ForeignKey("result.id"), primary_key=True)
 
 	workout_id = db.Column(db.Integer, db.ForeignKey('session.id'))
 
-#class Strength(Result):
+
+# class Strength(Result):
 #	id = db.Column(db.ForeignKey("result.id"), primary_key=True)
 #	reps = db.Column(db.Integer, nullable=False)
 #	weight = db.Column(db.Integer, nullable=False)
@@ -80,4 +85,3 @@ class Conditioning(Result):
 class Workout(db.Model):
 	id = db.Column(db.Integer, primary_key=True)
 	name = db.Column(db.String(144), nullable=False)
-

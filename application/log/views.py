@@ -18,12 +18,12 @@ def session_log():
 @login_required
 def results_log():
 	form = SessionForm(request.form)
-	#workout = request.form.get("workout")
+	# workout = request.form.get("workout")
 	sets = request.form.get("sets")
 	reps = request.form.get("repetitions")
 	if not form.validate():
 		return render_template("log/newsession.html", form=form)
-	return render_template("log/newresults.html", form=ResultForm(), sets=sets, reps=reps, errorMessage = "")
+	return render_template("log/newresults.html", form=ResultForm(), sets=sets, reps=reps, errorMessage="")
 
 
 @app.route("/results/createresults/<sets>&<reps>", methods=["POST"])
@@ -35,8 +35,8 @@ def results_create(sets, reps):
 	errorMessage = validateResults(sets, reps, results)
 	if errorMessage != "":
 		flash(errorMessage)
-		return render_template("log/newresults.html", form=form, sets=sets, reps=reps, errorMessage = errorMessage)
-	#luodaan tietoo: session(id,date, account_id) resultcond(session_id)
+		return render_template("log/newresults.html", form=form, sets=sets, reps=reps, errorMessage=errorMessage)
+	# luodaan tietoo: session(id,date, account_id) resultcond(session_id)
 	for result in results:
 		print(result)
 
@@ -56,18 +56,21 @@ def results_create(sets, reps):
 
 
 import re
+
+
 def validateResults(sets, reps, results):
-	#validoinnit: rivejä yhtä monta ku settejä,
+	# validoinnit: rivejä yhtä monta ku settejä,
 	# rivien muoto hh:mm:ss
 	regex = re.compile('..:..:..')
 	matches = [string for string in results if re.match(regex, string)]
-	if(len(matches) != len(results)):
+	if (len(matches) != len(results)):
 		return "Inserted results do not match requested form"
-	if(len(results) == sets): #tämä: ??????????????
+	if (len(results) == sets):  # tämä: ??????????????
 		print(len(results))
 		print(sets)
 		return "Wrong number of inserted results"
 	return ""
+
 
 @app.route("/results/modify/<result_id>", methods=["GET", "POST"])
 @login_required
