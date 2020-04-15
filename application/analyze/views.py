@@ -11,11 +11,7 @@ def list_recent():
 	recentsessions = {}
 	sessions = Session.query.filter_by(account_id=current_user.id).all()
 	for session in sessions:
-		#print("PRINTIT!!!!!!!!!!!!!!")
-		#print(session.id)
-		#print(session.date)
 		resultsInSession = Result.query.filter_by(session_id=session.id).all()
-		#print(Result.query.filter_by(session_id=session.id).all())
 		recentsessions[(session.id, session.date)] = Result.query.filter_by(session_id=session.id).all()
 	print(recentsessions)
 	return render_template("analyze/list.html", recent=recentsessions)
