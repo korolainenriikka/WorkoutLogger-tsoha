@@ -82,6 +82,8 @@ def select_modified():
 @app.route("/results/modify/<result_id>", methods=["GET", "POST"])
 @login_required
 def result_modify(result_id):
+	if request.method == "GET":
+		return render_template("log/modify.html", form=ModifyForm(), result_id=result_id)
 	return redirect(url_for("select_modified"))
 
 @app.route("/results/<result_id>", methods=["GET"])

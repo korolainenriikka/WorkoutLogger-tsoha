@@ -1,14 +1,14 @@
 {% extends "log/base.html" %}
 
 {% block body %}
-<form method="POST" action="{{ url_for('results_modify', result_id=result_id) }}">
+<form method="POST" action="{{ url_for('result_modify', result_id=result_id) }}">
 <p>
-	{{ form.newtext.label }}
-	{{ form.newtext }}
+	{{ form.distance }}
+	{{ form.time }}
 </p>
 <p>
 <ul>
-	{% for error in form.newtext.errors %}
+	{% for error in form.errors %}
 	<li>{{ error }}</li>
 	{% endfor %}
 </ul>

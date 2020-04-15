@@ -19,7 +19,8 @@ class SessionForm(FlaskForm):
 
 
 class ModifyForm(FlaskForm):
-	newtext = StringField("edit description", [validators.DataRequired()])
+	distance = IntegerField([validators.NumberRange(min=1, max=15)])
+	time = StringField()
 
 	class Meta:
 		csrf = False
