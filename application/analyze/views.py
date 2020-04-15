@@ -16,6 +16,10 @@ def list_recent():
 	print(recentsessions)
 	return render_template("analyze/list.html", recent=recentsessions)
 
+@app.route("/analyze/showpbs", methods=["GET"])
+@login_required
+def list_pbs():
+	return render_template("analyze/pbs.html", pbs=Result.find_personal_bests())
 
 @app.route("/analyze/showactivity", methods=["GET"])
 @login_required

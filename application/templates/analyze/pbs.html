@@ -1,0 +1,15 @@
+{% extends "analyze/base.html" %}
+
+{% block body %}
+
+  <table style="width:100%">
+    <tr>
+      <th colspan="2">Your personal bests:</th>
+    </tr>
+    {% for pb in pbs %}
+    <tr>
+      <td>{{ pb[1] }} m: {{ pb[2] }} ({{ pb[0] }})</td>
+    </tr>
+    {% endfor %}
+  </table>
+  {% endblock %}

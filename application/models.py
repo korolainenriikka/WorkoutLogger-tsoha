@@ -69,6 +69,19 @@ class Result(db.Model):
 	time = db.Column(db.Time, nullable=False)
 	session_id = db.Column(db.Integer, db.ForeignKey('session.id'))
 
+	@staticmethod
+	def find_personal_bests():
+		stmt = text("SELECT date, distance, min(time) AS time FROM Result JOIN session ON session.id=result.session_id "
+					"WHERE "
+					"account_id = " + str(current_user.id) + " GROUP BY distance;")
+
+		res = db.engine.execute(stmt)
+		result = []
+		for row in res:
+			result.append((row[0], row[1], row[2]))
+
+		return result
+
 
 class Conditioning(Result):
 	id = db.Column(db.ForeignKey("result.id"), primary_key=True)
