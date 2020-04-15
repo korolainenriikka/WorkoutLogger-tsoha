@@ -1,48 +1,13 @@
-{% include "layout.html" %}
-<div>
-	<div id="wrapper" class="toggled">
-
-		<!-- Sidebar -->
-		<div id="sidebar-wrapper">
-			<ul class="sidebar-nav">
-				<!--<li class="sidebar-brand">
-					<a href="#">
-						 tähän otsikkkooo Start Bootstrap
-					</a>
-				</li> -->
-				<li>
-					<a href="{{ url_for('list_recent') }}">List recent</a>
-				</li>
-
-				<li>
-					<a href="{{ url_for('show_activity') }}">Activity</a>
-				</li>
-				{% if current_user.user_type=='admin' %}
-				<li>
-					<a href="{{ url_for('list_users') }}">Show user stats</a>
-				</li>
-				{% endif %}
-			</ul>
-		</div>
-		<!-- /#sidebar-wrapper -->
-
-		<!-- Page Content -->
-		<div id="page-content-wrapper">
-			<div class="container-fluid">
-				{% block body %}{% endblock %}
-			</div>
-		</div>
-		<!-- /#page-content-wrapper -->
-
-	</div>
-	<!-- /#wrapper -->
-
-	<!-- Menu Toggle Script -->
-	<script>
-    $("#menu-toggle").click(function(e) {
-        e.preventDefault();
-        $("#wrapper").toggleClass("toggled");
-    });
-	</script>
+{% include 'layout.html' %}
+<div class="sidenav">
+  <a href="{{ url_for('list_recent') }}">Recent results</a>
+  <a href="{{ url_for('show_activity') }}">Activity stats</a>
+	{% if current_user.user_type=='admin' %}
+	<a href="{{ url_for('list_users') }}">User stats</a>
+	{% endif %}
 </div>
+<div class="main">
+  {% block body %}{% endblock %}
+</div>
+
 
