@@ -1,22 +1,25 @@
 {% extends "log/base.html" %}
 
 {% block body %}
-<form method="POST" action="{{ url_for('result_modify', result_id=result_id) }}">
-	<div class="form-group">
-		{{ form.distance.label }}
-		{{ form.distance }}
+<form class="form" method="POST" action="{{ url_for('result_modify', result_id=result_id) }}">
+	<table>
+	<tr>
+		<td>{{ form.distance.label }}</td>
+		<td>{{ form.distance }}</td>
 		{% for error in form.distance.errors %}
 		<span style="color: red;">[{{ error }}]</span>
 		{% endfor %}
-	</div>
-	<div class="form-group">
-		{{ form.time.label }}
-		{{ form.time }}
+	</tr>
+	<tr>
+		<td>{{ form.time.label }}</td>
+		<td>{{ form.time }}</td>
 		{% for error in form.time.errors %}
 		<span style="color: red;">[{{ error }}]</span>
 		{% endfor %}
-	</div>
-	<p>
-		<input type="submit" value="save changes"/>
-	</p>
+	</tr>
+	<tr>
+		<td colspan="2"><input type="submit" value="save changes"/></td>
+	</tr>
+		</table>
+</form>
 {% endblock %}
