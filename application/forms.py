@@ -4,16 +4,15 @@ from application.models import User
 
 
 class ResultForm(FlaskForm):
-	results = TextAreaField()
+	results = TextAreaField(render_kw={"placeholder": "hh:mm:ss(:nnnnnn)"})
 
 	class Meta:
 		csrf = False
 
 
 class SessionForm(FlaskForm):
-	# workout = StringField("workout:", [validators.DataRequired()])
-	sets = IntegerField("repetitions:", [validators.NumberRange(min=1)])
-	repetitions = IntegerField([validators.NumberRange(min=1)])
+	rounds = IntegerField([validators.NumberRange(min=1, max=15)], render_kw={"placeholder": "rounds"})
+	distance = IntegerField([validators.NumberRange(min=1)] , render_kw={"placeholder": "distance"})
 
 	class Meta:
 		csrf = False

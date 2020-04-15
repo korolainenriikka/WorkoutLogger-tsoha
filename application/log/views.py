@@ -19,8 +19,8 @@ def session_log():
 def results_log():
 	form = SessionForm(request.form)
 	# workout = request.form.get("workout")
-	sets = request.form.get("sets")
-	reps = request.form.get("repetitions")
+	sets = request.form.get("rounds")
+	reps = request.form.get("distance")
 	if not form.validate():
 		return render_template("log/newsession.html", form=form)
 	return render_template("log/newresults.html", form=ResultForm(), sets=sets, reps=reps, errorMessage="")
