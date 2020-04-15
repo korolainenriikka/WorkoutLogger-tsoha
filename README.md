@@ -39,4 +39,4 @@ harjoitussuunnitelmat
 
 [heroku](https://workoutlogger-tsoha.herokuapp.com/)
 
-[tietokantakaavio](https://github.com/korolainenriikka/WorkoutLogger-tsoha/blob/master/documentation/diagram.png)
+[tietokantakaavio](https://github.com/korolainenriikka/WorkoutLogger-tsoha/blob/master/documentation/dbdiagram.png)
