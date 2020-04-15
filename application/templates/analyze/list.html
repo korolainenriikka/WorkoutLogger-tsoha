@@ -4,7 +4,7 @@
 
   <table style="width:100%">
     <tr>
-      <th>Recent workout results:</th>
+      <th colspan="2">Recent workout results:</th>
     </tr>
     {% for session in recent.keys() %}
     <tr>
@@ -12,7 +12,7 @@
     </tr>
     {% for result in recent[session] %}
     <tr>
-      <td width="15%">{{ result.distance }} m</td>
+      <td width="8%">{{ result.distance }} m</td>
       <td>{{ result.time }}</td>
     </tr>
     {% endfor %}

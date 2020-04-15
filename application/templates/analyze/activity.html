@@ -1,12 +1,19 @@
 {% extends "analyze/base.html" %}
 
 {% block body %}
-<p>
-	Your activity in the last 30 days:
-	<ul>
-		<li>workout days: {{ count }}</li>
-		<li>rest days: {{ 30 - count }}</li>
-		<li>activity: {{ count / 30 }} %</li>
-	</ul>
-</p>
+<table style="width:100%">
+	<tr>
+		<th>Your activity in the last 30 days:</th>
+	</tr>
+	<tr>
+		<td>workout days: {{ count }}</td>
+	</tr>
+	<tr>
+		<td>rest days: {{ 30 - count }}</td>
+	</tr>
+	<tr>
+		<td>activity: {{ count / 30 }} %</td>
+	</tr>
+</table>
 {% endblock %}
+

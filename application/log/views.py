@@ -59,15 +59,11 @@ import re
 
 
 def validateResults(sets, reps, results):
-	# validoinnit: rivejä yhtä monta ku settejä,
-	# rivien muoto hh:mm:ss
 	regex = re.compile('..:..:..')
 	matches = [string for string in results if re.match(regex, string)]
 	if (len(matches) != len(results)):
 		return "Inserted results do not match requested form"
-	if (len(results) == sets):  # tämä: ??????????????
-		print(len(results))
-		print(sets)
+	if (len(results) == sets):
 		return "Wrong number of inserted results"
 	return ""
 
