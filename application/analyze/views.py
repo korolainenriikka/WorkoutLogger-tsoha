@@ -13,7 +13,6 @@ def list_recent():
 	for session in sessions:
 		resultsInSession = Result.query.filter_by(session_id=session.id).all()
 		recentsessions[(session.id, session.date)] = Result.query.filter_by(session_id=session.id).all()
-	print(recentsessions)
 	return render_template("analyze/list.html", recent=recentsessions)
 
 @app.route("/analyze/showpbs", methods=["GET"])

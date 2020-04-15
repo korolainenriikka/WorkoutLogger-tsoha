@@ -70,21 +70,14 @@ def validateResults(rounds, results):
 
 @app.route("/results/modify/", methods=["GET", "POST"])
 @login_required
-def modify(result_id):
+def select_modified():
 	if request.method == "GET":
-		return render_template("log/modify.html", result_id=result_id,
-							   form=ModifyForm(newtext=Result.query.get(result_id).description))
-
-	form = ModifyForm(request.form)
-	if not form.validate():
-		return render_template("log/modify.html", result_id=result_id, form=form)
-
-	newText = request.form.get("newtext")
-	r = Result.query.get(result_id)
-	r.description = newText
-	db.session().commit()
-
-	return redirect(url_for("list_recent"))
+		recentsessions = {}
+		sessions = Session.query.filter_by(account_id=current_user.id).all()
+		for session in sessions:
+			resultsInSession = Result.query.filter_by(session_id=session.id).all()
+			recentsessions[(session.id, session.date)] = Result.query.filter_by(session_id=session.id).all()
+		return render_template("log/selectmodified.html", recent = recentsessions)
 
 
 @app.route("/results/<result_id>", methods=["GET"])

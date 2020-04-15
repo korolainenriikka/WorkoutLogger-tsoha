@@ -1,0 +1,21 @@
+{% extends "log/base.html" %}
+{% block body %}
+
+  <form class="form">
+    <p>
+			<b>Select result to modify:</b>
+    </p>
+    {% for session in recent.keys() %}
+    <p>
+      {{ session[1] }}:
+    </p>
+    {% for result in recent[session] %}
+    <p>
+			<input type="radio"/>
+      {{ result.distance }} m, {{ result.time }}
+    </p>
+    {% endfor %}
+    {% endfor %}
+		<input type="submit" action="{{ url_for('index') }}" value="select"/>
+  </form>
+  {% endblock %}
