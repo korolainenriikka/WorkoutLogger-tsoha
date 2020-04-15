@@ -79,6 +79,10 @@ def select_modified():
 			recentsessions[(session.id, session.date)] = Result.query.filter_by(session_id=session.id).all()
 		return render_template("log/selectmodified.html", recent = recentsessions)
 
+@app.route("/results/modify/<result_id>", methods=["GET", "POST"])
+@login_required
+def result_modify(result_id):
+	return redirect(url_for("select_modified"))
 
 @app.route("/results/<result_id>", methods=["GET"])
 @login_required
