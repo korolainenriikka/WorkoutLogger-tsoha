@@ -5,9 +5,9 @@
 Sovellus voidaan ladata githubista joko zip-tiedostona, tai kloonaamalla repositorio. 
 
 Sovellus käynnistetään toiminnolla
-'''
+´´´
  python3 WorkoutLogger-tsoha-master/run.py 
-'''
+´´´
 
 Sovellus löytyy tällöin osoitteesta
 
