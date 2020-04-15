@@ -1,21 +1,23 @@
 {% extends "log/base.html" %}
 {% block body %}
 
-  <form class="listing" action="{{ url_for('result_modify', result_id=1) }}">
-    <p>
-			<b>Select result to modify:</b>
-    </p>
-    {% for session in recent.keys() %}
-    <p>
-      {{ session[1] }}:
-    </p>
-    {% for result in recent[session] %}
-    <p>
-			<input type="radio" name="result_id" value="{{result.id}}"/>
-      {{ result.distance }} m, {{ result.time }}
-    </p>
-    {% endfor %}
-    {% endfor %}
-		<input type="submit" action="{{ url_for('index') }}" value="select"/>
-  </form>
-  {% endblock %}
+<div class="listing">
+	<p>
+		<b>Select result to modify/delete:</b>
+	</p>
+	{% for session in recent.keys() %}
+	<p>
+		{{ session[1] }}:
+	</p>
+	{% for result in recent[session] %}
+	<p>
+	<form action="{{ url_for('result_modify', result_id=result.id) }}">
+		<input type="submit" value=">"/>
+		{{ result.distance }} m, {{ result.time }}
+	</form>
+
+	</p>
+	{% endfor %}
+	{% endfor %}
+</div>
+{% endblock %}
