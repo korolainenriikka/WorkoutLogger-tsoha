@@ -1,24 +1,13 @@
-{% extends "layout.html" %}
-
+{% extends "auth/base.html" %}
 {% block body %}
 <p>
-	Tervetuloa workout loggeriin! :)
-</p>
+	Welcome to workout logger!
 
-<div>
-	{% if current_user.is_authenticated %}
-	Kirjautunut nimellä {{ current_user.name }}
-	<a href="{{ url_for('auth_logout') }}">Logout</a>
-</div>
-{% else %}
-<ul>
-	<li>
-		<a href="{{ url_for('auth_login') }}">Login</a>
-	</li>
-	<li>
-		<a href="{{ url_for('auth_register') }}">Sign up</a>
-	</li>
-</ul>
-{% endif %}
-<div>
+	currently supported features:
+	<ul>
+		<li>running session logging</li>
+		<li>activity statistics</li>
+		<li>(admin) user statistics</li>
+	</ul>
+</p>
 	{% endblock %}

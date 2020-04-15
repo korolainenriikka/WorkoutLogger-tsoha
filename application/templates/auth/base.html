@@ -1,0 +1,14 @@
+{% include 'layout.html' %}
+<div class="sidenav">
+  {% if current_user.is_authenticated %}
+		<a href="{{ url_for('auth_logout') }}">Logout {{ current_user.name }}</a>
+	{% else %}
+		<a href="{{ url_for('auth_login') }}">Login</a>
+		<a href="{{ url_for('auth_register') }}">Sign up</a>
+	{% endif %}
+
+<div class="main">
+  {% block body %}{% endblock %}
+</div>
+
+
