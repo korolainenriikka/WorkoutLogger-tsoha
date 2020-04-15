@@ -58,12 +58,12 @@ def results_create(rounds, distance):
 import re
 
 
-def validateResults(sets, results):
+def validateResults(rounds, results):
 	regex = re.compile('..:..:..')
 	matches = [string for string in results if re.match(regex, string)]
 	if (len(matches) != len(results)):
 		return "Inserted results do not match requested form"
-	if (len(results) == sets):
+	if (len(results) != int(rounds)):
 		return "Wrong number of inserted results"
 	return ""
 

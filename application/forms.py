@@ -12,7 +12,7 @@ class ResultForm(FlaskForm):
 
 class SessionForm(FlaskForm):
 	rounds = IntegerField([validators.NumberRange(min=1, max=15)], render_kw={"placeholder": "rounds"})
-	distance = IntegerField([validators.NumberRange(min=1)] , render_kw={"placeholder": "distance"})
+	distance = IntegerField([validators.NumberRange(min=1)] , render_kw={"placeholder": "distance in m"})
 
 	class Meta:
 		csrf = False
