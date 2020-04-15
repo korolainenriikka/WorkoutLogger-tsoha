@@ -1,17 +1,23 @@
-## käyttäjätapaukset
+# Käyttäjätapaukset
 
-* Normaali käyttäjä voi lisätä tehtyään treenin haluamansa määrän tuloksia, johon kuuluu tehty liike/treeni, esim juoksu, toistot/matka ja varsinainen tulos.
+## Toteutetut käyttäjätapaukset
 
-* Normaali käyttäjä voi muokata ja poistaa tekemiään tuloskirjauksia.
+* Normaali käyttäjä voi lisätä juoksutreeninsä tuloksen: toistot, juostun matkan ja kuluneen ajan pitääkseen kirjaa harjoitushistoriastaan.
 
-* Normaali käyttäjä näkee tekemistään treeneistä historian.
+* Normaali käyttäjä voi muokata ja poistaa juoksutulosdataa korjatakseen kirjattaessa mahdollisesti tapahtuvia virheitä.
 
-* Normaali käyttäjä näkee maksimituloksensa erillisellä analytiikkasivulla.
+* Normaali käyttäjä voi tarkastella analytiikkaa aktiivisuudestaan nähdäkseen kuormituksensa määrän.
 
-* Normaali käyttäjä näkee statistiikkaa maksimiensa kehityksestä.
+* Normaali käyttäjä näkee henkilökohtaiset ennätyksensä ja voi näin seurata niiden kehitystä.
 
-* Normaali käyttäjä näkee, kuinka usein on tehnyt treenejä.
+* Ylläpitäjä näkee käyttäjien määrän ja aktiivisuuden ja voi näin seurata sovelluksen käyttöastetta.
 
-* Ylläpitäjä näkee normaalien käyttäjien nimet ja käyttäjänimet.
+## Toteutettavia käyttäjätapauksia
 
-* Ylläpitäjä näkee statistiikkaa normaalien käyttäjien sovelluksen käyttöasteesta.
+* Normaali käyttäjä voi lisätä voimaharjoitusten tuloksia (toistot, paino) pitääkseen kirjaa historiastaan.
+
+* Normaali käyttäjä näkee statistiikkaa tulostensa kehittymisestä.
+
+* Normaali käyttäjä voi luoda viikottaisen harjoitussuunnitelman ja seurata sen toteutumista.
+
+* Ylläpitäjä voi halutessaan muuttaa käyttäjien käyttäjärooleja.
