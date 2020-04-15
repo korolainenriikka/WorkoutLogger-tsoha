@@ -4,7 +4,7 @@ from application.models import User
 
 
 class ResultForm(FlaskForm):
-	results = TextAreaField(render_kw={"placeholder": "hh:mm:ss(:nnnnnn)"})
+	results = TextAreaField(render_kw={"placeholder": "hh:mm:ss"})
 
 	class Meta:
 		csrf = False

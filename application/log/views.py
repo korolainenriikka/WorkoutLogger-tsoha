@@ -19,23 +19,23 @@ def session_log():
 def results_log():
 	form = SessionForm(request.form)
 	# workout = request.form.get("workout")
-	sets = request.form.get("rounds")
-	reps = request.form.get("distance")
+	rounds = request.form.get("rounds")
+	distance = request.form.get("distance")
 	if not form.validate():
 		return render_template("log/newsession.html", form=form)
-	return render_template("log/newresults.html", form=ResultForm(), sets=sets, reps=reps, errorMessage="")
+	return render_template("log/newresults.html", form=ResultForm(), rounds=rounds, distance=distance)
 
 
-@app.route("/results/createresults/<sets>&<reps>", methods=["POST"])
+@app.route("/results/createresults/<rounds>&<distance>", methods=["POST"])
 @login_required
-def results_create(sets, reps):
+def results_create(rounds, distance):
 	form = ResultForm(request.form)
 	results = []
 	results = request.form.get("results").splitlines()
-	errorMessage = validateResults(sets, reps, results)
+	errorMessage = validateResults(rounds, results)
 	if errorMessage != "":
 		flash(errorMessage)
-		return render_template("log/newresults.html", form=form, sets=sets, reps=reps, errorMessage=errorMessage)
+		return render_template("log/newresults.html", form=form, rounds=rounds, distance=distance)
 	# luodaan tietoo: session(id,date, account_id) resultcond(session_id)
 	for result in results:
 		print(result)
@@ -48,7 +48,7 @@ def results_create(sets, reps):
 	for result in results:
 		r = Result()
 		r.time = datetime.datetime.strptime(result, '%H:%M:%S').time()
-		r.distance = reps
+		r.distance = distance
 		r.session_id = session.id
 		db.session.add(r)
 	db.session.commit()
@@ -58,7 +58,7 @@ def results_create(sets, reps):
 import re
 
 
-def validateResults(sets, reps, results):
+def validateResults(sets, results):
 	regex = re.compile('..:..:..')
 	matches = [string for string in results if re.match(regex, string)]
 	if (len(matches) != len(results)):
