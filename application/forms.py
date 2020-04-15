@@ -19,7 +19,7 @@ class SessionForm(FlaskForm):
 
 
 class ModifyForm(FlaskForm):
-	distance = IntegerField("distance (m):", [validators.NumberRange(min=1, max=15)])
+	distance = IntegerField("distance (m):", [validators.NumberRange(min=1)])
 	time = StringField("time:")
 
 	class Meta:

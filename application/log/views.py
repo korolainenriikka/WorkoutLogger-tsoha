@@ -85,6 +85,18 @@ def result_modify(result_id):
 	if request.method == "GET":
 		return render_template("log/modify.html", form=ModifyForm(distance = Result.query.get(result_id).distance,
 																  time = Result.query.get(result_id).time), result_id=result_id)
+
+	form = ModifyForm(request.form)
+	if not form.validate():
+		return render_template("log/modify.html", result_id=result_id, form=form)
+
+	newDist = request.form.get("distance")
+	newTime = request.form.get("time")
+	r = Result.query.get(result_id)
+	r.distance = newDist
+	r.time = datetime.datetime.strptime(newTime, '%H:%M:%S').time()
+	db.session().commit()
+
 	return redirect(url_for("select_modified"))
 
 @app.route("/results/<result_id>", methods=["GET"])
