@@ -83,7 +83,8 @@ def select_modified():
 @login_required
 def result_modify(result_id):
 	if request.method == "GET":
-		return render_template("log/modify.html", form=ModifyForm(), result_id=result_id)
+		return render_template("log/modify.html", form=ModifyForm(distance = Result.query.get(result_id).distance,
+																  time = Result.query.get(result_id).time), result_id=result_id)
 	return redirect(url_for("select_modified"))
 
 @app.route("/results/<result_id>", methods=["GET"])
