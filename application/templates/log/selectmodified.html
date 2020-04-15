@@ -11,7 +11,7 @@
     </p>
     {% for result in recent[session] %}
     <p>
-			<input type="radio" id="{{result.id}}"/>
+			<input type="radio" name="result_id" value="{{result.id}}"/>
       {{ result.distance }} m, {{ result.time }}
     </p>
     {% endfor %}
