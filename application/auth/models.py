@@ -33,3 +33,14 @@ class User(UserMixin, db.Model):
 			result.append(row[0])
 
 		return result[0]
+
+
+class Usergroup(db.Model):
+	id = db.Column(db.Integer, primary_key=True)
+	name = db.Column(db.String(144), nullable=False)
+
+
+class UserUsergroup(db.Model):
+	id = db.Column(db.Integer, primary_key=True)
+	user_id = db.Column(db.Integer, db.ForeignKey('account.id'))
+	usergroup_id = db.Column(db.Integer, db.ForeignKey('usergroup.id'))
