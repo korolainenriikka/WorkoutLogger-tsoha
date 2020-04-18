@@ -20,7 +20,7 @@ from flask_migrate import Migrate
 migrate = Migrate(app, db)
 
 # login
-from application.models import User
+from application.auth.models import User
 from os import urandom
 app.config["SECRET_KEY"] = urandom(32)
 
@@ -35,6 +35,7 @@ login_manager.login_message = "Please login to view this functionality"
 @login_manager.user_loader
 def load_user(user_id):
     return User.query.get(user_id)
+
 # user types
 from flask_principal import Principal, Permission, RoleNeed, UserNeed, identity_loaded
 
@@ -49,10 +50,11 @@ def on_identity_loaded(sender, identity):
         identity.provides.add(RoleNeed(current_user.user_type))
 
 # app
-from application import views, models, forms
-from application.log import views
-from application.auth import views
-from application.analyze import views
+from application import views
+from application.auth import views, models, forms
+from application.result import models, forms
+from application.result.log import views
+from application.result.analyze import views
 
 # create db
 db.create_all()

@@ -2,8 +2,8 @@ from flask import render_template, request, redirect, url_for, current_app, flas
 from flask_login import login_user, logout_user, current_user, login_required
 
 from application import app, db
-from application.models import User
-from application.forms import LoginForm, RegisterForm
+from application.auth.models import User
+from application.auth.forms import LoginForm, RegisterForm
 from flask_principal import Identity, AnonymousIdentity, identity_changed
 
 
