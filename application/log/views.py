@@ -28,7 +28,7 @@ def results_log():
 @app.route("/results/createresults/<rounds>&<distance>", methods=["POST"])
 @login_required
 def results_create(rounds, distance):
-	form = ResultForm(request.form)
+	form = ResultForm(request.form)	# workout = request.form.get("workout")
 	results = []
 	results = request.form.get("results").splitlines()
 	errorMessage = validateResults(rounds, results)
@@ -51,16 +51,15 @@ def results_create(rounds, distance):
 	return redirect(url_for("list_recent"))
 
 
-import re
-
 
 def validateResults(rounds, results):
-	regex = re.compile('..:..:..')
-	matches = [string for string in results if re.match(regex, string)]
-	if (len(matches) != len(results)):
-		return "Inserted results do not match requested form"
+	for result in results:
+		try:
+			datetime.datetime.strptime(results, '%H:%M:%S')
+		except:
+			return "Incorrect data format"
 	if (len(results) != int(rounds)):
-		return "Wrong number of inserted results"
+		return "Incorrect number of inserted results"
 	return ""
 
 
@@ -97,9 +96,11 @@ def result_modify(result_id):
 
 	return redirect(url_for("list_recent"))
 
-@app.route("/results/<result_id>", methods=["GET"])
+@app.route("/results/<result_id>", methods=["GET", "POST"])
 @login_required
 def results_delete(result_id):
+	sId = Session.query.with_entities(Session.id).join(Result).filter_by(result_id=Result.id).one()
+	print(sId)
 	r = Result.query.get(result_id)
 
 	db.session().delete(r)
