@@ -18,7 +18,6 @@ def session_log():
 @login_required
 def results_log():
 	form = SessionForm(request.form)
-	# workout = request.form.get("workout")
 	rounds = request.form.get("rounds")
 	distance = request.form.get("distance")
 	if not form.validate():
@@ -36,9 +35,6 @@ def results_create(rounds, distance):
 	if errorMessage != "":
 		flash(errorMessage)
 		return render_template("log/newresults.html", form=form, rounds=rounds, distance=distance)
-	# luodaan tietoo: session(id,date, account_id) resultcond(session_id)
-	for result in results:
-		print(result)
 
 	s = Session()
 	s.account_id = current_user.id
@@ -75,16 +71,18 @@ def select_modified():
 		recentsessions = {}
 		sessions = Session.query.filter_by(account_id=current_user.id).all()
 		for session in sessions:
-			resultsInSession = Result.query.filter_by(session_id=session.id).all()
 			recentsessions[(session.id, session.date)] = Result.query.filter_by(session_id=session.id).all()
-		return render_template("log/selectmodified.html", recent = recentsessions)
+		return render_template("log/selectmodified.html", recent=recentsessions)
+
 
 @app.route("/results/modify/<result_id>", methods=["GET", "POST"])
 @login_required
 def result_modify(result_id):
 	if request.method == "GET":
-		return render_template("log/modify.html", form=ModifyForm(distance = Result.query.get(result_id).distance,
-																  time = Result.query.get(result_id).time), result_id=result_id)
+		return render_template("log/modify.html", form=ModifyForm(distance=Result.query.get(result_id).distance,
+																  time=Result.query.get(result_id).time),
+							   result_id=result_id)
+
 
 	form = ModifyForm(request.form)
 	if not form.validate():
@@ -97,7 +95,7 @@ def result_modify(result_id):
 	r.time = datetime.datetime.strptime(newTime, '%H:%M:%S').time()
 	db.session().commit()
 
-	return redirect(url_for("select_modified"))
+	return redirect(url_for("list_recent"))
 
 @app.route("/results/<result_id>", methods=["GET"])
 @login_required

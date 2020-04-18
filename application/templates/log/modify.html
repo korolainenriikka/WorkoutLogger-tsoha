@@ -1,25 +1,32 @@
 {% extends "log/base.html" %}
 
 {% block body %}
-<form class="form" method="POST" action="{{ url_for('result_modify', result_id=result_id) }}">
-	<table>
-	<tr>
-		<td>{{ form.distance.label }}</td>
-		<td>{{ form.distance }}</td>
-		{% for error in form.distance.errors %}
-		<span style="color: red;">[{{ error }}]</span>
-		{% endfor %}
+<table>
+	<form method="POST" action="{{ url_for('result_modify', result_id=result_id) }}">
+		<tr>
+			<td>{{ form.distance.label }}</td>
+			<td>{{ form.distance }}</td>
+			{% for error in form.distance.errors %}
+			<span style="color: red;">[{{ error }}]</span>
+			{% endfor %}
+		</tr>
+		<tr>
+			<td>{{ form.time.label }}</td>
+			<td>{{ form.time }}</td>
+			{% for error in form.time.errors %}
+			<span style="color: red;">[{{ error }}]</span>
+			{% endfor %}
+		</tr>
+		<tr>
+			<td>
+				<input type="submit" value="save changes"/>
+			</td>
+	</form>
+	<td>
+		<form method="POST" action="{{ url_for('results_delete', result_id=result_id) }}">
+			<input type="submit" value="delete"/>
+		</form>
+	</td>
 	</tr>
-	<tr>
-		<td>{{ form.time.label }}</td>
-		<td>{{ form.time }}</td>
-		{% for error in form.time.errors %}
-		<span style="color: red;">[{{ error }}]</span>
-		{% endfor %}
-	</tr>
-	<tr>
-		<td colspan="2"><input type="submit" value="save changes"/></td>
-	</tr>
-		</table>
-</form>
+</table>
 {% endblock %}
