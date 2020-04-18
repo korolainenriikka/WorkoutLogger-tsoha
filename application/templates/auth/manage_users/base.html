@@ -1,6 +1,7 @@
 {% include 'layout.html' %}
 <div class="sidenav">
 	<a href="{{ url_for('list_users') }}">User stats</a>
+	<a href="{{ url_for('manage_rights') }}">Manage user rights</a>
 </div>
 <div class="main">
   {% block body %}{% endblock %}

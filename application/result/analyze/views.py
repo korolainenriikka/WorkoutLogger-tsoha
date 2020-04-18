@@ -1,10 +1,8 @@
 from flask import render_template
 from flask_login import login_required, current_user
 
-from application import app, admin_permission
+from application import app
 from application.result.models import Result, Session
-from application.auth.models import User
-
 
 @app.route("/analyze/", methods=["GET"])
 @login_required
