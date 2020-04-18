@@ -41,15 +41,15 @@ def auth_register():
         return render_template("auth/registerform.html", form = RegisterForm())
 
     form = RegisterForm(request.form)
-    print("1!!!!!!!!!!!!!!!")
-    print(form.name.data)
     if not form.validate():
         return render_template("auth/registerform.html", form=form)
 
     u = User(request.form.get("name"), request.form.get("username"), request.form.get("password"))
     if request.form.get("name") == "superuser":
         u.user_type = 'admin'
+
     db.session().add(u)
     db.session().commit()
 
+    login_user(u)
     return redirect(url_for("index"))
