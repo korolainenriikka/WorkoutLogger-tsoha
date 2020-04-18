@@ -3,7 +3,7 @@
 {% block body %}
 <form method="POST" action="{{ url_for('results_create', rounds=rounds, distance=distance) }}">
 		<div>
-			Insert run times ({{ sets }} x {{ reps }})
+			Insert run times ({{ rounds }} x {{ distance }})
 			separated
 			with enter:
 		</div>

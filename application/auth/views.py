@@ -1,5 +1,6 @@
 from flask import render_template, request, redirect, url_for, current_app, flash
 from flask_login import login_user, logout_user, current_user, login_required
+from werkzeug.urls import url_parse
 
 from application import app, db
 from application.auth.models import User
@@ -26,7 +27,13 @@ def auth_login():
     login_user(user)
     identity_changed.send(current_app._get_current_object(),
                           identity=Identity(user.id))
-    return redirect(url_for("index"))
+
+    #redirecting? args.get name on none, kyseleeee
+    #next_page = request.args.get('next')
+    #if not next_page or url_parse(next_page).netloc != '':
+    #    print(next_page)
+    #    next_page = url_for('index')
+    return redirect(url_for('index'))
 
 @app.route("/auth/logout", methods = ["GET", "POST"])
 @login_required
