@@ -1,0 +1,10 @@
+{% extends "auth/manage_users/base.html" %}
+
+{% block body %}
+heimmmooi
+
+{% for user in users: %}
+{{ user.name }}
+{% endfor %}
+
+{% endblock %}

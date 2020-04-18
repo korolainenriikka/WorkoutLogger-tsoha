@@ -13,11 +13,9 @@ def list_users():
 						   countSesh=Session.count_sessions(),
 						   countUser=User.count_users())
 
-@app.route("/auth/manage_users/listusers", methods=["GET", "POST"])
+@app.route("/auth/manage_users/manage_rights", methods=["GET", "POST"])
 @login_required
 @admin_permission.require()
 def manage_rights():
 	if request.method == "GET":
-		return render_template("auth/manage_users/user_stats.html", users=User.query.all(),
-							   countSesh=Session.count_sessions(),
-							   countUser=User.count_users())
+		return render_template("auth/manage_users/manage_rights.html", users=User.query.all())
