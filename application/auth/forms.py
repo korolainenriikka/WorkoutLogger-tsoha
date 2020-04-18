@@ -11,7 +11,6 @@ class LoginForm(FlaskForm):
 	class Meta:
 		csrf = False
 
-
 class RegisterForm(FlaskForm):
 	name = StringField([validators.DataRequired()], render_kw={"placeholder": "Full name"})
 	username = StringField([validators.DataRequired()], render_kw={"placeholder": "Username"})

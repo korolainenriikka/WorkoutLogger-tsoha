@@ -41,6 +41,8 @@ def auth_register():
         return render_template("auth/registerform.html", form = RegisterForm())
 
     form = RegisterForm(request.form)
+    print("1!!!!!!!!!!!!!!!")
+    print(form.name.data)
     if not form.validate():
         return render_template("auth/registerform.html", form=form)
 

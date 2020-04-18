@@ -1,3 +1,5 @@
+from sqlalchemy import engine
+
 from application import db
 from flask_login import current_user
 from sqlalchemy.sql import text
@@ -13,8 +15,9 @@ class Session(db.Model):
 	@staticmethod
 	def count_sessions_last_30_days():
 		stmt = text("SELECT COUNT(DISTINCT date) FROM session WHERE date  BETWEEN date('now', '-30 days') AND date("
-					"'now', 'localtime') AND account_id =" + str(current_user.id) + ";")
-		res = db.engine.execute(stmt)
+					"'now', 'localtime') AND account_id = :id;")
+
+		res = db.engine.execute(stmt, id=current_user.id)
 		result = []
 		for row in res:
 			result.append(row[0])
@@ -42,9 +45,9 @@ class Result(db.Model):
 	def find_personal_bests():
 		stmt = text("SELECT date, distance, min(time) AS time FROM Result JOIN session ON session.id=result.session_id "
 					"WHERE "
-					"account_id = " + str(current_user.id) + " GROUP BY distance;")
+					"account_id = :id GROUP BY distance;")
 
-		res = db.engine.execute(stmt)
+		res = db.engine.execute(stmt, id=current_user.id)
 		result = []
 		for row in res:
 			result.append((row[0], row[1], row[2]))
