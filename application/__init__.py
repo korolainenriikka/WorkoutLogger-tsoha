@@ -47,7 +47,10 @@ def on_identity_loaded(sender, identity):
     identity.user = current_user
     if hasattr(current_user, 'id'):
         identity.provides.add(UserNeed(current_user.id))
-        identity.provides.add(RoleNeed(current_user.user_type))
+
+    if hasattr(current_user, 'usergroups'):
+        for role in current_user.usergroups:
+            identity.provides.add(RoleNeed(role.name))
 
 # app
 from application import views

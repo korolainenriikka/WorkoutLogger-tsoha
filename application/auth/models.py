@@ -34,6 +34,12 @@ class User(UserMixin, db.Model):
 	def check_password(self, password):
 		return check_password_hash(self.password_hash, password)
 
+	def has_role(self, role):
+		for group in self.usergroups:
+			if group.name == role:
+				return True
+		return False
+
 	@staticmethod
 	def count_users():
 		stmt = text("SELECT COUNT(*) FROM account;")

@@ -48,13 +48,14 @@ def auth_register():
         return render_template("auth/registerform.html", form = RegisterForm())
 
     form = RegisterForm(request.form)
-    #if not form.validate():
-     #   return render_template("auth/registerform.html", form=form)
+    if not form.validate():
+       return render_template("auth/registerform.html", form=form)
 
     u = User(request.form.get("name"), request.form.get("username"), request.form.get("password"))
     #grant user access to all
     user_access = Usergroup.query.filter_by(name='user').one()
     u.usergroups.append(user_access)
+
     if request.form.get("name") == "superuser":
         user_access = Usergroup.query.filter_by(name='admin').one()
         u.usergroups.append(user_access)
@@ -63,4 +64,6 @@ def auth_register():
     db.session().commit()
 
     login_user(u)
+    identity_changed.send(current_app._get_current_object(),
+                          identity=Identity(u.id))
     return redirect(url_for("index"))
