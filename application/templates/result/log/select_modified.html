@@ -12,7 +12,7 @@
 	{% for result in recent[session] %}
 	<p>
 	<form action="{{ url_for('result_modify', result_id=result.id) }}">
-		<input type="submit" value=">"/>
+		<input type="submit" class="btn btn-outline-primary btn-sm" value=">"/>
 		{{ result.distance }} m, {{ result.time }}
 	</form>
 

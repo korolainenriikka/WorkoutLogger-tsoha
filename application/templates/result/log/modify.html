@@ -19,12 +19,12 @@
 		</tr>
 		<tr>
 			<td>
-				<input type="submit" value="save changes"/>
+				<button type="submit" name="submit_button" class="btn-outline-info">Save changes</button>
 			</td>
 	</form>
 	<td>
 		<form method="POST" action="{{ url_for('results_delete', result_id=result_id) }}">
-			<input type="submit" value="delete"/>
+			<button type="submit" name="submit_button" class="btn-outline-info">Delete</button>
 		</form>
 	</td>
 	</tr>
