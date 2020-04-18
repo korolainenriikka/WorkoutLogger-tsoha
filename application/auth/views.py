@@ -32,7 +32,6 @@ def auth_login():
 @login_required
 def auth_logout():
     logout_user()
-    # Tell Flask-Principal the user is anonymous
     identity_changed.send(current_app._get_current_object(), identity=AnonymousIdentity())
     return redirect("/")
 
@@ -44,7 +43,6 @@ def auth_register():
     form = RegisterForm(request.form)
     if not form.validate():
         return render_template("auth/registerform.html", form=form)
-
 
     u = User(request.form.get("name"), request.form.get("username"), request.form.get("password"))
     if request.form.get("name") == "superuser":

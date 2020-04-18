@@ -8,12 +8,11 @@ from application.models import Result, Session, User
 @app.route("/analyze/", methods=["GET"])
 @login_required
 def list_recent():
-	recentsessions = {}
+	recent_sessions = {}
 	sessions = Session.query.filter_by(account_id=current_user.id).all()
 	for session in sessions:
-		resultsInSession = Result.query.filter_by(session_id=session.id).all()
-		recentsessions[(session.id, session.date)] = Result.query.filter_by(session_id=session.id).all()
-	return render_template("analyze/list.html", recent=recentsessions)
+		recent_sessions[(session.id, session.date)] = Result.query.filter_by(session_id=session.id).all()
+	return render_template("analyze/list.html", recent=recent_sessions)
 
 @app.route("/analyze/showpbs", methods=["GET"])
 @login_required

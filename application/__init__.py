@@ -43,7 +43,6 @@ admin_permission = Permission(RoleNeed('admin'))
 
 @identity_loaded.connect_via(app)
 def on_identity_loaded(sender, identity):
-    # Set the identity user object
     identity.user = current_user
     if hasattr(current_user, 'id'):
         identity.provides.add(UserNeed(current_user.id))

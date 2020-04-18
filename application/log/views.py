@@ -28,12 +28,11 @@ def results_log():
 @app.route("/results/createresults/<rounds>&<distance>", methods=["POST"])
 @login_required
 def results_create(rounds, distance):
-	form = ResultForm(request.form)	# workout = request.form.get("workout")
-	results = []
+	form = ResultForm(request.form)
 	results = request.form.get("results").splitlines()
-	errorMessage = validateResults(rounds, results)
-	if errorMessage != "":
-		flash(errorMessage)
+	error_message = validate_results(rounds, results)
+	if error_message != "":
+		flash(error_message)
 		return render_template("log/newresults.html", form=form, rounds=rounds, distance=distance)
 
 	s = Session()
@@ -52,7 +51,7 @@ def results_create(rounds, distance):
 
 
 
-def validateResults(rounds, results):
+def validate_results(rounds, results):
 	for result in results:
 		try:
 			datetime.datetime.strptime(result, '%H:%M:%S')
@@ -67,11 +66,11 @@ def validateResults(rounds, results):
 @login_required
 def select_modified():
 	if request.method == "GET":
-		recentsessions = {}
+		recent_sessions = {}
 		sessions = Session.query.filter_by(account_id=current_user.id).all()
 		for session in sessions:
-			recentsessions[(session.id, session.date)] = Result.query.filter_by(session_id=session.id).all()
-		return render_template("log/selectmodified.html", recent=recentsessions)
+			recent_sessions[(session.id, session.date)] = Result.query.filter_by(session_id=session.id).all()
+		return render_template("log/selectmodified.html", recent=recent_sessions)
 
 
 @app.route("/results/modify/<result_id>", methods=["GET", "POST"])
@@ -87,11 +86,11 @@ def result_modify(result_id):
 	if not form.validate():
 		return render_template("log/modify.html", result_id=result_id, form=form)
 
-	newDist = request.form.get("distance")
-	newTime = request.form.get("time")
+	new_distance = request.form.get("distance")
+	new_time = request.form.get("time")
 	r = Result.query.get(result_id)
-	r.distance = newDist
-	r.time = datetime.datetime.strptime(newTime, '%H:%M:%S').time()
+	r.distance = new_distance
+	r.time = datetime.datetime.strptime(new_time, '%H:%M:%S').time()
 	db.session().commit()
 
 	return redirect(url_for("list_recent"))
@@ -102,8 +101,8 @@ def results_delete(result_id):
 	r = Result.query.get(result_id)
 	db.session().delete(r)
 
-	resultsInSession = Result.query.filter_by(session_id=r.session_id).all()
-	if(len(resultsInSession) == 1):
+	results_in_session = Result.query.filter_by(session_id=r.session_id).all()
+	if(len(results_in_session) == 1):
 		s = Session.query.get(r.session_id)
 		db.session.remove(s)
 
