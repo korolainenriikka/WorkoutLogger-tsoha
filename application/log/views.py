@@ -99,11 +99,14 @@ def result_modify(result_id):
 @app.route("/results/<result_id>", methods=["GET", "POST"])
 @login_required
 def results_delete(result_id):
-	sId = Session.query.with_entities(Session.id).join(Result).filter_by(result_id=Result.id).one()
-	print(sId)
 	r = Result.query.get(result_id)
-
 	db.session().delete(r)
+
+	resultsInSession = Result.query.filter_by(session_id=r.session_id).all()
+	if(len(resultsInSession) == 1):
+		s = Session.query.get(r.session_id)
+		db.session.remove(s)
+
 	db.session().commit()
 
 	return redirect(url_for("list_recent"))
