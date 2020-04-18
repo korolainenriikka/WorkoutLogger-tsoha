@@ -55,7 +55,7 @@ def results_create(rounds, distance):
 def validateResults(rounds, results):
 	for result in results:
 		try:
-			datetime.datetime.strptime(results, '%H:%M:%S')
+			datetime.datetime.strptime(result, '%H:%M:%S')
 		except:
 			return "Incorrect data format"
 	if (len(results) != int(rounds)):
