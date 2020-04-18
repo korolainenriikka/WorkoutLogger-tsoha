@@ -1,0 +1,7 @@
+{% include 'layout.html' %}
+<div class="sidenav">
+	<a href="{{ url_for('list_users') }}">User stats</a>
+</div>
+<div class="main">
+  {% block body %}{% endblock %}
+</div>

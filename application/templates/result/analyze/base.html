@@ -3,9 +3,6 @@
   <a href="{{ url_for('list_recent') }}">Recent results</a>
 	<a href="{{ url_for('list_pbs')}}">Personal records</a>
   <a href="{{ url_for('show_activity') }}">Activity stats</a>
-	{% if current_user.user_type=='admin' %}
-	<a href="{{ url_for('list_users') }}">User stats</a>
-	{% endif %}
 </div>
 <div class="main">
   {% block body %}{% endblock %}

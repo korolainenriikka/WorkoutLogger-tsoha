@@ -52,6 +52,7 @@ def on_identity_loaded(sender, identity):
 # app
 from application import views
 from application.auth import views, models, forms
+from application.auth.manage_users import views
 from application.result import models, forms
 from application.result.log import views
 from application.result.analyze import views
