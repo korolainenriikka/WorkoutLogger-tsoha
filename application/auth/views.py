@@ -3,7 +3,7 @@ from flask_login import login_user, logout_user, current_user, login_required
 from werkzeug.urls import url_parse
 
 from application import app, db
-from application.auth.models import User
+from application.auth.models import User, Usergroup
 from application.auth.forms import LoginForm, RegisterForm
 from flask_principal import Identity, AnonymousIdentity, identity_changed
 
@@ -48,12 +48,16 @@ def auth_register():
         return render_template("auth/registerform.html", form = RegisterForm())
 
     form = RegisterForm(request.form)
-    if not form.validate():
-        return render_template("auth/registerform.html", form=form)
+    #if not form.validate():
+     #   return render_template("auth/registerform.html", form=form)
 
     u = User(request.form.get("name"), request.form.get("username"), request.form.get("password"))
+    #grant user access to all
+    user_access = Usergroup.query.filter_by(name='user').one()
+    u.usergroups.append(user_access)
     if request.form.get("name") == "superuser":
-        u.user_type = 'admin'
+        user_access = Usergroup.query.filter_by(name='admin').one()
+        u.usergroups.append(user_access)
 
     db.session().add(u)
     db.session().commit()
