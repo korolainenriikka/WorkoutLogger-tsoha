@@ -3,7 +3,7 @@
 {% block body %}
 
 <div>
-	Change users' admin rights
+	Change users' admin rights (yours and owners' cannot be canged)
 </div>
 <form method="POST" href={{url_for("manage_rights")}}>
 <table width="40%">
@@ -16,7 +16,7 @@
 	<tr>
 		<td>{{ user.name }}</td>
 		<td>{{ user.username }}</td>
-		{% if user.username == current_user.username %}
+		{% if user.username == current_user.username or user.has_role('owner') %}
 		<td><input type="checkbox" name="is_admin" value="{{ user.id }}" onclick="return false;"
 							 class="btn-outline-info"
 			checked/></td>
