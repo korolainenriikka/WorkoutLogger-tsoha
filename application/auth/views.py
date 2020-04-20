@@ -58,7 +58,9 @@ def auth_register():
 
     if request.form.get("name") == "superuser":
         admin_access = Usergroup.query.filter_by(name='admin').one()
+        owner_access = Usergroup.query.filter_by(name='owner').one()
         u.usergroups.append(admin_access)
+        u.usergroups.append(owner_access)
 
     db.session().add(u)
     db.session().commit()
