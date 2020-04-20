@@ -52,13 +52,13 @@ def auth_register():
        return render_template("auth/registerform.html", form=form)
 
     u = User(request.form.get("name"), request.form.get("username"), request.form.get("password"))
-    #grant user access to all
+
     user_access = Usergroup.query.filter_by(name='user').one()
     u.usergroups.append(user_access)
 
     if request.form.get("name") == "superuser":
-        user_access = Usergroup.query.filter_by(name='admin').one()
-        u.usergroups.append(user_access)
+        admin_access = Usergroup.query.filter_by(name='admin').one()
+        u.usergroups.append(admin_access)
 
     db.session().add(u)
     db.session().commit()
