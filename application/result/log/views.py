@@ -106,13 +106,14 @@ def result_modify(result_id):
 def results_delete(result_id):
 	r = Result.query.get(result_id)
 	db.session().delete(r)
+	db.session().commit()
 
 	#bug: TypeError: remove() takes 1 positional argument but 2 were given
-	#results_in_session = Result.query.filter_by(session_id=r.session_id).all()
-	#if(len(results_in_session) == 0):
-	#	session_id = r.session_id
-	#		s = Session.query.get(session_id)
-	#	db.session.remove(s)
+	results_in_session = Result.query.filter_by(session_id=r.session_id).all()
+	if(len(results_in_session) == 0):
+		session_id = r.session_id
+		s = Session.query.get(session_id)
+		db.session.remove(s)
 
 	db.session().commit()
 
