@@ -26,7 +26,7 @@ class ModifyConditioningForm(FlaskForm):
 
 class ModifyStrengthForm(FlaskForm):
 	reps = IntegerField("reps", validators=[NumberRange(min=1, max=15)])
-	weight = IntegerField("weight", validators=[NumberRange(min=1, max=50)])
+	weight = IntegerField("weight", validators=[NumberRange(min=1, max=300)])
 
 	class Meta:
 		csrf = False

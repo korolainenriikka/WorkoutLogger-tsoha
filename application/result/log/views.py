@@ -39,23 +39,15 @@ def run_results_create(rounds, distance):
 	db.session.add(s)
 	db.session.commit()
 	session = Session.query.order_by(Session.id.desc()).first()
-	print("eli! boisss its major debug time!!!!!!!")
 
 	for value in form.values():
 		if (value != ''):
 			time = value
 			c = Conditioning()
-			print("luotiin conditioning-olio.")
 			c.session_id = session.id
 			c.time = datetime.datetime.strptime(time, '%H:%M:%S').time()
 			c.distance = distance
 			c.workout_id = 1
-			print("olion attribuutit:")
-			print("session_id: " + str(c.session_id))
-			print("time: " + str(c.time))
-			print("distance: " + str(c.distance))
-			print("ja workoutsin iidee:" + str(c.workout_id))
-			print("elikkästä ystävät tämä todettu toimivaksi.")
 			db.session.add(c)
 			db.session.commit()
 
@@ -156,7 +148,7 @@ def return_recent_results():
 			conditioning_result = Conditioning.query.filter_by(id=result.id).one_or_none()
 			if (strength_result is not None):
 				workout = Workout.query.filter_by(id=strength_result.workout_id).one()
-				distance_or_reps = strength_result.reps
+				distance_or_reps = str(strength_result.reps) + " x"
 				time_or_weight = str(strength_result.weight) + " kg"
 				results_to_list.append((workout.name, distance_or_reps, time_or_weight, result.id, "strength"))
 			else:
