@@ -25,6 +25,10 @@ voisi muuttaa oikeuksia, ja admin voisi vain tarkastella käyttäjästatistiikkk
 
 ## Toteuttamatta jääneet toiminnallisuudet
 
-* kaikki havainnollistava statistiikka jäi toteuttamatta
+* havainnollistava statistiikka esim. kuvaajina
 
-* crossfit-harjoittelun tiettyjen ns. benchmark-treenien tulosten kirjaamista ei myöskään vielä tueta
+* harjoitussuunnitelmien teko ja suunnitelmien kirjaaminen tehdyksi
+
+* vapaamuotoisten harjoituspäiväkirjamerkintöjen tekeminen
+
+* crossfit-harjoittelun tiettyjen ns. benchmark-treenien tulosten kirjaaminen
