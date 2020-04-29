@@ -196,7 +196,13 @@ def result_modify(result_id):
 @login_required
 def results_delete(result_id):
 	r = Result.query.get(result_id)
+	c = Conditioning.query.get(result_id)
+	s = Strength.query.get(result_id)
 	db.session().delete(r)
+	if s is not None:
+		db.session().delete(s)
+	if c is not None:
+		db.session().delete(c)
 	db.session().commit()
 
 	results_in_session = Result.query.filter_by(session_id=r.session_id).all()
