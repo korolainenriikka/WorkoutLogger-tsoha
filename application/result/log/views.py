@@ -231,7 +231,8 @@ def results_delete(result_id):
 	r = Result.query.get(result_id)
 	c = Conditioning.query.get(result_id)
 	s = Strength.query.get(result_id)
-	if s.account_id != current_user.id:
+	session = Session.query.get(r.session_id)
+	if session.account_id != current_user.id:
 		flash("deleting others' results is not allowed")
 		return(redirect(url_for('index')))
 

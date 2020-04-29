@@ -51,7 +51,7 @@ class Conditioning(Result):
 
 	@staticmethod
 	def find_personal_bests():
-		stmt = text("SELECT date, distance, min(time) AS time FROM Conditioning "
+		stmt = text("SELECT max(date), distance, min(time) AS time FROM Conditioning "
 					"JOIN result ON conditioning.id=result.id JOIN session ON session.id=session_id "
 					"WHERE account_id = :id GROUP BY distance;")
 
@@ -70,7 +70,7 @@ class Strength(Result):
 
 	@staticmethod
 	def find_personal_bests():
-		stmt = text("SELECT date, workout.name, reps, max(weight) AS weight FROM Strength "
+		stmt = text("SELECT max(date), workout.name, reps, max(weight) AS weight FROM Strength "
 					"JOIN workout ON workout.id=strength.workout_id JOIN result ON strength.id=result.id "
 					"JOIN session ON session.id=session_id "
 					"WHERE account_id = :id GROUP BY workout.name, reps;")
