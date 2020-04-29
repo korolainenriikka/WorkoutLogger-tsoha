@@ -79,10 +79,46 @@ def strength_log():
 	reps = request.form.get("reps")
 	return render_template("result/log/new_strength.html", workout=workout, sets=sets, reps=reps)
 
+
+def validate_strength_results(results):
+	for key in results.keys():
+		if key != 'submit_button':
+			try:
+				int(results[key])
+				if int(results[key]) < 0 or int(results[key]) > 300:
+					return "Please provide values between 0 and 300"
+			except:
+				return "Please provide integer values"
+	return ""
+
+
 @app.route("/results/new_strength/<workout>%<sets>%<reps>", methods=["POST"])
 @login_required
 def strength_results_create(workout, sets, reps):
-	print("moi!")
+	form = request.form
+	error_message = validate_strength_results(form)
+	if error_message != "":
+		flash(error_message)
+		return render_template("result/log/new_strength.html", workout=workout, sets=int(sets), reps=reps)
+
+	s = Session()
+	s.account_id = current_user.id
+	db.session.add(s)
+	db.session.commit()
+	session = Session.query.order_by(Session.id.desc()).first()
+
+	for value in form.values():
+		if (value != ''):
+			time = value
+			c = Conditioning()
+			c.session_id = session.id
+			c.time = datetime.datetime.strptime(time, '%H:%M:%S').time()
+			#c.distance = distance
+			c.workout_id = 1
+			db.session.add(c)
+			db.session.commit()
+
+	return redirect(url_for("list_recent"))
 
 @app.route("/results/modify/", methods=["GET", "POST"])
 @login_required
