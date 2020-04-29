@@ -46,7 +46,7 @@ principal = Principal(app)
 admin_permission = Permission(RoleNeed('admin'))
 
 @identity_loaded.connect_via(app)
-def on_identity_loaded(identity):
+def on_identity_loaded(sender, identity):
     identity.user = current_user
     if hasattr(current_user, 'id'):
         identity.provides.add(UserNeed(current_user.id))
