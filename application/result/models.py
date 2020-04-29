@@ -53,12 +53,12 @@ class Conditioning(Result):
 	def find_personal_bests():
 		stmt = text("SELECT date, distance, min(time) AS time FROM Conditioning "
 					"JOIN result ON conditioning.id=result.id JOIN session ON session.id=session_id "
-					"WHERE account_id = 1 GROUP BY session.date, distance;")
+					"WHERE account_id = :id GROUP BY distance;")
 
 		res = db.engine.execute(stmt, id=current_user.id)
 		result = []
 		for row in res:
-			result.append((row[0], row[1], row[2]))
+			result.append(((row[0]),(row[1]), row[2]))
 
 		return result
 
@@ -67,6 +67,20 @@ class Strength(Result):
 	reps = db.Column(db.Integer, nullable=False)
 	weight = db.Column(db.Integer, nullable=False)
 	workout_id = db.Column(db.Integer, db.ForeignKey('workout.id'))
+
+	@staticmethod
+	def find_personal_bests():
+		stmt = text("SELECT date, workout.name, reps, max(weight) AS weight FROM Strength "
+					"JOIN workout ON workout.id=strength.workout_id JOIN result ON strength.id=result.id "
+					"JOIN session ON session.id=session_id "
+					"WHERE account_id = :id GROUP BY workout.name, reps;")
+
+		res = db.engine.execute(stmt, id=current_user.id)
+		result = []
+		for row in res:
+			result.append(((row[0]), (row[1]), row[2], row[3]))
+
+		return result
 
 class Workout(db.Model):
 	id = db.Column(db.Integer, primary_key=True)

@@ -33,10 +33,15 @@ def return_recent_results():
 
 	return recent_sessions
 
-@app.route("/analyze/showpbs", methods=["GET"])
+@app.route("/analyze/show_run_pbs", methods=["GET"])
 @login_required
-def list_pbs():
-	return render_template("result/analyze/pbs.html", pbs=Conditioning.find_personal_bests())
+def list_running_pbs():
+	return render_template("result/analyze/run_pbs.html", pbs=Conditioning.find_personal_bests())
+
+@app.route("/analyze/show_strength_pbs", methods=["GET"])
+@login_required
+def list_strength_pbs():
+	return render_template("result/analyze/strength_pbs.html", pbs=Strength.find_personal_bests())
 
 @app.route("/analyze/showactivity", methods=["GET"])
 @login_required
