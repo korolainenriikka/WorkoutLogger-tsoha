@@ -4,56 +4,52 @@
 
 * Normaali käyttäjä voi lisätä juoksutreeninsä tuloksen: toistot, juostun matkan ja kuluneen ajan pitääkseen kirjaa harjoitushistoriastaan.
 
-SQL: INSERT INTO Session(account_id, date) VALUES (?, ?);
+INSERT INTO Session(account_id, date) VALUES (?, ?);
 
-jokaista toistoa kohden:
-
-INSERT INTO Result(session_id, distance, time) VALUES (?, ?, ?);
+INSERT INTO Conditioning(id, session_id, distance, time) VALUES (?, ?, ?, ?);
 
 * Normaali käyttäjä voi lisätä voimaharjoitusten tuloksia (liike, toistot, paino) pitääkseen kirjaa historiastaan.
 
-SQL:
+INSERT INTO Session(account_id, date) VALUES (?, ?);
+
+INSERT INTO Strength(id, session_id, reps, weight) VALUES (?, ?, ?);
 
 * Normaali käyttäjä voi muokata ja poistaa tulosdataa korjatakseen kirjattaessa mahdollisesti tapahtuvia virheitä.
 
-SQL:
+UPDATE Conditioning SET(distance=?, time=?) WHERE id=?;
 
 * Normaali käyttäjä voi tarkastella analytiikkaa aktiivisuudestaan viimeisen 30 päivän ajalla nähdäkseen kuormituksensa määrän.
 
-SQL: SELECT COUNT(DISTINCT date) FROM session WHERE date BETWEEN date('now', '-30 days') AND date ('now', 'localtime') AND account_id = ?; 
+(sqlite)
 
-tämän kyselyn syntaksi on postgresql:ssä hieman eroava:
+SELECT COUNT(DISTINCT date) FROM session WHERE date BETWEEN date('now', '-30 days') AND date ('now', 'localtime') AND account_id = ?; 
+
+(postgresql)
 
 SELECT COUNT(DISTINCT date) FROM session WHERE date > current_date - interval '30' AND account_id = :id;
 
-* Normaali käyttäjä näkee henkilökohtaiset ennätyksensä ja voi näin seurata niiden kehitystä.
+* Normaali käyttäjä näkee henkilökohtaiset voimatulosten ennätyksensä ja voi näin seurata niiden kehitystä:
 
-SQL:
+SELECT date, workout.name, reps, max(weight) AS weight FROM Strength JOIN workout ON workout.id=strength.workout_id JOIN result ON strength.id=result.id JOIN session ON session.id=session_id WHERE account_id = ? GROUP BY workout.name, reps;
+
+* Normaali käyttäjä näkee henkilökohtaiset juoksuennätyksensä ja voi näin seurata niiden kehitystä:
+
+SELECT date, distance, min(time) AS time FROM Conditioning JOIN result ON conditioning.id=result.id JOIN session ON session.id=session_id WHERE account_id = ? GROUP BY distance;
 
 * Ylläpitäjä näkee listan käyttäjistä ja voi näin seurata käyttäjien määrää.
 
-SQL: 
-
-SELECT account.id AS account_id, account.name AS account_name, account.username AS account_username, account.password_hash AS account_password_hash 
-FROM account
+SELECT account.id AS account_id, account.name AS account_name, account.username AS account_username, account.password_hash AS account_password_hash FROM account
 
 * Ylläpitäjä näkee käyttäjien aktiivisuuden ja voi näin seurata sovelluksen käyttöastetta.
 
-SQL:
+SELECT COUNT(\*) FROM Session;
 
-SELECT COUNT(*) from account;
+* Ylläpitäjä voi lisätä toiselle käyttäjälle ylläpito-oikeudet:
 
-SELECT COUNT(*) from session;
+INSERT INTO UserUsergroup(account_id, usergrou_id) VALUES (?,?);
 
-* Ylläpitäjä voi halutessaan lisätä käyttäjälle ylläpitäjän oikeudet.
-
-SQL:
-
-INSERT INTO Userusergroup(account_id, usergroup_id) VALUES (?, 2);
 
 * Ylläpitäjä voi halutessaan poistaa käyttäjältä (ei omistajalta eli superUserilta tai itseltään) ylläpitäjän oikeudet.
-
-SQL:
 
 DELETE FROM Userusergroup WHERE account_id=? AND usergroup_id=2;
 
