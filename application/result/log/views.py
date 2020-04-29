@@ -5,24 +5,24 @@ from flask_login import login_required, current_user
 
 from application import app, db
 from application.result.models import Result, Session, Conditioning
-from application.result.forms import ModifyForm, SessionForm
+from application.result.forms import ModifyForm, RunSessionForm, StrengthSessionForm
 
 
 @app.route("/results/new_run/")
 @login_required
 def run_session_log():
-	return render_template("result/log/new_run_session.html", form=SessionForm())
+	return render_template("result/log/new_run_session.html", form=RunSessionForm())
 
 
 @app.route("/results/new_run/", methods=["GET", "POST"])
 @login_required
 def running_log():
-	form = SessionForm(request.form)
-	rounds = int(request.form.get("rounds"))
+	form = RunSessionForm(request.form)
+	rounds = request.form.get("rounds")
 	distance = request.form.get("distance")
 	if not form.validate():
 		return render_template("result/log/new_run_session.html", form=form)
-	return render_template("result/log/new_run.html", rounds=rounds, distance=distance)
+	return render_template("result/log/new_run.html", rounds=int(rounds), distance=distance)
 
 
 @app.route("/results/new_run/<rounds>%<distance>", methods=["POST"])
@@ -63,11 +63,26 @@ def validate_results(results):
 			return "Incorrect data format"
 	return ""
 
-@app.route("/results/new_strength/")
+@app.route("/results/new_strength_session/")
 @login_required
 def strength_session_log():
-	return render_template("result/log/new_strength_session.html", form=SessionForm())
+	return render_template("result/log/new_strength_session.html", form=StrengthSessionForm())
 
+@app.route("/results/new_strength/", methods=["GET", "POST"])
+@login_required
+def strength_log():
+	form = StrengthSessionForm(request.form)
+	if not form.validate():
+		return render_template("result/log/new_strength_session.html", form=form)
+	workout = request.form.get("workout")
+	sets = int(request.form.get("sets"))
+	reps = request.form.get("reps")
+	return render_template("result/log/new_strength.html", workout=workout, sets=sets, reps=reps)
+
+@app.route("/results/new_strength/<workout>%<sets>%<reps>", methods=["POST"])
+@login_required
+def strength_results_create(workout, sets, reps):
+	print("moi!")
 
 @app.route("/results/modify/", methods=["GET", "POST"])
 @login_required

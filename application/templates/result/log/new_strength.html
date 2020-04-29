@@ -1,12 +1,12 @@
 {% extends "result/log/base.html" %}
 
 {% block body %}
-<form method="POST" action="{{ url_for('run_results_create', rounds=rounds, distance=distance) }}">
+<form method="POST" action="{{ url_for('strength_results_create', workout=workout, sets=sets, reps=reps) }}">
 	<div>
-		Insert weights ({{ rounds }} x {{ distance }}):
+		Insert weights ({{ sets }} x {{ reps }}):
 	</div>
 	<div>
-		{% for n in range(rounds) %}
+		{% for n in range(sets) %}
 		<p>
 			<input name="result{{n}}" type="text" placeholder="kg">
 		</p>
