@@ -47,7 +47,7 @@ def run_results_create(rounds, distance):
 			c.session_id = session.id
 			c.time = datetime.datetime.strptime(time, '%H:%M:%S').time()
 			c.distance = distance
-			c.workout_id = 0
+			c.workout_id = 1
 			db.session.add(c)
 			db.session.commit()
 
