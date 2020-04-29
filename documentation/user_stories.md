@@ -42,7 +42,7 @@ SELECT account.id AS account_id, account.name AS account_name, account.username 
 ```
 * Ylläpitäjä näkee käyttäjien aktiivisuuden ja voi näin seurata sovelluksen käyttöastetta.
 ```
-SELECT COUNT(\*) FROM Session;
+SELECT COUNT(*) FROM Session;
 ```
 * Ylläpitäjä voi lisätä toiselle käyttäjälle ylläpito-oikeudet:
 ```
