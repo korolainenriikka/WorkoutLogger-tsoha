@@ -18,13 +18,15 @@ Sovellukseen luodaan uusi tunnus valitsemalla etusivulla (Workout Logger -teksti
 
 Käyttäjätilin luomisen jälkeen luotu käyttäjä kirjataan automaattisesti sisään.
 
-signup
+<img src="https://github.com/korolainenriikka/WorkoutLogger-tsoha/blob/master/documentation/kuvat/signup.png"/>
 
 ### kirjautuminen sisään ja ulos
 
 Sovellukseen kirjaudutaan etusivulla olevan sivuvalikon painikkeesta 'login', ja ulos kirjaudutaan saman valikon painikkeesta 'logout *name*' (näkyy vain kirjautuneena).
 
-login logout
+<img src="https://github.com/korolainenriikka/WorkoutLogger-tsoha/blob/master/documentation/kuvat/login.png"/>
+
+<img src="https://github.com/korolainenriikka/WorkoutLogger-tsoha/blob/master/documentation/kuvat/logout.png"/>
 
 ## suorituksen kirjaaminen
 
@@ -36,7 +38,9 @@ Juoksutulokset kirjataan välilehdellä _Log a running session_. Ensimmäisessä
 
 Painikkeesta _Confirm_ siirrytään toiseen näkymään, jossa on intervallien lukumäärää vastaava määrä kenttiä, joihin voidaan täyttää juoksuun kulunut aika muodossa hh:mm:ss. Tulos tallennetaan painikkeesta _create new result_.
 
-insertintervals insertruntimes
+<img src="https://github.com/korolainenriikka/WorkoutLogger-tsoha/blob/master/documentation/kuvat/insertintervals.png"/>
+
+<img src="https://github.com/korolainenriikka/WorkoutLogger-tsoha/blob/master/documentation/kuvat/insertruntimes.png"/>
 
 ### voimatuloksen kirjaaminen
 
@@ -44,19 +48,23 @@ Voimatuloksia voidaan kirjata välilehdellä _Log a strength session_. Ensimmäi
 
 Sekä juoksu- että voimatulosta kirjattaessa uuden tuloksen luomisen jälkeen siirrytään automaattisesti viimeisimpien tulosten listaussivulle.
 
-insertsessionspecs insertweights
+<img src="https://github.com/korolainenriikka/WorkoutLogger-tsoha/blob/master/documentation/kuvat/insertsessionspecs.png"/>
+
+<img src="https://github.com/korolainenriikka/WorkoutLogger-tsoha/blob/master/documentation/kuvat/insertweights.png"/>
 
 ### kirjatun tuloksen muokkaaminen
 
 Kaikkia kirjattuja tuloksia voidaan muokata välilehdellä _Modify recent results_. Ensimmäisellä sivulla valitaan muokattava tulos ko. tuloksen vieressä olevasta painikkeesta.
 
-savemodified selectmodify
+<img src="https://github.com/korolainenriikka/WorkoutLogger-tsoha/blob/master/documentation/kuvat/selectmodify.png"/>
+
+<img src="https://github.com/korolainenriikka/WorkoutLogger-tsoha/blob/master/documentation/kuvat/savemodified.png"/>
 
 ### kirjatun tuloksen poistaminen
 
 Kirjattu tulos voidaan poistaa valitsemalla välilehdellä _Modify recent results_ valitsemalla poistettava tulos, ja painamalla painiketta delete. Mikäli poistettu tulos oli kyseisen harjoituskerran ainoa, myös merkintä harjoituskerrasta poistuu sovelluksesta automaattisesti.
 
-KUVA
+<img src="https://github.com/korolainenriikka/WorkoutLogger-tsoha/blob/master/documentation/kuvat/delete.png"/>
 
 ## tulosten analysointi
 
@@ -66,25 +74,25 @@ Seuraavat toiminnot löytyvät päävalikon välilehdeltä _Analyze_.
 
 _Analyze_ toimintojen oletussivulla, välilehdellä _Recent results_ nähdään listaus viimeisimmistä tuloksista harjoituskerroittain. Kustakin harjoituskerrasta listataan harjoituksessa tehty liike, toistot/matka sekä aika/paino.
 
-KUVA
+<img src="https://github.com/korolainenriikka/WorkoutLogger-tsoha/blob/master/documentation/kuvat/listrecent.png"/>
 
 ### juoksuennätykset
 
 Välilehdellä _Running pb's_ nähdään käyttäjän juoksutuloksien henkilökohtaiset ennätykset matkoittain, sekä kunkin ennätyksen kirjauspäivä.
 
-KUVA
+<img src="https://github.com/korolainenriikka/WorkoutLogger-tsoha/blob/master/documentation/kuvat/runpbs.png"/>
 
 ### voimaennätykset
 
 Välilehdellä _Strength pb's_ nähdään käyttäjän voimatulosten henkilökohtaiset ennätykset. Ennätykset kirjataan liikkeittäin ja toistoittain, ja kussakin ennätyksessä mainitaan ennätyksen kirjauspäivä.
 
-KUVA
+<img src="https://github.com/korolainenriikka/WorkoutLogger-tsoha/blob/master/documentation/kuvat/strengthpbs.png"/>
 
 ### aktiivisuusstatistiikka
 
 _Activity stats_ -välilehdellä näytetään käyttäjän aktiivisuustaso harjoitus- ja lepopäivinä viimeisen kuukauden aikana, sekä aktiivisuustasona prosentteina. Aktiivisuus lasketaan kirjauspäivistä, siis usean harjoituksen kirjaaminen samana päivänä ei lisää aktiivisuutta.
 
-KUBAAA
+<img src="https://github.com/korolainenriikka/WorkoutLogger-tsoha/blob/master/documentation/kuvat/activitystats.png"/>
 
 ## käyttäjien hallinta
 
@@ -96,10 +104,10 @@ Toiminnot ovat ainoastaan ylläpitäjän oikeudet saaneen käyttäjän käytett�
 
 Käyttäjien tietoja voidaan tarkastella välilehden _User stats_ alla. Sivulla käyttäjä näkee kaikkien sovellukseen kirjattujen käyttäjien nimet ja käyttäjänimet, sekä tiedon siitä, kuinka paljon harjoitusdataa sovellukseen on kokonaisuudessaan kirjattu.
 
-KUVE
+<img src="https://github.com/korolainenriikka/WorkoutLogger-tsoha/blob/master/documentation/kuvat/userstats.png"/>
 
 ### käyttäjäoikeuksien muokkaaminen
 
 Välilehdellä _Manage user rights_ ylläpitäjä voi muuttamalla 'Has admin access' -checkboxien valintaoja, kuitenkin oman käyttäjän ja omistajan (superUser) tilaa ei voida muuttaa. Muutokset tallentuvat painikkeesta _Save changes_.
 
-KuVvee
+<img src="https://github.com/korolainenriikka/WorkoutLogger-tsoha/blob/master/documentation/kuvat/manageuserrights.png"/>
