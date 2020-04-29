@@ -78,6 +78,7 @@ if Usergroup.query.first() is None:
     owner = Usergroup()
     owner.name = 'owner'
     run = Workout()
+    run.name = 'run'
     db.session.add(run)
     db.session.add(user)
     db.session.add(admin)
