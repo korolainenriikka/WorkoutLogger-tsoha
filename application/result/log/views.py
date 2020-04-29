@@ -18,7 +18,7 @@ def session_log():
 @login_required
 def results_log():
 	form = SessionForm(request.form)
-	rounds = request.form.get("rounds")
+	rounds = int(request.form.get("rounds"))
 	distance = request.form.get("distance")
 	if not form.validate():
 		return render_template("result/log/new_session.html", form=form)
