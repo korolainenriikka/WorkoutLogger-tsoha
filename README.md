@@ -32,3 +32,5 @@ HUOM: testikäyttäjätunnukset on lisätty ainoastaan herokuun. Paikalliseen so
 [käyttöohje](https://github.com/korolainenriikka/WorkoutLogger-tsoha/blob/master/documentation/kayttoohje.md)
 
 [tietokantarakenne](https://github.com/korolainenriikka/WorkoutLogger-tsoha/blob/master/documentation/tietokantarakenne.md)
+
+[jatkokehitys](https://github.com/korolainenriikka/WorkoutLogger-tsoha/blob/master/documentation/jatkokehitys.md)
