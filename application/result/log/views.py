@@ -163,9 +163,14 @@ def return_recent_results():
 @login_required
 def result_modify(result_id):
 	if request.method == "GET":
-		return render_template("result/log/modify.html", form=ModifyForm(distance=Result.query.get(result_id).distance,
-																		 time=Result.query.get(result_id).time),
-							   result_id=result_id)
+		strength_result = Strength.query.filter_by(id=result_id).one_or_none()
+		if (strength_result is not None):
+			return render_template("result/log/modify.html", form=ModifyForm(distance=Strength.query.get(
+				result_id).reps, time=Strength.query.get(result_id).weight), result_id=result_id)
+		else:
+			return render_template("result/log/modify.html",
+								   form=ModifyForm(distance=Conditioning.query.get(result_id).distance,
+												   time=Conditioning.query.get(result_id).time), result_id=result_id)
 
 	form = ModifyForm(request.form)
 	try:
