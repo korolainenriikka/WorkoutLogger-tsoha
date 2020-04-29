@@ -1,7 +1,7 @@
 # flask app
 from flask import Flask
 
-from application.result.models import Workout
+
 
 app = Flask(__name__)
 
@@ -23,7 +23,7 @@ from flask_migrate import Migrate
 migrate = Migrate(app, db)
 
 # login
-from application.auth.models import User, Usergroup
+from application.auth.models import User
 from os import urandom
 app.config["SECRET_KEY"] = urandom(32)
 
@@ -46,7 +46,7 @@ principal = Principal(app)
 admin_permission = Permission(RoleNeed('admin'))
 
 @identity_loaded.connect_via(app)
-def on_identity_loaded(sender, identity):
+def on_identity_loaded(identity):
     identity.user = current_user
     if hasattr(current_user, 'id'):
         identity.provides.add(UserNeed(current_user.id))
@@ -67,6 +67,9 @@ from application.result.analyze import views
 db.create_all()
 
 # initialize db
+from application.result.models import Workout
+from application.auth.models import Usergroup
+
 if Usergroup.query.first() is None:
     user = Usergroup()
     user.name = 'user'
