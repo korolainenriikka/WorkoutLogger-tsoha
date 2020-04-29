@@ -1,8 +1,8 @@
-from sqlalchemy import engine
-
 from application import db
 from flask_login import current_user
 from sqlalchemy.sql import text
+
+import os
 
 
 class Session(db.Model):
@@ -14,10 +14,12 @@ class Session(db.Model):
 
 	@staticmethod
 	def count_sessions_last_30_days():
-		stmt = text("SELECT COUNT(DISTINCT date) FROM session WHERE account_id = :id;")
-
-		#date  BETWEEN date('now', '-30 days') AND date("
-					#"'now', 'localtime') AND
+		if os.environ.get("HEROKU"):
+			stmt = text("SELECT COUNT(DISTINCT date) FROM session WHERE WHERE date > current_date - interval "
+						"'30' AND account_id = :id;")
+		else:
+			stmt = text("SELECT COUNT(DISTINCT date) FROM session WHERE date BETWEEN date('now', '-30 days') AND date("
+					"'now', 'localtime') AND account_id = :id;")
 
 		res = db.engine.execute(stmt, id=current_user.id)
 		result = []
