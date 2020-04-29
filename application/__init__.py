@@ -1,5 +1,8 @@
 # flask app
 from flask import Flask
+
+from application.result.models import Workout
+
 app = Flask(__name__)
 
 # database
@@ -63,7 +66,7 @@ from application.result.analyze import views
 # create db
 db.create_all()
 
-# add user groups to db
+# initialize db
 if Usergroup.query.first() is None:
     user = Usergroup()
     user.name = 'user'
@@ -71,6 +74,8 @@ if Usergroup.query.first() is None:
     admin.name = 'admin'
     owner = Usergroup()
     owner.name = 'owner'
+    run = Workout()
+    db.session.add(run)
     db.session.add(user)
     db.session.add(admin)
     db.session.add(owner)

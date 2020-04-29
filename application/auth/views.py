@@ -55,7 +55,7 @@ def auth_register():
     user_access = Usergroup.query.filter_by(name='user').one()
     u.usergroups.append(user_access)
 
-    if request.form.get("name") == "superuser":
+    if request.form.get("username") == "superUser":
         admin_access = Usergroup.query.filter_by(name='admin').one()
         owner_access = Usergroup.query.filter_by(name='owner').one()
         u.usergroups.append(admin_access)
