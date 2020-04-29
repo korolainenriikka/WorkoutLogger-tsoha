@@ -73,8 +73,3 @@ CREATE TABLE strength (
 	FOREIGN KEY(workout_id) REFERENCES workout (id)
 );
 ```
-
-## Laajennettu sovellus
-
-### Tietokantakaavio
-
