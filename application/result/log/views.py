@@ -171,6 +171,11 @@ def result_modify_conditioning(result_id):
 														   time=Conditioning.query.get(result_id).time),
 							   result_id=result_id)
 
+	r = Result.query.get(result_id)
+	s = Session.query.get(r.session_id)
+	if s.account_id != current_user.id:
+		flash("modifying others' results is not allowed")
+		return (redirect(url_for('index')))
 	form = ModifyConditioningForm(request.form)
 	try:
 		datetime.datetime.strptime(form.time.data, '%H:%M:%S')
@@ -201,6 +206,12 @@ def result_modify_strength(result_id):
 
 	form = ModifyStrengthForm(request.form)
 
+	r = Result.query.get(result_id)
+	s = Session.query.get(r.session_id)
+	if s.account_id != current_user.id:
+		flash("modifying others' results is not allowed")
+		return (redirect(url_for('index')))
+
 	if not form.validate():
 		return render_template("result/log/modify_strength.html", result_id=result_id, form=form)
 
@@ -220,6 +231,10 @@ def results_delete(result_id):
 	r = Result.query.get(result_id)
 	c = Conditioning.query.get(result_id)
 	s = Strength.query.get(result_id)
+	if s.account_id != current_user.id:
+		flash("deleting others' results is not allowed")
+		return(redirect(url_for('index')))
+
 	db.session().delete(r)
 	if s is not None:
 		db.session().delete(s)
