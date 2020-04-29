@@ -51,10 +51,10 @@ def run_results_create(rounds, distance):
 			c.distance = distance
 			c.workout_id = 1
 			print("olion attribuutit:")
-			print("session_id: " + c.session_id)
-			print("time: " + c.time)
-			print("distance: " + c.distance)
-			print("ja workoutsin iidee:" + c.workout_id)
+			print("session_id: " + str(c.session_id))
+			print("time: " + str(c.time))
+			print("distance: " + str(c.distance))
+			print("ja workoutsin iidee:" + str(c.workout_id))
 			db.session.add(c)
 			db.session.commit()
 
