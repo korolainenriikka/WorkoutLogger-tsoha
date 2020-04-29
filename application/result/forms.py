@@ -17,9 +17,16 @@ class StrengthSessionForm(FlaskForm):
 	class Meta:
 		csrf = False
 
-class ModifyForm(FlaskForm):
-	distance = IntegerField(validators=[NumberRange(min=1, max=100000)])
-	time = StringField()
+class ModifyConditioningForm(FlaskForm):
+	distance = IntegerField("distance (m)", validators=[NumberRange(min=1, max=100000)])
+	time = StringField("time")
+
+	class Meta:
+		csrf = False
+
+class ModifyStrengthForm(FlaskForm):
+	reps = IntegerField("reps", validators=[NumberRange(min=1, max=15)])
+	weight = IntegerField("weight", validators=[NumberRange(min=1, max=50)])
 
 	class Meta:
 		csrf = False

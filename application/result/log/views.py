@@ -5,7 +5,7 @@ from flask_login import login_required, current_user
 
 from application import app, db
 from application.result.models import Result, Session, Conditioning, Strength, Workout
-from application.result.forms import ModifyForm, RunSessionForm, StrengthSessionForm
+from application.result.forms import ModifyConditioningForm, RunSessionForm, StrengthSessionForm, ModifyStrengthForm
 
 
 @app.route("/results/new_run/")
@@ -161,35 +161,25 @@ def return_recent_results():
 
 	return recent_sessions
 
-@app.route("/results/modify/<result_id>", methods=["GET", "POST"])
-@login_required
-def result_modify(result_id):
-	strength_result = Strength.query.filter_by(id=result_id).one_or_none()
-	if (strength_result is not None):
-		return render_template("result/log/modify.html", form=ModifyForm(distance_or_reps=Strength.query.get(
-			result_id).reps, time_or_weight=Strength.query.get(result_id).weight), result_id=result_id)
 
-
-
-
-@app.route("/results/save_modified/<result_id>", methods=["GET","POST"])
+@app.route("/results/modify_conditioning/<result_id>", methods=["GET","POST"])
 @login_required
 def result_modify_conditioning(result_id):
 	if request.method=="GET":
-		return render_template("result/log/modify.html",
-							   form=ModifyForm(distance=Conditioning.query.get(result_id).distance,
-											   time=Conditioning.query.get(result_id).time),
+		return render_template("result/log/modify_conditioning.html",
+							   form=ModifyConditioningForm(distance=Conditioning.query.get(result_id).distance,
+														   time=Conditioning.query.get(result_id).time),
 							   result_id=result_id)
 
-	form = ModifyForm(request.form)
+	form = ModifyConditioningForm(request.form)
 	try:
 		datetime.datetime.strptime(form.time.data, '%H:%M:%S')
 	except:
 		flash("Incorrect data format")
-		return render_template("result/log/modify.html", result_id=result_id, form=form)
+		return render_template("result/log/modify_conditioning.html", result_id=result_id, form=form)
 
 	if not form.validate():
-		return render_template("result/log/modify.html", result_id=result_id, form=form)
+		return render_template("result/log/modify_conditioning.html", result_id=result_id, form=form)
 
 	new_distance = request.form.get("distance")
 	new_time = request.form.get("time")
@@ -200,10 +190,28 @@ def result_modify_conditioning(result_id):
 
 	return redirect(url_for("list_recent"))
 
-@app.route("/results/modify/<result_id>", methods=["GET", "POST"])
+@app.route("/results/modify_strength/<result_id>", methods=["GET", "POST"])
 @login_required
 def result_modify_strength(result_id):
-	print("lol")
+	if request.method == "GET":
+		return render_template("result/log/modify_strength.html",
+							   form=ModifyStrengthForm(reps=Strength.query.get(result_id).reps,
+														   weight=Strength.query.get(result_id).weight),
+							   result_id=result_id)
+
+	form = ModifyStrengthForm(request.form)
+
+	if not form.validate():
+		return render_template("result/log/modify_strength.html", result_id=result_id, form=form)
+
+	new_sets = request.form.get("sets")
+	new_reps = request.form.get("reps")
+	s = Strength.query.get(result_id)
+	s.sets = new_sets
+	s.reps = new_reps
+	db.session().commit()
+
+	return redirect(url_for("list_recent"))
 
 
 @app.route("/results/<result_id>", methods=["GET", "POST"])

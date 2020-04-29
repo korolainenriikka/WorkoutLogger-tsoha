@@ -1,0 +1,32 @@
+{% extends "result/log/base.html" %}
+
+{% block body %}
+<table>
+	<form method="POST" action="{{ url_for('result_modify_strength', result_id=result_id) }}">
+		<tr>
+			<td>{{ form.reps.label }}</td>
+			<td>{{ form.reps }}</td>
+			{% for error in form.reps.errors %}
+			<span style="color: red;">[{{ error }}]</span>
+			{% endfor %}
+		</tr>
+		<tr>
+			<td>{{ form.weight.label }}</td>
+			<td>{{ form.weight }}</td>
+			{% for error in form.weight.errors %}
+			<span style="color: red;">[{{ error }}]</span>
+			{% endfor %}
+		</tr>
+		<tr>
+			<td>
+				<button type="submit" name="submit_button" class="btn-outline-info">Save changes</button>
+			</td>
+	</form>
+	<td>
+		<form method="POST" action="{{ url_for('results_delete', result_id=result_id) }}">
+			<button type="submit" name="submit_button" class="btn-outline-info">Delete</button>
+		</form>
+	</td>
+	</tr>
+</table>
+{% endblock %}
