@@ -15,7 +15,7 @@ class Session(db.Model):
 	@staticmethod
 	def count_sessions_last_30_days():
 		if os.environ.get("HEROKU"):
-			stmt = text("SELECT COUNT(DISTINCT date) FROM session WHERE WHERE date > current_date - interval "
+			stmt = text("SELECT COUNT(DISTINCT date) FROM session WHERE date > current_date - interval "
 						"'30' AND account_id = :id;")
 		else:
 			stmt = text("SELECT COUNT(DISTINCT date) FROM session WHERE date BETWEEN date('now', '-30 days') AND date("
