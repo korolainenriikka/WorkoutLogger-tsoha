@@ -41,8 +41,6 @@ class Session(db.Model):
 
 class Result(db.Model):
 	id = db.Column(db.Integer, primary_key=True)
-	distance = db.Column(db.Integer, nullable=False)
-	time = db.Column(db.Time, nullable=False)
 	session_id = db.Column(db.Integer, db.ForeignKey('session.id'))
 
 	@staticmethod
@@ -60,15 +58,16 @@ class Result(db.Model):
 
 class Conditioning(Result):
 	id = db.Column(db.ForeignKey("result.id"), primary_key=True)
-
+	distance = db.Column(db.Integer, nullable=False)
+	time = db.Column(db.Time, nullable=False)
 	workout_id = db.Column(db.Integer, db.ForeignKey('session.id'))
 
 
-# class Strength(Result):
-#	id = db.Column(db.ForeignKey("result.id"), primary_key=True)
-#	reps = db.Column(db.Integer, nullable=False)
-#	weight = db.Column(db.Integer, nullable=False)
-#	workout_id = db.Column(db.Integer, db.ForeignKey('workout.id'))
+class Strength(Result):
+	id = db.Column(db.ForeignKey("result.id"), primary_key=True)
+	reps = db.Column(db.Integer, nullable=False)
+	weight = db.Column(db.Integer, nullable=False)
+	workout_id = db.Column(db.Integer, db.ForeignKey('workout.id'))
 
 class Workout(db.Model):
 	id = db.Column(db.Integer, primary_key=True)
