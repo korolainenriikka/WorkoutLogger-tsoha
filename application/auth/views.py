@@ -1,6 +1,5 @@
 from flask import render_template, request, redirect, url_for, current_app, flash
 from flask_login import login_user, logout_user, current_user, login_required
-from werkzeug.urls import url_parse
 
 from application import app, db
 from application.auth.models import User, Usergroup

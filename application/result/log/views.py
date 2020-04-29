@@ -5,7 +5,7 @@ from flask_login import login_required, current_user
 
 from application import app, db
 from application.result.models import Result, Session
-from application.result.forms import ResultForm, ModifyForm, SessionForm
+from application.result.forms import ModifyForm, SessionForm
 
 
 @app.route("/results/new/")
