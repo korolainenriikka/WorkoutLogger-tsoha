@@ -21,7 +21,7 @@ niitä olisi syytä jakaa välilehdille
 käyttäjää erityisesti silloin, kun kirjattujen tulosten määrä kasvaa.
 
 * adminin muutoksissa nykyisellään admin-käyttäjät voivat muuttaa toistensa oikeuksia. Laajempaa käyttöä palvelisi, jos vain owner-käyttäjä
-voisi muuttaa oikeuksia, ja admin voisi vain tarkastella käyttäjästatistiikkkaa.
+voisi muuttaa oikeuksia, ja admin voisi vain tarkastella käyttäjästatistiikkaa.
 
 ## Toteuttamatta jääneet toiminnallisuudet
 
