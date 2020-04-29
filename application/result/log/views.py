@@ -8,31 +8,31 @@ from application.result.models import Result, Session, Conditioning
 from application.result.forms import ModifyForm, SessionForm
 
 
-@app.route("/results/new/")
+@app.route("/results/new_run/")
 @login_required
-def session_log():
-	return render_template("result/log/new_session.html", form=SessionForm())
+def run_session_log():
+	return render_template("result/log/new_run_session.html", form=SessionForm())
 
 
-@app.route("/results/new/", methods=["GET", "POST"])
+@app.route("/results/new_run/", methods=["GET", "POST"])
 @login_required
 def running_log():
 	form = SessionForm(request.form)
 	rounds = int(request.form.get("rounds"))
 	distance = request.form.get("distance")
 	if not form.validate():
-		return render_template("result/log/new_session.html", form=form)
-	return render_template("result/log/new_results.html", rounds=rounds, distance=distance)
+		return render_template("result/log/new_run_session.html", form=form)
+	return render_template("result/log/new_run.html", rounds=rounds, distance=distance)
 
 
-@app.route("/results/new/<rounds>%<distance>", methods=["POST"])
+@app.route("/results/new_run/<rounds>%<distance>", methods=["POST"])
 @login_required
 def run_results_create(rounds, distance):
 	form = request.form
 	error_message = validate_results(form)
 	if error_message != "":
 		flash(error_message)
-		return render_template("result/log/new_results.html", rounds=int(rounds), distance=distance)
+		return render_template("result/log/new_run.html", rounds=int(rounds), distance=distance)
 
 	s = Session()
 	s.account_id = current_user.id
@@ -62,6 +62,11 @@ def validate_results(results):
 		except:
 			return "Incorrect data format"
 	return ""
+
+@app.route("/results/new_strength/")
+@login_required
+def strength_session_log():
+	return render_template("result/log/new_strength_session.html", form=SessionForm())
 
 
 @app.route("/results/modify/", methods=["GET", "POST"])

@@ -1,0 +1,19 @@
+{% extends "result/log/base.html" %}
+
+{% block body %}
+<form method="POST" action="{{ url_for('run_results_create', rounds=rounds, distance=distance) }}">
+	<div>
+		Insert weights ({{ rounds }} x {{ distance }}):
+	</div>
+	<div>
+		{% for n in range(rounds) %}
+		<p>
+			<input name="result{{n}}" type="text" placeholder="kg">
+		</p>
+		{% endfor %}
+	</div>
+	<p>
+		<button type="submit" name="submit_button" class="btn-outline-info">Save results</button>
+	</p>
+</form>
+{% endblock %}
