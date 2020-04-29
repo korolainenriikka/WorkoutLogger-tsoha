@@ -1,12 +1,10 @@
 # Tietokantarakenne
 
-## Nykyinen sovellus
-
-### Tietokantakaavio
+## Tietokantakaavio
 
 <img src="https://github.com/korolainenriikka/WorkoutLogger-tsoha/blob/master/documentation/kuvat/dbdiagram.png" />
 
-### SQL-skeema
+## SQL-skeema
 
 ```
 CREATE TABLE usergroup (
