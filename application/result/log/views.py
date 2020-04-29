@@ -150,11 +150,13 @@ def return_recent_results():
 				workout = Workout.query.filter_by(id=strength_result.workout_id).one()
 				distance_or_reps = strength_result.reps
 				time_or_weight = str(strength_result.weight) + " kg"
+				results_to_list.append((workout.name, distance_or_reps, time_or_weight, result.id, "strength"))
 			else:
 				workout = Workout.query.filter_by(id=conditioning_result.workout_id).one()
 				distance_or_reps = str(conditioning_result.distance) + " m"
 				time_or_weight = conditioning_result.time
-			results_to_list.append((workout.name, distance_or_reps, time_or_weight, result.id))
+				results_to_list.append((workout.name, distance_or_reps, time_or_weight, result.id, "conditioning"))
+
 		recent_sessions[(session.id, session.date)] = results_to_list
 
 	return recent_sessions
@@ -162,15 +164,22 @@ def return_recent_results():
 @app.route("/results/modify/<result_id>", methods=["GET", "POST"])
 @login_required
 def result_modify(result_id):
-	if request.method == "GET":
-		strength_result = Strength.query.filter_by(id=result_id).one_or_none()
-		if (strength_result is not None):
-			return render_template("result/log/modify.html", form=ModifyForm(distance=Strength.query.get(
-				result_id).reps, time=Strength.query.get(result_id).weight), result_id=result_id)
-		else:
-			return render_template("result/log/modify.html",
-								   form=ModifyForm(distance=Conditioning.query.get(result_id).distance,
-												   time=Conditioning.query.get(result_id).time), result_id=result_id)
+	strength_result = Strength.query.filter_by(id=result_id).one_or_none()
+	if (strength_result is not None):
+		return render_template("result/log/modify.html", form=ModifyForm(distance_or_reps=Strength.query.get(
+			result_id).reps, time_or_weight=Strength.query.get(result_id).weight), result_id=result_id)
+
+
+
+
+@app.route("/results/save_modified/<result_id>", methods=["GET","POST"])
+@login_required
+def result_modify_conditioning(result_id):
+	if request.method=="GET":
+		return render_template("result/log/modify.html",
+							   form=ModifyForm(distance=Conditioning.query.get(result_id).distance,
+											   time=Conditioning.query.get(result_id).time),
+							   result_id=result_id)
 
 	form = ModifyForm(request.form)
 	try:
@@ -184,12 +193,17 @@ def result_modify(result_id):
 
 	new_distance = request.form.get("distance")
 	new_time = request.form.get("time")
-	r = Result.query.get(result_id)
-	r.distance = new_distance
-	r.time = datetime.datetime.strptime(new_time, '%H:%M:%S').time()
+	c = Conditioning.query.get(result_id)
+	c.distance = new_distance
+	c.time = datetime.datetime.strptime(new_time, '%H:%M:%S').time()
 	db.session().commit()
 
 	return redirect(url_for("list_recent"))
+
+@app.route("/results/modify/<result_id>", methods=["GET", "POST"])
+@login_required
+def result_modify_strength(result_id):
+	print("lol")
 
 
 @app.route("/results/<result_id>", methods=["GET", "POST"])

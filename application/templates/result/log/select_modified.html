@@ -11,11 +11,17 @@
 	</p>
 	{% for result in recent[session] %}
 	<p>
-	<form action="{{ url_for('result_modify', result_id=result[3]) }}">
+	{% if result[4] == "strength" %}
+	<form action="{{ url_for('result_modify_strength', result_id=result[3]) }}">
 		<input type="submit" class="btn btn-outline-primary btn-sm" value=">"/>
 		{{ result[0] }}, {{ result[1] }}, {{ result[2] }}
 	</form>
-
+	{% else %}
+	<form action="{{ url_for('result_modify_conditioning', result_id=result[3]) }}">
+		<input type="submit" class="btn btn-outline-primary btn-sm" value=">"/>
+		{{ result[0] }}, {{ result[1] }}, {{ result[2] }}
+	</form>
+	{% endif %}
 	</p>
 	{% endfor %}
 	{% endfor %}

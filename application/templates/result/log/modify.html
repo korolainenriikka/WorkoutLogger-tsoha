@@ -2,16 +2,14 @@
 
 {% block body %}
 <table>
-	<form method="POST" action="{{ url_for('result_modify', result_id=result_id) }}">
+	<form method="POST" action="{{ url_for('result_modify_conditioning', result_id=result_id) }}">
 		<tr>
-			<td>{{ form.distance.label }}</td>
 			<td>{{ form.distance }}</td>
 			{% for error in form.distance.errors %}
 			<span style="color: red;">[{{ error }}]</span>
 			{% endfor %}
 		</tr>
 		<tr>
-			<td>{{ form.time.label }}</td>
 			<td>{{ form.time }}</td>
 			{% for error in form.time.errors %}
 			<span style="color: red;">[{{ error }}]</span>
