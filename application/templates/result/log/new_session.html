@@ -1,7 +1,7 @@
 {% extends "result/log/base.html" %}
 
 {% block body %}
-<form method="POST" action="{{ url_for('results_log') }}">
+<form method="POST" action="{{ url_for('running_log') }}">
 	<p>Insert run intervals:</p>
 	<div class="form-group">
 		{{ form.rounds }}

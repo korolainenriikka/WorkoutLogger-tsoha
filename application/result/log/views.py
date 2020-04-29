@@ -4,7 +4,7 @@ from flask import redirect, render_template, request, url_for, flash
 from flask_login import login_required, current_user
 
 from application import app, db
-from application.result.models import Result, Session
+from application.result.models import Result, Session, Conditioning
 from application.result.forms import ModifyForm, SessionForm
 
 
@@ -16,7 +16,7 @@ def session_log():
 
 @app.route("/results/new/", methods=["GET", "POST"])
 @login_required
-def results_log():
+def running_log():
 	form = SessionForm(request.form)
 	rounds = int(request.form.get("rounds"))
 	distance = request.form.get("distance")
@@ -27,7 +27,7 @@ def results_log():
 
 @app.route("/results/new/<rounds>%<distance>", methods=["POST"])
 @login_required
-def results_create(rounds, distance):
+def run_results_create(rounds, distance):
 	form = request.form
 	error_message = validate_results(form)
 	if error_message != "":
@@ -43,12 +43,13 @@ def results_create(rounds, distance):
 	for value in form.values():
 		if (value != ''):
 			time = value
-			r = Result()
-			r.time = datetime.datetime.strptime(time, '%H:%M:%S').time()
-			r.distance = distance
-			r.session_id = session.id
-			db.session.add(r)
-	db.session.commit()
+			c = Conditioning()
+			c.session_id = session.id
+			c.time = datetime.datetime.strptime(time, '%H:%M:%S').time()
+			c.distance = distance
+			c.workout_id = 0
+			db.session.add(c)
+			db.session.commit()
 
 	return redirect(url_for("list_recent"))
 

@@ -1,7 +1,7 @@
 {% extends "result/log/base.html" %}
 
 {% block body %}
-<form method="POST" action="{{ url_for('results_create', rounds=rounds, distance=distance) }}">
+<form method="POST" action="{{ url_for('run_results_create', rounds=rounds, distance=distance) }}">
 	<div>
 		Insert run times ({{ rounds }} x {{ distance }}):
 	</div>
