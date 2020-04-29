@@ -6,7 +6,7 @@ Sovellus koostuu käyttäjän luomisen ja kirjautumisen lisäksi yläpalkissa n�
 
 Kaikki sovelluksen lomakkeet validoivat syötettä niin, että syöte vastaa kysyttyä tietoa (esimerkiksi juoksutuloksen juostu matka ei voi olla alle 1 tai yli 100 km), ja rajoitteiden rikkoutuessa sovellus antaa vastaavan virheilmoituksen.
 
-index
+<img src="https://github.com/korolainenriikka/WorkoutLogger-tsoha/tree/master/documentation/kuvat/index.png" height="400" with="600"/>
 
 ## päätoiminnot
 
