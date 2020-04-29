@@ -2,7 +2,7 @@ from flask import render_template
 from flask_login import login_required, current_user
 
 from application import app
-from application.result.models import Result, Session
+from application.result.models import Conditioning, Session, Result
 
 @app.route("/analyze/", methods=["GET"])
 @login_required
@@ -16,7 +16,7 @@ def list_recent():
 @app.route("/analyze/showpbs", methods=["GET"])
 @login_required
 def list_pbs():
-	return render_template("result/analyze/pbs.html", pbs=Result.find_personal_bests())
+	return render_template("result/analyze/pbs.html", pbs=Conditioning.find_personal_bests())
 
 @app.route("/analyze/showactivity", methods=["GET"])
 @login_required

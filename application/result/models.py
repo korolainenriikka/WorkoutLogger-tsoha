@@ -43,10 +43,17 @@ class Result(db.Model):
 	id = db.Column(db.Integer, primary_key=True)
 	session_id = db.Column(db.Integer, db.ForeignKey('session.id'))
 
+class Conditioning(Result):
+	id = db.Column(db.ForeignKey("result.id"), primary_key=True)
+	distance = db.Column(db.Integer, nullable=False)
+	time = db.Column(db.Time, nullable=False)
+	workout_id = db.Column(db.Integer, db.ForeignKey('session.id'))
+
 	@staticmethod
 	def find_personal_bests():
-		stmt = text("SELECT date, distance, min(time) AS time FROM Result JOIN session ON "
-					"session.id=result.session_id WHERE account_id = :id GROUP BY session.date, distance;")
+		stmt = text("SELECT date, distance, min(time) AS time FROM Conditioning "
+					"JOIN result ON conditioning.id=result.id JOIN session ON session.id=session_id "
+					"WHERE account_id = 1 GROUP BY session.date, distance;")
 
 		res = db.engine.execute(stmt, id=current_user.id)
 		result = []
@@ -54,14 +61,6 @@ class Result(db.Model):
 			result.append((row[0], row[1], row[2]))
 
 		return result
-
-
-class Conditioning(Result):
-	id = db.Column(db.ForeignKey("result.id"), primary_key=True)
-	distance = db.Column(db.Integer, nullable=False)
-	time = db.Column(db.Time, nullable=False)
-	workout_id = db.Column(db.Integer, db.ForeignKey('session.id'))
-
 
 class Strength(Result):
 	id = db.Column(db.ForeignKey("result.id"), primary_key=True)

@@ -56,12 +56,9 @@ def run_results_create(rounds, distance):
 
 def validate_results(results):
 	for key in results.keys():
-		print("validoidaan:")
-		print(results[key])
 		try:
 			if(key != 'submit_button'):
 				datetime.datetime.strptime(results[key], '%H:%M:%S')
-			print("läpi!")
 		except:
 			return "Incorrect data format"
 	return ""
