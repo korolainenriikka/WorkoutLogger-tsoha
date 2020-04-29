@@ -22,7 +22,7 @@ def results_log():
 	distance = request.form.get("distance")
 	if not form.validate():
 		return render_template("result/log/new_session.html", form=form)
-	return render_template("result/log/new_results.html", form=ResultForm(), rounds=rounds, distance=distance)
+	return render_template("result/log/new_results.html", rounds=rounds, distance=distance)
 
 
 @app.route("/results/new/<rounds>%<distance>", methods=["POST"])
@@ -32,7 +32,7 @@ def results_create(rounds, distance):
 	error_message = validate_results(form)
 	if error_message != "":
 		flash(error_message)
-		return render_template("result/log/new_results.html", form=form, rounds=int(rounds), distance=distance)
+		return render_template("result/log/new_results.html", rounds=int(rounds), distance=distance)
 
 	s = Session()
 	s.account_id = current_user.id
