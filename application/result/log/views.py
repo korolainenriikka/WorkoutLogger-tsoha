@@ -204,7 +204,6 @@ def result_modify_strength(result_id):
 	if not form.validate():
 		return render_template("result/log/modify_strength.html", result_id=result_id, form=form)
 
-	print("siis täällä myö kyllä käytiin et en tiä boiss")
 	new_reps = request.form.get("reps")
 	new_weight = request.form.get("weight")
 	s = Strength.query.get(result_id)
