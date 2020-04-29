@@ -133,12 +133,31 @@ def strength_results_create(workout, sets, reps):
 @login_required
 def select_modified():
 	if request.method == "GET":
-		recent_sessions = {}
-		sessions = Session.query.filter_by(account_id=current_user.id).all()
-		for session in sessions:
-			recent_sessions[(session.id, session.date)] = Result.query.filter_by(session_id=session.id).all()
+		recent_sessions = return_recent_results()
 		return render_template("result/log/select_modified.html", recent=recent_sessions)
 
+
+def return_recent_results():
+	recent_sessions = {}
+	sessions = Session.query.filter_by(account_id=current_user.id).all()
+	for session in sessions:
+		results_to_list = []
+		results_in_session = Result.query.filter_by(session_id=session.id).all()
+		for result in results_in_session:
+			strength_result = Strength.query.filter_by(id=result.id).one_or_none()
+			conditioning_result = Conditioning.query.filter_by(id=result.id).one_or_none()
+			if (strength_result is not None):
+				workout = Workout.query.filter_by(id=strength_result.workout_id).one()
+				distance_or_reps = strength_result.reps
+				time_or_weight = str(strength_result.weight) + " kg"
+			else:
+				workout = Workout.query.filter_by(id=conditioning_result.workout_id).one()
+				distance_or_reps = str(conditioning_result.distance) + " m"
+				time_or_weight = conditioning_result.time
+			results_to_list.append((workout.name, distance_or_reps, time_or_weight, result.id))
+		recent_sessions[(session.id, session.date)] = results_to_list
+
+	return recent_sessions
 
 @app.route("/results/modify/<result_id>", methods=["GET", "POST"])
 @login_required

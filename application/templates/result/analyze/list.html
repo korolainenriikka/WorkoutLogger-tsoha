@@ -10,10 +10,11 @@
     <tr>
       <td>{{ session[1] }}:</td>
     </tr>
-    {% for result in recent[session] %}
+    {% for result in recent[session]%}
     <tr>
-      <td width="8%">{{ result.distance }} m</td>
-      <td>{{ result.time }}</td>
+      <td width="8%">{{ result[0] }}</td>
+      <td width="8%">{{ result[1] }} </td>
+      <td>{{ result[2] }}</td>
     </tr>
     {% endfor %}
     {% endfor %}
