@@ -4,7 +4,7 @@
 
 Sovellus koostuu käyttäjän luomisen ja kirjautumisen lisäksi yläpalkissa näkyvistä päätoiminnoista: tulosten kirjaamisista, lisättyjen tulosten analyysista sekä käyttäjien hallinnasta, joista viimeinen on ainoastaan ylläpitäjien käytettävissä.
 
-Kaikki sovelluksen lomakkeet validoivat syötettä niin, että syöte vastaa kysyttyä tietoa (esimerkiksi juoksutuloksen juostu matka ei voi olla alle 1 tai yli 100 km), ja rajoitteiden rikkoutuessa sovellus antaa vastaavan virheilmoituksen.
+Kaikki sovelluksen lomakkeet validoivat syötettä niin, että syöte vastaa kysyttyä tietoa (esimerkiksi juoksutuloksen juostu matka ei voi olla alle 1 m tai yli 100 km), ja rajoitteiden rikkoutuessa sovellus antaa vastaavan virheilmoituksen.
 
 <img src="https://github.com/korolainenriikka/WorkoutLogger-tsoha/blob/master/documentation/kuvat/index.png"/>
 
