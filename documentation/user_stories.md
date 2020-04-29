@@ -51,7 +51,7 @@ INSERT INTO UserUsergroup(account_id, usergrou_id) VALUES (?,?);
 
 * Ylläpitäjä voi halutessaan poistaa käyttäjältä (ei omistajalta eli superUserilta tai itseltään) ylläpitäjän oikeudet.
 ```
-DELETE FROM Userusergroup WHERE account_id=? AND usergroup_id=2;
+DELETE FROM Userusergroup WHERE account_id=? AND usergroup_id=?;
 ```
 ## Käyttäjätapauksia jatkokehitykseen:
 
