@@ -1,30 +1,17 @@
 
 ### Workout logger
 
-Harjoitustyönä on treenipäiväkirja, jolla pidetään kirjaa crossfit-tyylisen harjoittelun tuloksista, siis voima- ja kestävyystuloksista, ja tekee niistä statistiikkaa.
+Harjoitustyönä on treenipäiväkirja, jolla pidetään kirjaa crossfit-tyylisen harjoittelun tuloksista, siis voima- ja juoksutuloksista, ja tekee harjoittelusta statistiikkaa.
 
 ## toiminnallisuudet
 
 * rekisteröityminen ja kirjautuminen
 * juoksutulosten lisääminen, muokkaaminen ja poistaminen
+* voimatulosten lisääminen, muokkaaminen ja poistaminen
 * tulosten ennätysten seuranta
 * aktiivisuuden seuranta
 * käyttäjien tietojen seuranta (admin)
-
-## jatkokehitysideoita
-
-voimatyyppisten tulosten lisääminen
-* tuloksen kirjaaminen, muokkaus ja poisto
-* ennätysten seuranta
-
-tarkempi statistiikka
-* tulosten näyttäminen graafeina, kehityshistoriat
-
-harjoitussuunnitelmat
-* suunnitelman teko
-* tehdyksi / tekemättömäksi merkkaaminen
-* statistiikka suunnitelmien toteutumisesta
-
+* käyttäjien ylläpito-oikeuksien hallinta (admin)
 
 ## Testikäyttäjätunnus:
 * username: testikayttis
@@ -34,9 +21,14 @@ harjoitussuunnitelmat
 * username: superUser
 * password: qwerty
 
-
-[käyttäjätapaukset](https://github.com/korolainenriikka/WorkoutLogger-tsoha/blob/master/documentation/user_stories.md)
+HUOM: testikäyttäjätunnukset on lisätty ainoastaan herokuun. Paikalliseen sovellukseen tunnukset on lisättävä itse, superUser saa manuaalillakin lisättynä täydet käyttövaltuudet (kaikki sovelluksen käyttöoikeudet).
 
 [heroku](https://wologger-tsoha.herokuapp.com/)
 
-[tietokantakaavio](https://github.com/korolainenriikka/WorkoutLogger-tsoha/blob/master/documentation/dbdiagram.png)
+[käyttäjätapaukset](https://github.com/korolainenriikka/WorkoutLogger-tsoha/blob/master/documentation/user_stories.md)
+
+[asennusohje](https://github.com/korolainenriikka/WorkoutLogger-tsoha/blob/master/documentation/asennusohje.md)
+
+[käyttöohje](https://github.com/korolainenriikka/WorkoutLogger-tsoha/blob/master/documentation/kayttoohje.md)
+
+[tietokantarakenne](https://github.com/korolainenriikka/WorkoutLogger-tsoha/blob/master/documentation/tietokantarakenne.md)
