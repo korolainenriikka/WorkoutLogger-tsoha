@@ -2,13 +2,13 @@
 
 ## Toteutetut käyttäjätapaukset
 
-* Normaali käyttäjä voi lisätä juoksutreeninsä tuloksen: toistot, juostun matkan ja kuluneen ajan pitääkseen kirjaa harjoitushistoriastaan.
+* Normaali käyttäjä voi lisätä juoksutreeninsä tuloksen: toistot, juostun matkan ja kuluneen ajan pitääkseen kirjaa harjoitushistoriastaan. (kyselyissä yksinkertaistus result-taulun perinnästä)
 ```
 INSERT INTO Session(account_id, date) VALUES (?, ?);
 INSERT INTO Conditioning(id, session_id, distance, time) VALUES (?, ?, ?, ?);
 ```
 
-* Normaali käyttäjä voi lisätä voimaharjoitusten tuloksia (liike, toistot, paino) pitääkseen kirjaa historiastaan.
+* Normaali käyttäjä voi lisätä voimaharjoitusten tuloksia (liike, toistot, paino) pitääkseen kirjaa historiastaan. (kyselyissä yksinkertaistus result-taulun perinnästä)
 ```
 INSERT INTO Session(account_id, date) VALUES (?, ?);
 INSERT INTO Strength(id, session_id, reps, weight) VALUES (?, ?, ?);
