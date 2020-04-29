@@ -14,7 +14,7 @@ ota kantaa kuukausiin)
 
 * aktiivisuus olisi hyvä olla seurattavissa vapaasti valittavalle ajalle
 
-* viimeisimpien tulosten tarkastelussa ei huomioida sitä, että oikeassa käytössä tuloksia on jossain vaiheessa paljo, ja
+* viimeisimpien tulosten tarkastelussa ei huomioida sitä, että oikeassa käytössä tuloksia on jossain vaiheessa paljon, ja
 niitä olisi syytä jakaa välilehdille
 
 * ennätysten tarkastelussa voisi näyttää kyseisen liikkeen historiaa ja luoda jokaiselle liikkeelle oma ennätyssivunsa. Tämä palvelee
