@@ -14,8 +14,10 @@ class Session(db.Model):
 
 	@staticmethod
 	def count_sessions_last_30_days():
-		stmt = text("SELECT COUNT(DISTINCT date) FROM session WHERE date  BETWEEN date('now', '-30 days') AND date("
-					"'now', 'localtime') AND account_id = :id;")
+		stmt = text("SELECT COUNT(DISTINCT date) FROM session WHERE account_id = :id;")
+
+		#date  BETWEEN date('now', '-30 days') AND date("
+					#"'now', 'localtime') AND
 
 		res = db.engine.execute(stmt, id=current_user.id)
 		result = []
@@ -43,9 +45,8 @@ class Result(db.Model):
 
 	@staticmethod
 	def find_personal_bests():
-		stmt = text("SELECT date, distance, min(time) AS time FROM Result JOIN session ON session.id=result.session_id "
-					"WHERE "
-					"account_id = :id GROUP BY distance;")
+		stmt = text("SELECT date, distance, min(time) AS time FROM Result JOIN session ON "
+					"session.id=result.session_id WHERE account_id = :id GROUP BY session.date, distance;")
 
 		res = db.engine.execute(stmt, id=current_user.id)
 		result = []
