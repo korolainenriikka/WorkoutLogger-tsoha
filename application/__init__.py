@@ -64,10 +64,14 @@ from application.result.analyze import views
 db.create_all()
 
 # add user groups to db
-if Usergroup.query.get(1) is None:
+if Usergroup.query.first() is None:
     user = Usergroup()
     user.name = 'user'
     admin = Usergroup()
     admin.name = 'admin'
     owner = Usergroup()
     owner.name = 'owner'
+    db.session.add(user)
+    db.session.add(admin)
+    db.session.add(owner)
+    db.session.commit()
