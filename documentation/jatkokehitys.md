@@ -12,7 +12,7 @@ Sovellukseen voitaisiin lisätä toiminnallisuutta laajentamaan mm. seuraavanlai
 * aktiivisuuden seurannassa oikea kuukausittainen seuranta toimisi (ei edelliset 30 päivää, jotka eivät varsinaisesti juurikaan 
 ota kantaa kuukausiin)
 
-* aktiivisuus olisi hyvä olla seurattavissa vapaasti valittaville ajalle
+* aktiivisuus olisi hyvä olla seurattavissa vapaasti valittavalle ajalle
 
 * viimeisimpien tulosten tarkastelussa ei huomioida sitä, että oikeassa käytössä tuloksia on jossain vaiheessa paljo, ja
 niitä olisi syytä jakaa välilehdille
