@@ -30,11 +30,11 @@ SELECT COUNT(DISTINCT date) FROM session WHERE date > current_date - interval '3
 ```
 * Normaali käyttäjä näkee henkilökohtaiset voimatulosten ennätyksensä ja voi näin seurata niiden kehitystä:
 ```
-SELECT date, workout.name, reps, max(weight) AS weight FROM Strength JOIN workout ON workout.id=strength.workout_id JOIN result ON strength.id=result.id JOIN session ON session.id=session_id WHERE account_id = ? GROUP BY workout.name, reps;
+SELECT max(date), workout.name, reps, max(weight) AS weight FROM Strength JOIN workout ON workout.id=strength.workout_id JOIN result ON strength.id=result.id JOIN session ON session.id=session_id WHERE account_id = ? GROUP BY workout.name, reps;
 ```
 * Normaali käyttäjä näkee henkilökohtaiset juoksuennätyksensä ja voi näin seurata niiden kehitystä:
 ```
-SELECT date, distance, min(time) AS time FROM Conditioning JOIN result ON conditioning.id=result.id JOIN session ON session.id=session_id WHERE account_id = ? GROUP BY distance;
+SELECT max(date), distance, min(time) AS time FROM Conditioning JOIN result ON conditioning.id=result.id JOIN session ON session.id=session_id WHERE account_id = ? GROUP BY distance;
 ```
 * Ylläpitäjä näkee listan käyttäjistä ja voi näin seurata käyttäjien määrää.
 ```
