@@ -4,7 +4,7 @@ from flask import redirect, render_template, request, url_for, flash
 from flask_login import login_required, current_user
 
 from application import app, db
-from application.result.models import Result, Session, Conditioning
+from application.result.models import Result, Session, Conditioning, Strength, Workout
 from application.result.forms import ModifyForm, RunSessionForm, StrengthSessionForm
 
 
@@ -107,15 +107,24 @@ def strength_results_create(workout, sets, reps):
 	db.session.commit()
 	session = Session.query.order_by(Session.id.desc()).first()
 
+	workout_db = Workout.query.filter_by(name = workout).one_or_none()
+	if(workout_db is None):
+		w = Workout()
+		w.name = workout
+		db.session.add(w)
+		db.session.commit()
+		workout_db = Workout.query.order_by(Workout.id.desc()).first()
+
+	workout_id=workout_db.id
+
 	for value in form.values():
 		if (value != ''):
-			time = value
-			c = Conditioning()
-			c.session_id = session.id
-			c.time = datetime.datetime.strptime(time, '%H:%M:%S').time()
-			#c.distance = distance
-			c.workout_id = 1
-			db.session.add(c)
+			s = Strength()
+			s.session_id = session.id
+			s.weight = value
+			s.reps = reps
+			s.workout_id = workout_id
+			db.session.add(s)
 			db.session.commit()
 
 	return redirect(url_for("list_recent"))
