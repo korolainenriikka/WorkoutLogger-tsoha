@@ -28,7 +28,7 @@ login logout
 
 ## suorituksen kirjaaminen
 
-seuraavat toiminnot löytyvät päävalikon välilehdeltä _Log_
+Seuraavat toiminnot löytyvät päävalikon välilehdeltä _Log_.
 
 ### juoksutuloksen kirjaaminen
 
@@ -54,18 +54,52 @@ savemodified selectmodify
 
 ### kirjatun tuloksen poistaminen
 
+Kirjattu tulos voidaan poistaa valitsemalla välilehdellä _Modify recent results_ valitsemalla poistettava tulos, ja painamalla painiketta delete. Mikäli poistettu tulos oli kyseisen harjoituskerran ainoa, myös merkintä harjoituskerrasta poistuu sovelluksesta automaattisesti.
+
+KUVA
+
 ## tulosten analysointi
+
+Seuraavat toiminnot löytyvät päävalikon välilehdeltä _Analyze_.
 
 ### viimeaikaiset tulokset
 
+_Analyze_ toimintojen oletussivulla, välilehdellä _Recent results_ nähdään listaus viimeisimmistä tuloksista harjoituskerroittain. Kustakin harjoituskerrasta listataan harjoituksessa tehty liike, toistot/matka sekä aika/paino.
+
+KUVA
+
 ### juoksuennätykset
+
+Välilehdellä _Running pb's_ nähdään käyttäjän juoksutuloksien henkilökohtaiset ennätykset matkoittain, sekä kunkin ennätyksen kirjauspäivä.
+
+KUVA
 
 ### voimaennätykset
 
+Välilehdellä _Strength pb's_ nähdään käyttäjän voimatulosten henkilökohtaiset ennätykset. Ennätykset kirjataan liikkeittäin ja toistoittain, ja kussakin ennätyksessä mainitaan ennätyksen kirjauspäivä.
+
+KUVA
+
 ### aktiivisuusstatistiikka
+
+_Activity stats_ -välilehdellä näytetään käyttäjän aktiivisuustaso harjoitus- ja lepopäivinä viimeisen kuukauden aikana, sekä aktiivisuustasona prosentteina. Aktiivisuus lasketaan kirjauspäivistä, siis usean harjoituksen kirjaaminen samana päivänä ei lisää aktiivisuutta.
+
+KUBAAA
 
 ## käyttäjien hallinta
 
+Seuraavat toiminnot löytyvät päävalikon välilehdeltä _Manage users_.
+
+Toiminnot ovat ainoastaan ylläpitäjän oikeudet saaneen käyttäjän käytettävissä. Ylläpitäjän oikeudet käyttäjä voi saada ainoastaan toisen ylläpitäjän kautta, tai luomalla käyttäjän nimellä superUser (käyttäjänimet ovat uniikkeja, joten näitä käyttäjiä voi olla vain yksi).
+
 ### käyttäjien tarkastelu
 
+Käyttäjien tietoja voidaan tarkastella välilehden _User stats_ alla. Sivulla käyttäjä näkee kaikkien sovellukseen kirjattujen käyttäjien nimet ja käyttäjänimet, sekä tiedon siitä, kuinka paljon harjoitusdataa sovellukseen on kokonaisuudessaan kirjattu.
+
+KUVE
+
 ### käyttäjäoikeuksien muokkaaminen
+
+Välilehdellä _Manage user rights_ ylläpitäjä voi muuttamalla 'Has admin access' -checkboxien valintaoja, kuitenkin oman käyttäjän ja omistajan (superUser) tilaa ei voida muuttaa. Muutokset tallentuvat painikkeesta _Save changes_.
+
+KuVvee
