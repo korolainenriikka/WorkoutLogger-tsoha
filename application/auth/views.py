@@ -27,11 +27,6 @@ def auth_login():
     identity_changed.send(current_app._get_current_object(),
                           identity=Identity(user.id))
 
-    #redirecting? args.get name on none, kyseleeee
-    #next_page = request.args.get('next')
-    #if not next_page or url_parse(next_page).netloc != '':
-    #    print(next_page)
-    #    next_page = url_for('index')
     return redirect(url_for('index'))
 
 @app.route("/auth/logout", methods = ["GET", "POST"])

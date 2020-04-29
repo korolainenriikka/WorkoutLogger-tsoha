@@ -22,7 +22,7 @@ def return_recent_results():
 			conditioning_result = Conditioning.query.filter_by(id=result.id).one_or_none()
 			if (strength_result is not None):
 				workout = Workout.query.filter_by(id=strength_result.workout_id).one()
-				distance_or_reps = strength_result.reps
+				distance_or_reps = str(strength_result.reps) + " x"
 				time_or_weight = str(strength_result.weight) + " kg"
 			else:
 				workout = Workout.query.filter_by(id=conditioning_result.workout_id).one()
