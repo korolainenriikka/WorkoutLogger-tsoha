@@ -6,7 +6,7 @@ Harjoitustyönä on treenipäiväkirja, jolla pidetään kirjaa crossfit-tyylise
 ## toiminnallisuudet
 
 * rekisteröityminen ja kirjautuminen
-* juoksutulosten lisääminen, muokkaaminen (toiminnossa puutteita), ja poistaminen (puuttuu!)
+* juoksutulosten lisääminen, muokkaaminen ja poistaminen
 * tulosten ennätysten seuranta
 * aktiivisuuden seuranta
 * käyttäjien tietojen seuranta (admin)
@@ -31,7 +31,7 @@ harjoitussuunnitelmat
 * password: koirapuisto
 
 ### ylläpitäjän tunnukset:
-* username: superuser
+* username: superUser
 * password: qwerty
 
 
