@@ -55,6 +55,7 @@ def run_results_create(rounds, distance):
 			print("time: " + str(c.time))
 			print("distance: " + str(c.distance))
 			print("ja workoutsin iidee:" + str(c.workout_id))
+			print("elikkästä ystävät tämä todettu toimivaksi.")
 			db.session.add(c)
 			db.session.commit()
 

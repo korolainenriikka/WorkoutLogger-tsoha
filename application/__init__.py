@@ -20,7 +20,7 @@ from flask_migrate import Migrate
 migrate = Migrate(app, db)
 
 # login
-from application.auth.models import User
+from application.auth.models import User, Usergroup
 from os import urandom
 app.config["SECRET_KEY"] = urandom(32)
 
@@ -62,3 +62,12 @@ from application.result.analyze import views
 
 # create db
 db.create_all()
+
+# add user groups to db
+if Usergroup.query.get(1) is None:
+    user = Usergroup()
+    user.name = 'user'
+    admin = Usergroup()
+    admin.name = 'admin'
+    owner = Usergroup()
+    owner.name = 'owner'

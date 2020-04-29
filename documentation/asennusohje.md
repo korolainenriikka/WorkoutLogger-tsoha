@@ -4,9 +4,9 @@
 
 Sovellus voidaan ladata githubista joko zip-tiedostona, tai kloonaamalla repositorio. 
 
-Sovellus käynnistetään toiminnolla
+Sovellus käynnistetään repositorion juuressa komennolla
 ```
-python3 WorkoutLogger-tsoha-master/run.py
+python3 run.py
 ```
 Sovellus löytyy tällöin osoitteesta
 
