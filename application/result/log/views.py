@@ -39,15 +39,22 @@ def run_results_create(rounds, distance):
 	db.session.add(s)
 	db.session.commit()
 	session = Session.query.order_by(Session.id.desc()).first()
+	print("eli! boisss its major debug time!!!!!!!")
 
 	for value in form.values():
 		if (value != ''):
 			time = value
 			c = Conditioning()
+			print("luotiin conditioning-olio.")
 			c.session_id = session.id
 			c.time = datetime.datetime.strptime(time, '%H:%M:%S').time()
 			c.distance = distance
 			c.workout_id = 1
+			print("olion attribuutit:")
+			print("session_id: " + c.session_id)
+			print("time: " + c.time)
+			print("distance: " + c.distance)
+			print("ja workoutsin iidee:" + c.workout_id)
 			db.session.add(c)
 			db.session.commit()
 
